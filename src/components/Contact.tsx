@@ -17,7 +17,6 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // This would typically send data to a backend
     console.log("Form submitted:", formData);
     alert("Thank you for your inquiry! We'll get back to you within 24 hours.");
   };
@@ -29,27 +28,27 @@ export function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email Us",
-      details: ["hello@automateflow.com", "support@automateflow.com"],
+      title: "Email",
+      details: ["kratosai@gmail.com"],
       action: "Send Email"
     },
     {
       icon: Phone,
-      title: "Call Us",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+      title: "Phone",
+      details: ["(619) 000-0000"],
       action: "Schedule Call"
     },
     {
       icon: MapPin,
-      title: "Visit Us",
-      details: ["123 Innovation Drive", "San Francisco, CA 94105"],
-      action: "Get Directions"
+      title: "Location",
+      details: ["San Diego, CA", "Serving trade businesses in San Diego County"],
+      action: null
     },
     {
       icon: Clock,
-      title: "Business Hours",
-      details: ["Mon-Fri: 9AM-6PM PST", "Sat: 10AM-2PM PST"],
-      action: "Schedule Meeting"
+      title: "Hours",
+      details: ["Mon–Sat: 8AM–8PM PST"],
+      action: "Book a Call"
     }
   ];
 
@@ -57,105 +56,119 @@ export function Contact() {
     <section id="contact" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl mb-4">Get Started Today</h2>
+          <h2 className="text-3xl lg:text-5xl font-bold mb-4">Let's Talk</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Ready to transform your business with AI automation? Contact our experts for a free consultation 
-            and discover how we can help you achieve your goals.
+            No pitch. Just a free 20-minute audit to figure out exactly what your business needs.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="bg-zinc-900 text-white rounded-2xl p-8 text-center shadow-xl border border-zinc-800">
+            <h3 className="text-xl font-bold mb-4">Prefer to just book a call?</h3>
+            <p className="text-zinc-400 mb-6 text-sm">Pick a time that works for you on my calendar.</p>
+            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black transition-all" asChild>
+              <a href="#">Open Scheduler</a>
+            </Button>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Form */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Send us a message</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
+          <div className="lg:col-span-3">
+            <Card className="border-border/50">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold">Tell me about your business</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Full Name *</label>
+                      <Input
+                        placeholder="Your name"
+                        value={formData.name}
+                        onChange={(e) => handleChange("name", e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Email Address *</label>
+                      <Input
+                        type="email"
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={(e) => handleChange("email", e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <label className="text-sm">Full Name *</label>
+                    <label className="text-sm font-medium">Company Name *</label>
                     <Input
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={(e) => handleChange("name", e.target.value)}
+                      placeholder="e.g. Martinez Plumbing"
+                      value={formData.company}
+                      onChange={(e) => handleChange("company", e.target.value)}
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-sm">Email Address *</label>
-                    <Input
-                      type="email"
-                      placeholder="your@email.com"
-                      value={formData.email}
-                      onChange={(e) => handleChange("email", e.target.value)}
+                    <label className="text-sm font-medium">What level of help do you need?</label>
+                    <Select onValueChange={(value) => handleChange("service", value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a package" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="starter">Trades Starter Pack</SelectItem>
+                        <SelectItem value="system">AI-Powered Business System</SelectItem>
+                        <SelectItem value="leadgen">Lead Gen + Outreach Machine</SelectItem>
+                        <SelectItem value="content">Content + Website Bundle</SelectItem>
+                        <SelectItem value="website">Website Only</SelectItem>
+                        <SelectItem value="custom">Custom / Not Sure Yet</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Message *</label>
+                    <Textarea
+                      placeholder="What's your biggest business challenge right now?"
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => handleChange("message", e.target.value)}
                       required
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm">Company</label>
-                  <Input
-                    placeholder="Your company name"
-                    value={formData.company}
-                    onChange={(e) => handleChange("company", e.target.value)}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm">Service Interested In</label>
-                  <Select onValueChange={(value) => handleChange("service", value)}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="chatbot">AI Chatbots & Assistants</SelectItem>
-                      <SelectItem value="process">Process Automation</SelectItem>
-                      <SelectItem value="data">Data Processing & Analysis</SelectItem>
-                      <SelectItem value="communication">Communication Automation</SelectItem>
-                      <SelectItem value="bi">Business Intelligence</SelectItem>
-                      <SelectItem value="custom">Custom AI Solutions</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm">Message *</label>
-                  <Textarea
-                    placeholder="Tell us about your automation needs..."
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => handleChange("message", e.target.value)}
-                    required
-                  />
-                </div>
-
-                <Button type="submit" className="w-full">
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+                  <Button type="submit" className="w-full" size="lg">
+                    Send Inquiry
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Contact Information */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-4">
             {contactInfo.map((info, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow duration-200">
+              <Card key={index} className="border-none shadow-none bg-accent/5">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-6 h-6 text-primary" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <div className="flex-1 space-y-2">
-                      <h3 className="font-medium">{info.title}</h3>
+                    <div className="flex-1 space-y-1">
+                      <h3 className="font-bold text-base">{info.title}</h3>
                       {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-muted-foreground text-sm">{detail}</p>
+                        <p key={idx} className="text-muted-foreground text-sm leading-relaxed">{detail}</p>
                       ))}
                     </div>
-                    <Button variant="ghost" size="sm">
-                      {info.action}
-                    </Button>
+                    {info.action && (
+                      <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10">
+                        {info.action}
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -165,4 +178,4 @@ export function Contact() {
       </div>
     </section>
   );
-}
+}

@@ -1,43 +1,43 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Bot, Workflow, Database, MessageSquare, BarChart3, Settings } from "lucide-react";
+import { Globe, MessageCircle, Phone, Workflow, Users, Video } from "lucide-react";
 
 export function Services() {
   const services = [
     {
-      icon: Bot,
-      title: "AI Chatbots & Assistants",
-      description: "Deploy intelligent chatbots that handle customer inquiries, lead qualification, and support tickets 24/7.",
-      features: ["Natural Language Processing", "Multi-platform Integration", "Custom Training"]
+      icon: Globe,
+      title: "Websites & Landing Pages",
+      description: "Mobile-first business websites built fast and deployed on Vercel. Your professional web presence live in days, not weeks.",
+      features: ["5–7 page responsive site", "Contact form + Google Maps", "SEO basics included"]
+    },
+    {
+      icon: MessageCircle,
+      title: "AI Chatbots",
+      description: "An AI assistant embedded on your website that answers questions, captures leads, and books appointments around the clock.",
+      features: ["Trained on your services + FAQs", "Lead capture to Airtable", "Cal.com booking integration"]
+    },
+    {
+      icon: Phone,
+      title: "AI Phone Receptionist",
+      description: "An AI agent that answers inbound calls 24/7, qualifies callers, books jobs, and texts the owner instantly.",
+      features: ["Answers after-hours calls", "Books appointments automatically", "Owner SMS alert on every lead"]
     },
     {
       icon: Workflow,
-      title: "Process Automation",
-      description: "Automate repetitive business processes, from data entry to document processing and approvals.",
-      features: ["Workflow Design", "API Integrations", "Error Handling"]
+      title: "Workflow Automation",
+      description: "Connect your lead forms, CRM, and messaging into one automated pipeline. No manual follow-up needed.",
+      features: ["Lead scoring + SMS follow-up", "Airtable CRM integration", "Review generation after job close"]
     },
     {
-      icon: Database,
-      title: "Data Processing & Analysis",
-      description: "Transform raw data into actionable insights with automated data collection, cleaning, and analysis.",
-      features: ["Data Mining", "Predictive Analytics", "Real-time Processing"]
+      icon: Users,
+      title: "Lead Generation",
+      description: "Targeted lead lists and cold outreach campaigns built for your niche and city.",
+      features: ["Google Maps scraping by trade + city", "Verified contact data", "Managed cold email sequences"]
     },
     {
-      icon: MessageSquare,
-      title: "Communication Automation",
-      description: "Streamline internal and external communications with automated emails, notifications, and follow-ups.",
-      features: ["Email Sequences", "SMS Automation", "Slack Integration"]
-    },
-    {
-      icon: BarChart3,
-      title: "Business Intelligence",
-      description: "Generate automated reports and dashboards that provide real-time insights into your business performance.",
-      features: ["Custom Dashboards", "Automated Reports", "KPI Tracking"]
-    },
-    {
-      icon: Settings,
-      title: "Custom AI Solutions",
-      description: "Tailored AI solutions designed specifically for your unique business requirements and challenges.",
-      features: ["Bespoke Development", "Machine Learning", "AI Model Training"]
+      icon: Video,
+      title: "AI Video & Content",
+      description: "Short video ads and monthly social content created with AI. Professional-quality visuals at a fraction of traditional cost.",
+      features: ["15–60 second video ads", "Monthly content packages", "Branded graphics + captions"]
     }
   ];
 
@@ -45,10 +45,9 @@ export function Services() {
     <section id="services" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl mb-4">Our AI Automation Services</h2>
+          <h2 className="text-3xl lg:text-4xl mb-4">What We Build</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            We provide comprehensive AI automation solutions that transform how your business operates, 
-            from simple task automation to complex intelligent systems.
+            Every service is designed for trade and local service businesses — fast to deploy, built to convert.
           </p>
         </div>
 
@@ -78,4 +77,4 @@ export function Services() {
       </div>
     </section>
   );
-}
+}

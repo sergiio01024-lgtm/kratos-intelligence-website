@@ -1,33 +1,33 @@
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { TrendingUp, Clock, DollarSign } from "lucide-react";
+import { TrendingUp, Globe, CheckCircle, Phone, Zap, Database } from "lucide-react";
 
 export function CaseStudies() {
   const caseStudies = [
     {
-      company: "TechCorp Solutions",
-      industry: "Software Development",
-      challenge: "Manual customer support consuming 40+ hours weekly",
-      solution: "AI-powered chatbot with escalation workflows",
+      company: "AIRMAKERS Heating & Air",
+      industry: "HVAC",
+      challenge: "No website, no online presence, losing leads to competitors with better web visibility",
+      solution: "Full business website with contact form, Google Maps embed, and SEO basics — deployed in under a week",
       results: [
-        { icon: TrendingUp, metric: "85%", description: "Reduction in support tickets" },
-        { icon: Clock, metric: "2 min", description: "Average response time" },
-        { icon: DollarSign, metric: "$50K", description: "Annual cost savings" }
+        { icon: Globe, metric: "Live in 5 Days", description: "From zero to deployed" },
+        { icon: TrendingUp, metric: "100%", description: "Mobile responsive" },
+        { icon: CheckCircle, metric: "Active", description: "Used as portfolio proof" }
       ],
-      image: "https://images.unsplash.com/photo-1599580546605-a86af98dbdb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1NzkzMzcxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800"
     },
     {
-      company: "RetailFlow Inc",
-      industry: "E-commerce",
-      challenge: "Inventory management across 50+ locations",
-      solution: "Automated inventory tracking and reorder system",
+      company: "LTE Electric",
+      industry: "Electrician",
+      challenge: "Missing after-hours calls and manually following up on every lead — owner doing everything himself",
+      solution: "AI chatbot on website + AI phone agent + automated lead scoring, SMS alerts, and Airtable CRM",
       results: [
-        { icon: TrendingUp, metric: "95%", description: "Inventory accuracy" },
-        { icon: Clock, metric: "Real-time", description: "Stock level updates" },
-        { icon: DollarSign, metric: "30%", description: "Reduction in overstock" }
+        { icon: Phone, metric: "24/7", description: "AI answers every call" },
+        { icon: Zap, metric: "Instant", description: "SMS alert to owner" },
+        { icon: Database, metric: "All leads logged", description: "Auto to Airtable" }
       ],
-      image: "https://images.unsplash.com/photo-1647427060118-4911c9821b82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGF1dG9tYXRpb24lMjB3b3JrZmxvd3xlbnwxfHx8fDE3NTc5MzA1MTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+      image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800"
     }
   ];
 
@@ -35,9 +35,9 @@ export function CaseStudies() {
     <section id="case-studies" className="py-20 bg-accent/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl mb-4">Success Stories</h2>
+          <h2 className="text-3xl lg:text-4xl mb-4 font-bold">Real Results</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            See how we've helped businesses like yours achieve remarkable results through AI automation.
+            Two San Diego businesses already running on Kratos Intelligence systems.
           </p>
         </div>
 
@@ -57,13 +57,15 @@ export function CaseStudies() {
               </div>
               
               <CardHeader>
-                <h3 className="text-xl font-medium">{study.company}</h3>
-                <p className="text-muted-foreground text-sm">
-                  <span className="font-medium">Challenge:</span> {study.challenge}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  <span className="font-medium">Solution:</span> {study.solution}
-                </p>
+                <h3 className="text-xl font-bold">{study.company}</h3>
+                <div className="space-y-2 mt-2">
+                  <p className="text-muted-foreground text-sm">
+                    <span className="font-semibold text-foreground">Challenge:</span> {study.challenge}
+                  </p>
+                  <p className="text-muted-foreground text-sm">
+                    <span className="font-semibold text-foreground">Solution:</span> {study.solution}
+                  </p>
+                </div>
               </CardHeader>
 
               <CardContent>
@@ -73,8 +75,8 @@ export function CaseStudies() {
                       <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                         <result.icon className="w-5 h-5 text-primary" />
                       </div>
-                      <div className="text-2xl font-bold text-primary mb-1">{result.metric}</div>
-                      <div className="text-xs text-muted-foreground">{result.description}</div>
+                      <div className="text-sm font-bold text-primary mb-1 leading-tight">{result.metric}</div>
+                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{result.description}</div>
                     </div>
                   ))}
                 </div>
@@ -85,4 +87,4 @@ export function CaseStudies() {
       </div>
     </section>
   );
-}
+}

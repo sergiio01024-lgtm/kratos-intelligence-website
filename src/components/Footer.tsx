@@ -1,42 +1,34 @@
 import { Separator } from "./ui/separator";
-import { Linkedin, Twitter, Github, Mail } from "lucide-react";
+import { Linkedin, Instagram, Mail } from "lucide-react";
 
 export function Footer() {
   const footerSections = [
     {
       title: "Services",
       links: [
+        { name: "Websites", href: "#services" },
         { name: "AI Chatbots", href: "#services" },
-        { name: "Process Automation", href: "#services" },
-        { name: "Data Processing", href: "#services" },
-        { name: "Business Intelligence", href: "#services" }
+        { name: "Phone Agents", href: "#services" },
+        { name: "Workflow Automation", href: "#services" },
+        { name: "Lead Generation", href: "#services" },
+        { name: "AI Content", href: "#services" }
       ]
     },
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "#about" },
-        { name: "Products", href: "#products" },
+        { name: "About", href: "#about" },
+        { name: "Packages", href: "#packages" },
         { name: "Our Process", href: "#process" },
-        { name: "Case Studies", href: "#case-studies" }
-      ]
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Blog", href: "#" },
-        { name: "Documentation", href: "#" },
-        { name: "Support", href: "#" },
-        { name: "Privacy Policy", href: "#" }
+        { name: "Case Studies", href: "#case-studies" },
+        { name: "Contact", href: "#contact" }
       ]
     }
   ];
 
   const socialLinks = [
     { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Mail, href: "#", label: "Email" }
+    { icon: Instagram, href: "#", label: "Instagram" }
   ];
 
   return (
@@ -48,13 +40,12 @@ export function Footer() {
             <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">AI</span>
+                  <span className="text-primary-foreground font-bold">KI</span>
                 </div>
-                <span className="font-bold text-xl">AutomateFlow</span>
+                <span className="font-bold text-xl">Kratos Intelligence</span>
               </div>
               <p className="text-muted-foreground text-sm max-w-md">
-                Transform your business with cutting-edge AI automation solutions. 
-                We help companies streamline operations, reduce costs, and scale efficiently.
+                AI automation for trade businesses. We build the systems so you can focus on the work.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -95,12 +86,11 @@ export function Footer() {
         
         <div className="py-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <p className="text-muted-foreground text-sm">
-            © 2024 AutomateFlow. All rights reserved.
+            © 2025 Kratos Intelligence. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Cookie Policy</a>
           </div>
         </div>
       </div>

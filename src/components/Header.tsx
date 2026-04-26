@@ -7,7 +7,7 @@ export function Header() {
 
   const navItems = [
     { name: "Services", href: "#services" },
-    { name: "Products", href: "#products" },
+    { name: "Packages", href: "#packages" },
     { name: "About", href: "#about" },
     { name: "Process", href: "#process" },
     { name: "Case Studies", href: "#case-studies" },
@@ -20,9 +20,9 @@ export function Header() {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold">AI</span>
+              <span className="text-primary-foreground font-bold">KI</span>
             </div>
-            <span className="font-bold text-xl">AutomateFlow</span>
+            <span className="font-bold text-xl">Kratos Intelligence</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -39,7 +39,7 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline">Get Started</Button>
+            <Button variant="outline">Get a Free Audit</Button>
           </div>
 
           {/* Mobile menu button */}
@@ -65,7 +65,7 @@ export function Header() {
                   {item.name}
                 </a>
               ))}
-              <Button className="w-fit">Get Started</Button>
+              <Button className="w-fit">Get a Free Audit</Button>
             </nav>
           </div>
         )}
