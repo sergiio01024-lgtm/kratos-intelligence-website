@@ -29,13 +29,7 @@ export function Contact() {
     setFormStatus('submitting');
 
     try {
-      const webhookUrl = import.meta.env.VITE_CONTACT_WEBHOOK_URL;
-      
-      if (!webhookUrl) {
-        throw new Error('Webhook URL not configured');
-      }
-
-      const response = await fetch(webhookUrl, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
