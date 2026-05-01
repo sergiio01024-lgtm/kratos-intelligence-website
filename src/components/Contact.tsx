@@ -1,181 +1,138 @@
 import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card } from "./ui/card";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import { FadeIn } from "./ui/FadeIn";
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service: "",
-    message: ""
-  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thank you for your inquiry! We'll get back to you within 24 hours.");
+    setFormStatus('submitting');
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setFormStatus('success');
   };
 
-  const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      details: ["kratosai@gmail.com"],
-      action: "Send Email"
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      details: ["(619) 000-0000"],
-      action: "Schedule Call"
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      details: ["San Diego, CA", "Serving trade businesses in San Diego County"],
-      action: null
-    },
-    {
-      icon: Clock,
-      title: "Hours",
-      details: ["Mon–Sat: 8AM–8PM PST"],
-      action: "Book a Call"
-    }
-  ];
-
-  return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-4">Let's Talk</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            No pitch. Just a free 20-minute audit to figure out exactly what your business needs.
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="bg-zinc-900 text-white rounded-2xl p-8 text-center shadow-xl border border-zinc-800">
-            <h3 className="text-xl font-bold mb-4">Prefer to just book a call?</h3>
-            <p className="text-zinc-400 mb-6 text-sm">Pick a time that works for you on my calendar.</p>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-black transition-all" asChild>
-              <a href="#">Open Scheduler</a>
+  if (formStatus === 'success') {
+    return (
+      <section id="contact" className="py-20 bg-accent/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center space-y-6 bg-white p-12 rounded-3xl border border-border shadow-xl">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-10 h-10 text-green-600" />
+            </div>
+            <h2 className="text-3xl font-bold">Message Sent!</h2>
+            <p className="text-muted-foreground text-lg">
+              Thanks for reaching out. I'll review your details and get back to you within 24 hours.
+            </p>
+            <Button variant="outline" onClick={() => setFormStatus('idle')}>
+              Send Another Message
             </Button>
           </div>
         </div>
+      </section>
+    );
+  }
 
-        <div className="grid lg:grid-cols-5 gap-12">
-          {/* Contact Form */}
-          <div className="lg:col-span-3">
-            <Card className="border-border/50">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold">Tell me about your business</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Full Name *</label>
-                      <Input
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) => handleChange("name", e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Email Address *</label>
-                      <Input
-                        type="email"
-                        placeholder="your@email.com"
-                        value={formData.email}
-                        onChange={(e) => handleChange("email", e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
+  return (
+    <section id="contact" className="py-20 bg-accent/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-3xl lg:text-4xl font-bold">Ready to Automate?</h2>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Fill out the form to book your free audit. I'll personally review your business and show you exactly where AI can save you time and win you more jobs.
+              </p>
+            </div>
 
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold">Call or Text</p>
+                  <p className="text-muted-foreground">(858) 997-9251</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold">Email</p>
+                  <p className="text-muted-foreground">sergio@kratosintelligence.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold">Location</p>
+                  <p className="text-muted-foreground">San Diego, CA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <FadeIn>
+            <Card className="p-8 shadow-xl border-border">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Company Name *</label>
-                    <Input
-                      placeholder="e.g. Martinez Plumbing"
-                      value={formData.company}
-                      onChange={(e) => handleChange("company", e.target.value)}
-                      required
-                    />
+                    <Label htmlFor="first-name">First Name</Label>
+                    <Input id="first-name" placeholder="John" required />
                   </div>
-
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">What level of help do you need?</label>
-                    <Select onValueChange={(value) => handleChange("service", value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a package" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="starter">Trades Starter Pack</SelectItem>
-                        <SelectItem value="system">AI-Powered Business System</SelectItem>
-                        <SelectItem value="leadgen">Lead Gen + Outreach Machine</SelectItem>
-                        <SelectItem value="content">Content + Website Bundle</SelectItem>
-                        <SelectItem value="website">Website Only</SelectItem>
-                        <SelectItem value="custom">Custom / Not Sure Yet</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="last-name">Last Name</Label>
+                    <Input id="last-name" placeholder="Doe" required />
                   </div>
+                </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Message *</label>
-                    <Textarea
-                      placeholder="What's your biggest business challenge right now?"
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => handleChange("message", e.target.value)}
-                      required
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="john@example.com" required />
+                </div>
 
-                  <Button type="submit" className="w-full" size="lg">
-                    Send Inquiry
-                  </Button>
-                </form>
-              </CardContent>
+                <div className="space-y-2">
+                  <Label htmlFor="company">Company Name</Label>
+                  <Input id="company" placeholder="Example Plumbing Co." required />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message">How can I help?</Label>
+                  <Textarea 
+                    id="message" 
+                    placeholder="Tell me about your business and what systems you're interested in..." 
+                    className="min-h-[120px]"
+                    required
+                  />
+                </div>
+
+                <Button type="submit" className="w-full" size="lg" disabled={formStatus === 'submitting'}>
+                  {formStatus === 'submitting' ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Request Free Audit
+                      <Send className="ml-2 w-4 h-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
             </Card>
-          </div>
-
-          {/* Contact Information */}
-          <div className="lg:col-span-2 space-y-4">
-            {contactInfo.map((info, index) => (
-              <Card key={index} className="border-none shadow-none bg-accent/5">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex-1 space-y-1">
-                      <h3 className="font-bold text-base">{info.title}</h3>
-                      {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-muted-foreground text-sm leading-relaxed">{detail}</p>
-                      ))}
-                    </div>
-                    {info.action && (
-                      <Button variant="ghost" size="sm" className="text-primary hover:text-primary hover:bg-primary/10">
-                        {info.action}
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          </FadeIn>
         </div>
       </div>
     </section>
   );
-}
+}

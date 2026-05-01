@@ -8,6 +8,8 @@ import {
   Zap
 } from "lucide-react";
 
+import { FadeIn } from "./ui/FadeIn";
+
 export function Packages() {
   const packages = [
     {
@@ -66,57 +68,59 @@ export function Packages() {
   ];
 
   return (
-    <section id="packages" className="py-20 bg-background">
+    <section id="packages" className="py-16 md:py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <FadeIn className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl lg:text-4xl mb-4 text-primary font-bold">Packages</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Bundled services designed for trade businesses. Pick the level that fits where you are — upgrade anytime.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {packages.map((pkg, index) => (
-            <Card key={index} className={`group relative overflow-hidden hover:shadow-xl transition-all duration-300 border-border ${pkg.popular ? 'ring-2 ring-primary border-primary/20' : ''}`}>
-              {pkg.popular && (
-                <div className="absolute top-4 right-4 animate-pulse">
-                  <Badge className="bg-primary text-primary-foreground">
-                    <Star className="w-3 h-3 mr-1 fill-current" />
-                    {pkg.badge}
-                  </Badge>
-                </div>
-              )}
-              
-              <CardHeader className="pb-4">
-                <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
-                <div className="text-lg font-bold text-primary mt-2">{pkg.price}</div>
-              </CardHeader>
+            <FadeIn key={index} delay={index * 0.1}>
+              <Card className={`group relative w-full overflow-hidden hover:shadow-xl transition-all duration-300 border-border ${pkg.popular ? 'ring-2 ring-primary border-primary/20' : ''}`}>
+                {pkg.popular && (
+                  <div className="absolute top-4 right-4 z-10">
+                    <Badge className="bg-primary text-primary-foreground inline-flex text-xs">
+                      <Star className="w-3 h-3 mr-1 fill-current" />
+                      {pkg.badge}
+                    </Badge>
+                  </div>
+                )}
+                
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
+                  <div className="text-sm md:text-lg font-bold text-primary mt-2">{pkg.price}</div>
+                </CardHeader>
 
-              <CardContent className="space-y-6">
-                <p className="text-muted-foreground">{pkg.description}</p>
+                <CardContent className="space-y-6">
+                  <p className="text-muted-foreground">{pkg.description}</p>
 
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-sm uppercase tracking-wider text-foreground/70">What's Included</h4>
-                  <ul className="space-y-2">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-2 text-sm text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-sm uppercase tracking-wider text-foreground/70">What's Included</h4>
+                    <ul className="space-y-2">
+                      {pkg.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start space-x-2 text-sm text-muted-foreground">
+                          <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                <div className="pt-4">
-                  <Button className="w-full group" size="lg" asChild>
-                    <a href="#contact">
-                    Get Started
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="pt-4">
+                    <Button className="w-full group" size="lg" asChild>
+                      <a href="#contact">
+                      Get Started
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeIn>
           ))}
         </div>
 

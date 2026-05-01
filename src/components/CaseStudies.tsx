@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { TrendingUp, Globe, CheckCircle, Phone, Zap, Database } from "lucide-react";
+import { Globe, TrendingUp, CheckCircle, Phone, Zap, Database } from "lucide-react";
+import { FadeIn } from "./ui/FadeIn";
 
 export function CaseStudies() {
   const caseStudies = [
@@ -32,59 +33,61 @@ export function CaseStudies() {
   ];
 
   return (
-    <section id="case-studies" className="py-20 bg-accent/10">
+    <section id="case-studies" className="py-16 md:py-20 bg-accent/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl lg:text-4xl mb-4 font-bold">Real Results</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Two San Diego businesses already running on Kratos Intelligence systems.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-video relative overflow-hidden">
-                <ImageWithFallback
-                  src={study.image}
-                  alt={`${study.company} case study`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">
-                  {study.industry}
-                </Badge>
-              </div>
-              
-              <CardHeader>
-                <h3 className="text-xl font-bold">{study.company}</h3>
-                <div className="space-y-2 mt-2">
-                  <p className="text-muted-foreground text-sm">
-                    <span className="font-semibold text-foreground">Challenge:</span> {study.challenge}
-                  </p>
-                  <p className="text-muted-foreground text-sm">
-                    <span className="font-semibold text-foreground">Solution:</span> {study.solution}
-                  </p>
+            <FadeIn key={index}>
+              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full">
+                <div className="relative overflow-hidden">
+                  <ImageWithFallback
+                    src={study.image}
+                    alt={`${study.company} case study`}
+                    className="w-full h-48 md:h-64 object-cover rounded-t-xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground inline-flex">
+                    {study.industry}
+                  </Badge>
                 </div>
-              </CardHeader>
+                
+                <CardHeader>
+                  <h3 className="text-xl font-bold">{study.company}</h3>
+                  <div className="space-y-2 mt-2">
+                    <p className="text-muted-foreground text-sm">
+                      <span className="font-semibold text-foreground">Challenge:</span> {study.challenge}
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                      <span className="font-semibold text-foreground">Solution:</span> {study.solution}
+                    </p>
+                  </div>
+                </CardHeader>
 
-              <CardContent>
-                <div className="grid grid-cols-3 gap-4">
-                  {study.results.map((result, idx) => (
-                    <div key={idx} className="text-center">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <result.icon className="w-5 h-5 text-primary" />
+                <CardContent>
+                  <div className="grid grid-cols-3 gap-2 md:gap-4">
+                    {study.results.map((result, idx) => (
+                      <div key={idx} className="text-center">
+                        <div className="w-8 h-8 md:w-10 md:h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                          <result.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                        </div>
+                        <div className="text-xs md:text-sm font-bold text-primary mb-1 leading-tight">{result.metric}</div>
+                        <div className="text-[9px] md:text-[10px] uppercase tracking-wider text-muted-foreground">{result.description}</div>
                       </div>
-                      <div className="text-sm font-bold text-primary mb-1 leading-tight">{result.metric}</div>
-                      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{result.description}</div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeIn>
           ))}
         </div>
       </div>
     </section>
   );
-}
+}
