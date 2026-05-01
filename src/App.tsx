@@ -9,6 +9,7 @@ import { CaseStudies } from "./components/CaseStudies";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
 import { FAQ } from "./components/FAQ";
+import { FloatingCTA } from "./components/FloatingCTA";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <FAQ />
       </main>
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }
