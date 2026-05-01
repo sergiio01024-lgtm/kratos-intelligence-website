@@ -21,8 +21,8 @@ export function Testimonials() {
   return (
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl mb-4">What Clients Say</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">What Clients Say</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Real feedback from San Diego trade businesses.
           </p>
@@ -31,18 +31,18 @@ export function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {testimonials.map((testimonial, index) => (
             <FadeIn key={index} delay={index === 0 ? 0 : 0.15}>
-              <div className="p-6 rounded-2xl border border-border bg-muted/20 h-full">
-                <div className="text-4xl text-muted-foreground/30 font-serif leading-none mb-2">"</div>
-                <p className="text-sm leading-relaxed text-foreground mb-4">
+              <div className="p-8 rounded-2xl border border-border bg-muted/20 h-full min-h-[200px] flex flex-col">
+                <div className="text-5xl text-muted-foreground/30 font-serif leading-none mb-3">"</div>
+                <p className="text-sm leading-7 text-muted-foreground mb-4 flex-grow">
                   {testimonial.quote}
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-medium text-sm ${testimonial.avatarClass}`}>
+                <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm ${testimonial.avatarClass}`}>
                     {testimonial.initial}
                   </div>
                   <div>
                     <div className="text-sm font-semibold text-foreground leading-tight">{testimonial.name}</div>
-                    <div className="text-xs text-muted-foreground">{testimonial.title}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{testimonial.title}</div>
                   </div>
                 </div>
               </div>

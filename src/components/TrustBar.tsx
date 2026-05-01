@@ -20,12 +20,12 @@ export function TrustBar() {
 
   return (
     <div className="border-t border-b border-border bg-muted/30">
-      <FadeIn className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4 md:gap-3 items-center text-center">
+      <FadeIn className="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-4 md:gap-3 items-center text-center">
         {/* Stats Row */}
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-6">
           {stats.map((stat, index) => (
-            <div key={stat} className="flex items-center gap-4 md:gap-8">
-              <span className="text-sm font-medium text-foreground whitespace-nowrap">
+            <div key={stat} className="flex items-center gap-3 md:gap-6">
+              <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">
                 {stat}
               </span>
               {index < stats.length - 1 && (
@@ -40,7 +40,7 @@ export function TrustBar() {
           {tools.map((tool) => (
             <span
               key={tool}
-              className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground border border-border"
+              className="text-xs px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground border border-border"
             >
               {tool}
             </span>

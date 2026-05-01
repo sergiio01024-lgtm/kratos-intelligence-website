@@ -45,9 +45,9 @@ export function Contact() {
         <div className="grid lg:grid-cols-2 gap-16">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-bold">Ready to Automate?</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold">Let's Talk</h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Fill out the form to book your free audit. I'll personally review your business and show you exactly where AI can save you time and win you more jobs.
+                No pitch. Just a free 20-minute audit to figure out exactly what your business needs.
               </p>
             </div>
 

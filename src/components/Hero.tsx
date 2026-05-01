@@ -3,10 +3,10 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-background to-accent/20">
+    <section className="py-20 lg:py-32 bg-gradient-to-br from-background to-accent/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8 z-10 relative">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl tracking-tight font-bold">
                 AI Systems for Trade Businesses That Actually Win Jobs
@@ -44,9 +44,9 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="hidden lg:flex justify-center items-center relative">
             <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-            <div className="relative bg-zinc-900 text-white p-6 rounded-2xl shadow-2xl border border-zinc-800">
+            <div className="relative bg-zinc-900 text-white p-6 rounded-2xl shadow-2xl border border-zinc-800 w-full max-w-sm">
               <div className="flex items-center justify-between mb-6">
                 <span className="text-zinc-400 text-xs font-medium">AI System — Live</span>
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
