@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -15,17 +16,35 @@ export function FloatingCTA() {
     };
 
     window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+
+    const footer = document.getElementById("footer");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (footer) {
+      observer.observe(footer);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+      if (footer) {
+        observer.unobserve(footer);
+      }
+    };
   }, []);
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !isFooterVisible && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          className="fixed z-50 bottom-4 left-4 right-4 lg:bottom-8 lg:right-8 lg:left-auto lg:w-auto"
+          className="fixed z-50 bottom-4 left-4 right-4 lg:bottom-6 lg:right-6 lg:left-auto lg:w-auto"
         >
           <Button 
             size="lg" 
