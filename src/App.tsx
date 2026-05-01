@@ -8,6 +8,7 @@ import { Process } from "./components/Process";
 import { CaseStudies } from "./components/CaseStudies";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
+import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
         <CaseStudies />
         <Testimonials />
         <Contact />
+        <FAQ />
       </main>
       <Footer />
     </div>
