@@ -8,14 +8,54 @@ import { useState } from "react";
 import { FadeIn } from "./ui/FadeIn";
 
 export function Contact() {
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    // Map hyphenated IDs to camelCase state keys
+    const key = id.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+    setFormData(prev => ({ ...prev, [key]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('submitting');
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setFormStatus('success');
+
+    try {
+      const webhookUrl = import.meta.env.VITE_CONTACT_WEBHOOK_URL;
+      
+      if (!webhookUrl) {
+        throw new Error('Webhook URL not configured');
+      }
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: "Kratos Intelligence Website",
+          submittedAt: new Date().toISOString()
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      setFormStatus('success');
+    } catch (error) {
+      console.error('Submission error:', error);
+      setFormStatus('error');
+    }
   };
 
   if (formStatus === 'success') {
@@ -90,22 +130,47 @@ export function Contact() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="first-name">First Name</Label>
-                    <Input id="first-name" placeholder="John" required />
+                    <Input 
+                      id="first-name" 
+                      placeholder="John" 
+                      required 
+                      value={formData.firstName}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="last-name">Last Name</Label>
-                    <Input id="last-name" placeholder="Doe" required />
+                    <Input 
+                      id="last-name" 
+                      placeholder="Doe" 
+                      required 
+                      value={formData.lastName}
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="john@example.com" required />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="john@example.com" 
+                    required 
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="company">Company Name</Label>
-                  <Input id="company" placeholder="Example Plumbing Co." required />
+                  <Input 
+                    id="company" 
+                    placeholder="Example Plumbing Co." 
+                    required 
+                    value={formData.company}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -115,19 +180,29 @@ export function Contact() {
                     placeholder="Tell me about your business and what systems you're interested in..." 
                     className="min-h-[120px]"
                     required
+                    value={formData.message}
+                    onChange={handleChange}
                   />
                 </div>
 
-                <Button type="submit" className="w-full" size="lg" disabled={formStatus === 'submitting'}>
-                  {formStatus === 'submitting' ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      Request Free Audit
-                      <Send className="ml-2 w-4 h-4" />
-                    </>
+                <div className="space-y-4">
+                  <Button type="submit" className="w-full" size="lg" disabled={formStatus === 'submitting'}>
+                    {formStatus === 'submitting' ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        Request Free Audit
+                        <Send className="ml-2 w-4 h-4" />
+                      </>
+                    )}
+                  </Button>
+
+                  {formStatus === 'error' && (
+                    <p className="text-destructive text-sm text-center font-medium">
+                      Something went wrong. Please call or text Sergio directly at (858) 997-9251.
+                    </p>
                   )}
-                </Button>
+                </div>
               </form>
             </Card>
           </FadeIn>
