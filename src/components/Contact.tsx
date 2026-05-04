@@ -29,10 +29,11 @@ export function Contact() {
     setFormStatus('submitting');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(import.meta.env.VITE_FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           ...formData,
