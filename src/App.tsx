@@ -1,5 +1,6 @@
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { MissedCalls } from "./components/MissedCalls";
 import { TrustBar } from "./components/TrustBar";
 import { Services } from "./components/Services";
 import { Packages } from "./components/Packages";
@@ -18,6 +19,7 @@ export default function App() {
       <Header />
       <main className="pt-16">
         <Hero />
+        <MissedCalls />
         <TrustBar />
         <Services />
         <Packages />

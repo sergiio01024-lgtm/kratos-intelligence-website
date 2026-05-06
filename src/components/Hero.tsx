@@ -68,9 +68,9 @@ export function Hero() {
                 <div className="text-zinc-400 text-[10px] uppercase tracking-wider font-bold mb-2">Recent Leads</div>
                 <div className="space-y-2">
                   {[
-                    { label: "Martinez HVAC · Inbound call", time: "8 min ago" },
-                    { label: "Reyes Electric · Website chat", time: "1 hr ago" },
-                    { label: "SD Plumbing Co · Contact form", time: "3 hr ago" },
+                    { label: "AC repair booked — Tue 2pm — ~$450", time: "8 min ago" },
+                    { label: "Panel upgrade quote requested", time: "1 hr ago" },
+                    { label: "Water heater leak — emergency", time: "3 hr ago" },
                   ].map((lead, i) => (
                     <div key={i} className="flex justify-between items-center">
                       <span className="text-sm text-white">{lead.label}</span>
@@ -88,7 +88,7 @@ export function Hero() {
                 <div className="space-y-2">
                   {[
                     "SMS sent to owner",
-                    "Lead logged to Airtable",
+                    "Job added to your CRM",
                     "Follow-up scheduled",
                   ].map((task, i) => (
                     <div key={i} className="flex items-center gap-2">

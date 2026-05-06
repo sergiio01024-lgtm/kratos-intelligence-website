@@ -51,8 +51,13 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center">
-            <Button variant="default" size="sm">Get a Free Audit</Button>
+          <div className="hidden md:flex items-center space-x-3">
+            <Button variant="ghost" size="sm" asChild className="font-semibold">
+              <a href="tel:8589979251">(858) 997-9251</a>
+            </Button>
+            <Button variant="default" size="sm" asChild>
+              <a href="#contact">Free Audit</a>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -70,6 +75,13 @@ export function Header() {
       {isMenuOpen && (
         <div className="md:hidden bg-background/98 backdrop-blur-md border-b border-border">
           <nav className="flex flex-col px-4 pt-2 pb-6 space-y-4">
+            <a
+              href="tel:8589979251"
+              className="text-lg font-bold text-primary py-2 flex items-center gap-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              (858) 997-9251
+            </a>
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -81,8 +93,8 @@ export function Header() {
               </a>
             ))}
             <div className="pt-4">
-              <Button className="w-full" onClick={() => setIsMenuOpen(false)}>
-                Get a Free Audit
+              <Button className="w-full" asChild onClick={() => setIsMenuOpen(false)}>
+                <a href="#contact">Free Audit</a>
               </Button>
             </div>
           </nav>

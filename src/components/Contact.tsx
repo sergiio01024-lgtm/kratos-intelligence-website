@@ -93,7 +93,9 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold">Call or Text</p>
-                  <p className="text-muted-foreground">(858) 997-9251</p>
+                  <p className="text-muted-foreground">
+                    <a href="tel:8589979251" className="hover:text-primary transition-colors">(858) 997-9251</a>
+                  </p>
                 </div>
               </div>
 
@@ -103,7 +105,9 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold">Email</p>
-                  <p className="text-muted-foreground">sergio@kratosintelligence.com</p>
+                  <p className="text-muted-foreground">
+                    <a href="mailto:sergio@kratosintelligence.com" className="hover:text-primary transition-colors">sergio@kratosintelligence.com</a>
+                  </p>
                 </div>
               </div>
 
@@ -194,7 +198,7 @@ export function Contact() {
 
                   {formStatus === 'error' && (
                     <p className="text-destructive text-sm text-center font-medium">
-                      Something went wrong. Please call or text Sergio directly at (858) 997-9251.
+                      Something went wrong. Please call or text Sergio directly at <a href="tel:8589979251" className="underline decoration-destructive/30 hover:decoration-destructive transition-all">(858) 997-9251</a>.
                     </p>
                   )}
                 </div>

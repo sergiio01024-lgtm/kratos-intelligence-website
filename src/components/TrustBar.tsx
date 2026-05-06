@@ -2,7 +2,7 @@ import { FadeIn } from "./ui/FadeIn";
 
 export function TrustBar() {
   const stats = [
-    "2 Live Client Systems",
+    "Built for HVAC, Electrical & Plumbing",
     "San Diego, CA Based",
     "48hr Average Delivery",
   ];
