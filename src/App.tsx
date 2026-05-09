@@ -13,6 +13,7 @@ import { FloatingCTA } from "./components/FloatingCTA";
 import { Footer } from "./components/Footer";
 
 import PhoneServicesCarousel from "./components/PhoneServicesCarousel";
+import FounderSection from './components/FounderSection';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <TrustBar />
         <PhoneServicesCarousel />
         <Packages />
+        <FounderSection />
         <About />
         <Process />
         <CaseStudies />
