@@ -24,9 +24,12 @@ export function CaseStudies() {
       challenge: "Missing after-hours calls and manually following up on every lead — owner doing everything himself",
       solution: "AI chatbot on website + AI phone agent + automated lead scoring, SMS alerts, and Airtable CRM",
       results: [
-        { icon: Phone, metric: "24/7", description: "AI answers every call" },
-        { icon: Zap, metric: "Instant", description: "SMS alert to owner" },
-        { icon: Database, metric: "All leads logged", description: "Auto to Airtable" }
+        { icon: TrendingUp, metric: "47 Leads", description: "Captured (3 mo)" },
+        { icon: Zap, metric: "4 Min", description: "Avg Response" },
+        { icon: CheckCircle, metric: "12 Jobs", description: "Booked directly" },
+        { icon: Phone, metric: "68% Hot", description: "Immediate jobs" },
+        { icon: Database, metric: "22% Warm", description: "In follow-up" },
+        { icon: Globe, metric: "10% Cold", description: "Logged for later" }
       ],
       image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800"
     }
