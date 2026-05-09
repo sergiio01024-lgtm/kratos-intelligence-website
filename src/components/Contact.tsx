@@ -75,82 +75,72 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-accent/5">
+    <section id="contact" className="py-20 dark-section-gradient border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-bold">Let's Talk</h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <h2 className="text-3xl lg:text-5xl font-bold text-white tracking-tight">Let's Talk</h2>
+              <p className="text-white/60 text-lg leading-relaxed">
                 No pitch. Just a free 20-minute audit to figure out exactly what your business needs.
               </p>
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-primary" />
+              {[
+                { icon: Phone, label: "Call or Text", value: "(858) 997-9251", href: "tel:8589979251" },
+                { icon: Mail, label: "Email", value: "sergio@kratosintelligence.com", href: "mailto:sergio@kratosintelligence.com" },
+                { icon: MapPin, label: "Location", value: "San Diego, CA", href: null },
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center space-x-6 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#667eea]/30 transition-all group">
+                  <div className="w-12 h-12 bg-[linear-gradient(135deg,#667eea,#764ba2)] rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                    <item.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white/40 uppercase tracking-widest">{item.label}</p>
+                    <p className="text-white font-semibold mt-0.5">
+                      {item.href ? (
+                        <a href={item.href} className="hover:text-[#a5b4fc] transition-colors">{item.value}</a>
+                      ) : (
+                        item.value
+                      )}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold">Call or Text</p>
-                  <p className="text-muted-foreground">
-                    <a href="tel:8589979251" className="hover:text-primary transition-colors">(858) 997-9251</a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-semibold">Email</p>
-                  <p className="text-muted-foreground">
-                    <a href="mailto:sergio@kratosintelligence.com" className="hover:text-primary transition-colors">sergio@kratosintelligence.com</a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-semibold">Location</p>
-                  <p className="text-muted-foreground">San Diego, CA</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           <FadeIn>
-            <Card className="p-8 shadow-xl border-border">
+            <Card className="p-8 dark-card border-white/10 shadow-2xl">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="first-name">First Name</Label>
+                    <Label htmlFor="first-name" className="text-white/70 text-xs font-bold uppercase tracking-wider">First Name</Label>
                     <Input 
                       id="first-name" 
                       placeholder="John" 
                       required 
                       value={formData.firstName}
                       onChange={handleChange}
+                      className="h-12 bg-white/5 border-[rgba(102,126,234,0.3)] text-white placeholder:text-white/30 focus-visible:border-[#667eea] focus-visible:ring-[#667eea]/20"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="last-name">Last Name</Label>
+                    <Label htmlFor="last-name" className="text-white/70 text-xs font-bold uppercase tracking-wider">Last Name</Label>
                     <Input 
                       id="last-name" 
                       placeholder="Doe" 
                       required 
                       value={formData.lastName}
                       onChange={handleChange}
+                      className="h-12 bg-white/5 border-[rgba(102,126,234,0.3)] text-white placeholder:text-white/30 focus-visible:border-[#667eea] focus-visible:ring-[#667eea]/20"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email" className="text-white/70 text-xs font-bold uppercase tracking-wider">Email</Label>
                   <Input 
                     id="email" 
                     type="email" 
@@ -158,47 +148,54 @@ export function Contact() {
                     required 
                     value={formData.email}
                     onChange={handleChange}
+                    className="h-12 bg-white/5 border-[rgba(102,126,234,0.3)] text-white placeholder:text-white/30 focus-visible:border-[#667eea] focus-visible:ring-[#667eea]/20"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="company">Company Name</Label>
+                  <Label htmlFor="company" className="text-white/70 text-xs font-bold uppercase tracking-wider">Company Name</Label>
                   <Input 
                     id="company" 
                     placeholder="Example Plumbing Co." 
                     required 
                     value={formData.company}
                     onChange={handleChange}
+                    className="h-12 bg-white/5 border-[rgba(102,126,234,0.3)] text-white placeholder:text-white/30 focus-visible:border-[#667eea] focus-visible:ring-[#667eea]/20"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message">How can I help?</Label>
+                  <Label htmlFor="message" className="text-white/70 text-xs font-bold uppercase tracking-wider">How can I help?</Label>
                   <Textarea 
                     id="message" 
                     placeholder="Tell me about your business and what systems you're interested in..." 
-                    className="min-h-[120px]"
+                    className="min-h-[120px] bg-white/5 border-[rgba(102,126,234,0.3)] text-white placeholder:text-white/30 focus-visible:border-[#667eea] focus-visible:ring-[#667eea]/20"
                     required
                     value={formData.message}
                     onChange={handleChange}
                   />
                 </div>
 
-                <div className="space-y-4">
-                  <Button type="submit" className="w-full" size="lg" disabled={formStatus === 'submitting'}>
+                <div className="space-y-4 pt-2">
+                  <Button 
+                    type="submit" 
+                    className="w-full h-14 text-lg bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_20px_rgba(102,126,234,0.4)] transition-all duration-300" 
+                    size="lg" 
+                    disabled={formStatus === 'submitting'}
+                  >
                     {formStatus === 'submitting' ? (
                       "Sending..."
                     ) : (
                       <>
                         Request Free Audit
-                        <Send className="ml-2 w-4 h-4" />
+                        <Send className="ml-2 w-5 h-5" />
                       </>
                     )}
                   </Button>
 
                   {formStatus === 'error' && (
-                    <p className="text-destructive text-sm text-center font-medium">
-                      Something went wrong. Please call or text Sergio directly at <a href="tel:8589979251" className="underline decoration-destructive/30 hover:decoration-destructive transition-all">(858) 997-9251</a>.
+                    <p className="text-[#d4183d] text-sm text-center font-bold">
+                      Something went wrong. Please call or text Sergio directly at <a href="tel:8589979251" className="underline decoration-[#d4183d]/30 hover:decoration-[#d4183d] transition-all font-black">(858) 997-9251</a>.
                     </p>
                   )}
                 </div>
@@ -208,5 +205,6 @@ export function Contact() {
         </div>
       </div>
     </section>
+
   );
 }

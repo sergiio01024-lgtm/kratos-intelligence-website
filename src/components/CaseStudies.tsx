@@ -36,11 +36,11 @@ export function CaseStudies() {
   ];
 
   return (
-    <section id="case-studies" className="py-16 md:py-20 bg-accent/10">
+    <section id="case-studies" className="py-16 md:py-20 dark-section-gradient border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl lg:text-4xl mb-4 font-bold">Real Results</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+          <h2 className="text-3xl lg:text-4xl mb-4 font-bold text-white">Real Results</h2>
+          <p className="text-white/60 text-lg max-w-3xl mx-auto">
             Two San Diego businesses already running on Kratos Intelligence systems.
           </p>
         </div>
@@ -48,40 +48,42 @@ export function CaseStudies() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {caseStudies.map((study, index) => (
             <FadeIn key={index}>
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full">
+              <Card className="overflow-hidden dark-card border-white/10 h-full transition-all duration-300 group">
                 <div className="relative overflow-hidden">
                   <ImageWithFallback
                     src={study.image}
                     alt={`${study.company} case study`}
-                    className="w-full h-48 md:h-64 object-cover rounded-t-xl"
+                    className="w-full h-48 md:h-64 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground inline-flex">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e27] to-transparent"></div>
+                  <Badge className="absolute top-4 left-4 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white inline-flex border-none shadow-lg">
                     {study.industry}
                   </Badge>
                 </div>
                 
-                <CardHeader>
-                  <h3 className="text-xl font-bold">{study.company}</h3>
-                  <div className="space-y-2 mt-2">
-                    <p className="text-muted-foreground text-sm">
-                      <span className="font-semibold text-foreground">Challenge:</span> {study.challenge}
-                    </p>
-                    <p className="text-muted-foreground text-sm">
-                      <span className="font-semibold text-foreground">Solution:</span> {study.solution}
-                    </p>
+                <CardHeader className="pb-4">
+                  <h3 className="text-2xl font-bold text-white">{study.company}</h3>
+                  <div className="space-y-4 mt-4">
+                    <div className="space-y-1">
+                      <span className="block text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Challenge</span>
+                      <p className="text-white/70 text-sm leading-relaxed">{study.challenge}</p>
+                    </div>
+                    <div className="space-y-1">
+                      <span className="block text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Solution</span>
+                      <p className="text-white/70 text-sm leading-relaxed">{study.solution}</p>
+                    </div>
                   </div>
                 </CardHeader>
 
                 <CardContent>
-                  <div className="grid grid-cols-3 gap-2 md:gap-4">
+                  <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-white/5 pt-6">
                     {study.results.map((result, idx) => (
                       <div key={idx} className="text-center">
-                        <div className="w-8 h-8 md:w-10 md:h-10 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                          <result.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                        <div className="w-8 h-8 md:w-12 md:h-12 bg-white/5 rounded-xl flex items-center justify-center mx-auto mb-3 border border-white/10 group-hover:border-[#667eea]/30 transition-colors">
+                          <result.icon className="w-4 h-4 md:w-6 md:h-6 text-[#667eea]" />
                         </div>
-                        <div className="text-xs md:text-sm font-bold text-primary mb-1 leading-tight">{result.metric}</div>
-                        <div className="text-[9px] md:text-[10px] uppercase tracking-wider text-muted-foreground">{result.description}</div>
+                        <div className="text-sm md:text-base font-bold text-white mb-1 leading-tight">{result.metric}</div>
+                        <div className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.15em] text-white/30">{result.description}</div>
                       </div>
                     ))}
                   </div>
@@ -92,5 +94,6 @@ export function CaseStudies() {
         </div>
       </div>
     </section>
+
   );
 }

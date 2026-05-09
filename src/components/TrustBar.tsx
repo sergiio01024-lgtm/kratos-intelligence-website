@@ -19,28 +19,28 @@ export function TrustBar() {
   ];
 
   return (
-    <div className="border-t border-b border-border bg-muted/30">
-      <FadeIn className="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-4 md:gap-3 items-center text-center">
+    <div className="border-t border-b border-white/10 dark-section-gradient">
+      <FadeIn className="max-w-7xl mx-auto px-6 py-6 lg:py-8 flex flex-col gap-6 items-center text-center">
         {/* Stats Row */}
-        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-6">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
           {stats.map((stat, index) => (
-            <div key={stat} className="flex items-center gap-3 md:gap-6">
-              <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">
+            <div key={stat} className="flex items-center gap-4 md:gap-8">
+              <span className="text-sm font-semibold text-white/80 uppercase tracking-wider whitespace-nowrap">
                 {stat}
               </span>
               {index < stats.length - 1 && (
-                <div className="hidden md:block w-px h-4 bg-border" />
+                <div className="hidden md:block w-px h-5 bg-white/10" />
               )}
             </div>
           ))}
         </div>
 
         {/* Tool Badges Row */}
-        <div className="flex flex-wrap justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-3">
           {tools.map((tool) => (
             <span
               key={tool}
-              className="text-xs px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground border border-border"
+              className="text-xs font-medium px-4 py-1.5 rounded-full bg-[rgba(102,126,234,0.1)] text-white border border-[rgba(102,126,234,0.3)] shadow-sm"
             >
               {tool}
             </span>
@@ -48,5 +48,6 @@ export function TrustBar() {
         </div>
       </FadeIn>
     </div>
+
   );
 }

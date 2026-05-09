@@ -48,13 +48,14 @@ export function FloatingCTA() {
         >
           <Button 
             size="lg" 
-            className="w-full lg:w-auto shadow-2xl rounded-full px-8 py-6 text-base font-bold transition-all hover:scale-105 active:scale-95"
+            className="w-full lg:w-auto shadow-[0_10px_30px_rgba(102,126,234,0.4)] rounded-full px-8 py-6 text-base font-black bg-[linear-gradient(135deg,#667eea,#764ba2)] border-none text-white transition-all hover:scale-105 active:scale-95"
             asChild
           >
             <a href="#contact">
               Book a Free Audit
             </a>
           </Button>
+
         </motion.div>
       )}
     </AnimatePresence>

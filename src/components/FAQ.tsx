@@ -35,14 +35,14 @@ export function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-accent/5">
+    <section id="faq" className="py-24 dark-section-gradient border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <FadeIn>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">
               Questions Trade Businesses Ask Before Automating
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 text-lg max-w-2xl mx-auto">
               Straight answers for HVAC, electrical, and plumbing companies before booking a free audit.
             </p>
           </FadeIn>
@@ -50,18 +50,18 @@ export function FAQ() {
 
         <div className="max-w-3xl mx-auto">
           <FadeIn delay={0.1}>
-            <div className="bg-white rounded-3xl border border-border p-4 md:p-8 shadow-sm">
+            <div className="dark-card rounded-3xl border-white/10 p-4 md:p-8 shadow-2xl">
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
                   <AccordionItem 
                     key={index} 
                     value={`item-${index}`} 
-                    className="border-border last:border-0"
+                    className="border-white/10 last:border-0"
                   >
-                    <AccordionTrigger className="text-base font-semibold hover:no-underline py-5 text-left">
+                    <AccordionTrigger className="text-base font-semibold text-white hover:text-[#a5b4fc] hover:no-underline py-5 text-left transition-colors [&>svg]:text-[#667eea]">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-6">
+                    <AccordionContent className="text-white/60 text-sm leading-relaxed pb-6">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -72,5 +72,6 @@ export function FAQ() {
         </div>
       </div>
     </section>
+
   );
 }

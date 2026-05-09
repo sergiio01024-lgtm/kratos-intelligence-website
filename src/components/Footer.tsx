@@ -32,27 +32,27 @@ export function Footer() {
   ];
 
   return (
-    <footer id="footer" className="bg-accent/10 border-t border-border">
+    <footer id="footer" className="bg-[#050816] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="py-16 md:py-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
             {/* Brand Section */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">KI</span>
+            <div className="lg:col-span-2 space-y-6">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-[#667eea] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(102,126,234,0.3)]">
+                  <span className="text-white font-black text-lg italic tracking-tighter">KI</span>
                 </div>
-                <span className="font-bold text-xl">Kratos Intelligence</span>
+                <span className="font-bold text-2xl text-white tracking-tight">Kratos Intelligence</span>
               </div>
-              <p className="text-muted-foreground text-sm max-w-md">
-                AI automation for trade businesses. We build the systems so you can focus on the work.
+              <p className="text-white/50 text-sm leading-relaxed max-w-sm">
+                San Diego based AI automation agency. We build high-performance systems for trade businesses so you can focus on winning more jobs.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
-                    className="w-10 h-10 bg-background rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                    className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center hover:bg-[#667eea] hover:border-[#667eea] text-white transition-all duration-300 shadow-sm"
                     aria-label={social.label}
                   >
                     <social.icon className="w-5 h-5" />
@@ -63,14 +63,14 @@ export function Footer() {
 
             {/* Links Sections */}
             {footerSections.map((section, index) => (
-              <div key={index} className="space-y-4">
-                <h3 className="font-medium">{section.title}</h3>
-                <ul className="space-y-2">
+              <div key={index} className="space-y-6">
+                <h3 className="font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/40">{section.title}</h3>
+                <ul className="space-y-3">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <a
                         href={link.href}
-                        className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-200"
+                        className="text-white/60 text-sm hover:text-white transition-colors duration-200"
                       >
                         {link.name}
                       </a>
@@ -82,18 +82,17 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator />
-        
-        <div className="py-6 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <p className="text-muted-foreground text-sm">
+        <div className="border-t border-white/5 py-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+          <p className="text-white/30 text-xs font-medium tracking-wide">
             © 2025 Kratos Intelligence. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
+          <div className="flex space-x-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/30">
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
         </div>
       </div>
     </footer>
+
   );
 }
