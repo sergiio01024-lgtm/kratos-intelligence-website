@@ -6,6 +6,10 @@ export function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
 
+  const bookingUrl = import.meta.env.VITE_BOOKING_URL;
+  const finalBookingUrl = bookingUrl || "#contact";
+  const isExternalBooking = Boolean(bookingUrl);
+
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 500) {
@@ -51,8 +55,12 @@ export function FloatingCTA() {
             className="w-full lg:w-auto shadow-[0_10px_30px_rgba(102,126,234,0.4)] rounded-full px-8 py-6 text-base font-black bg-[linear-gradient(135deg,#667eea,#764ba2)] border-none text-white transition-all hover:scale-105 active:scale-95"
             asChild
           >
-            <a href="#contact">
-              Book a Free Audit
+            <a 
+              href={finalBookingUrl}
+              target={isExternalBooking ? "_blank" : undefined}
+              rel={isExternalBooking ? "noopener noreferrer" : undefined}
+            >
+              Book Free Audit
             </a>
           </Button>
 

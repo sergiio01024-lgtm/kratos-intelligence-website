@@ -6,6 +6,10 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const bookingUrl = import.meta.env.VITE_BOOKING_URL;
+  const finalBookingUrl = bookingUrl || "#contact";
+  const isExternalBooking = Boolean(bookingUrl);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -54,7 +58,13 @@ export function Header() {
           <div className="hidden md:flex items-center space-x-6">
             <a href="tel:8589979251" className="text-white/90 font-bold hover:text-white transition-colors">(858) 997-9251</a>
             <Button className="bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_15px_rgba(102,126,234,0.4)] transition-all duration-300" size="sm" asChild>
-              <a href="#contact">Free Audit</a>
+              <a 
+                href={finalBookingUrl}
+                target={isExternalBooking ? "_blank" : undefined}
+                rel={isExternalBooking ? "noopener noreferrer" : undefined}
+              >
+                Free Audit
+              </a>
             </Button>
           </div>
 
@@ -92,7 +102,13 @@ export function Header() {
             ))}
             <div className="pt-4">
               <Button className="w-full h-14 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg" asChild onClick={() => setIsMenuOpen(false)}>
-                <a href="#contact">Free Audit</a>
+                <a 
+                  href={finalBookingUrl}
+                  target={isExternalBooking ? "_blank" : undefined}
+                  rel={isExternalBooking ? "noopener noreferrer" : undefined}
+                >
+                  Free Audit
+                </a>
               </Button>
             </div>
           </nav>
