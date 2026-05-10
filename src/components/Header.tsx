@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { trackEvent } from "../lib/analytics";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,8 +57,19 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-6">
-            <a href="tel:8589979251" className="text-white/90 font-bold hover:text-white transition-colors">(858) 997-9251</a>
-            <Button className="bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_15px_rgba(102,126,234,0.4)] transition-all duration-300" size="sm" asChild>
+            <a 
+              href="tel:8589979251" 
+              className="text-white/90 font-bold hover:text-white transition-colors"
+              onClick={() => trackEvent("phone_click", { location: "header_desktop", phone: "8589979251" })}
+            >
+              (858) 997-9251
+            </a>
+            <Button 
+              className="bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_15px_rgba(102,126,234,0.4)] transition-all duration-300" 
+              size="sm" 
+              asChild
+              onClick={() => trackEvent("book_audit_click", { location: "header_desktop", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
+            >
               <a 
                 href={finalBookingUrl}
                 target={isExternalBooking ? "_blank" : undefined}
@@ -86,7 +98,10 @@ export function Header() {
             <a
               href="tel:8589979251"
               className="text-xl font-black text-[#667eea] py-2 flex items-center gap-2"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                trackEvent("phone_click", { location: "header_mobile", phone: "8589979251" });
+              }}
             >
               (858) 997-9251
             </a>
@@ -101,7 +116,14 @@ export function Header() {
               </a>
             ))}
             <div className="pt-4">
-              <Button className="w-full h-14 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg" asChild onClick={() => setIsMenuOpen(false)}>
+              <Button 
+                className="w-full h-14 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg" 
+                asChild 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  trackEvent("book_audit_click", { location: "header_mobile", destination: isExternalBooking ? "booking_url" : "contact_fallback" });
+                }}
+              >
                 <a 
                   href={finalBookingUrl}
                   target={isExternalBooking ? "_blank" : undefined}

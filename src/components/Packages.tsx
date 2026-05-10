@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { FadeIn } from "./ui/FadeIn";
+import { trackEvent } from "../lib/analytics";
 
 interface Package {
   name: string;
@@ -224,6 +225,12 @@ export function Packages() {
                       className="w-full h-14 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_10px_20px_rgba(102,126,234,0.3)] transition-all duration-300 font-black text-lg group" 
                       size="lg" 
                       asChild
+                      onClick={() => trackEvent("package_cta_click", { 
+                        package_name: pkg.name, 
+                        package_badge: pkg.badge,
+                        location: "packages_section",
+                        destination: isExternalBooking ? "booking_url" : "contact_fallback"
+                      })}
                     >
                       <a 
                         href={finalBookingUrl}
@@ -275,6 +282,7 @@ export function Packages() {
                   size="lg" 
                   className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all" 
                   asChild
+                  onClick={() => trackEvent("book_audit_click", { location: "packages_custom_cta", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
                 >
                   <a 
                     href={finalBookingUrl}

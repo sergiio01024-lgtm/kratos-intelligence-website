@@ -20,6 +20,7 @@ import {
   LucideIcon
 } from "lucide-react";
 import { FadeIn } from "./ui/FadeIn";
+import { trackEvent } from "../lib/analytics";
 
 interface Metric {
   icon: LucideIcon;
@@ -262,6 +263,7 @@ export function CaseStudies() {
                 size="lg" 
                 className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] transition-all duration-300 font-black group"
                 asChild
+                onClick={() => trackEvent("book_audit_click", { location: "case_studies_cta", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
               >
                 <a 
                   href={finalBookingUrl}

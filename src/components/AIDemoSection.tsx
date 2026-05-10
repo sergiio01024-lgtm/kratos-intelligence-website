@@ -4,6 +4,7 @@ import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { CheckCircle2, MessageSquare, User, Bot, ArrowRight, Calendar, Zap, ShieldCheck } from "lucide-react";
 import { FadeIn } from "./ui/FadeIn";
+import { trackEvent } from "../lib/analytics";
 
 type DemoType = 'hvac' | 'electrician' | 'plumbing';
 
@@ -113,7 +114,12 @@ export function AIDemoSection() {
           {(Object.keys(demos) as DemoType[]).map((key) => (
             <button
               key={key}
-              onClick={() => setActiveDemo(key)}
+              onClick={() => {
+                if (activeDemo !== key) {
+                  setActiveDemo(key);
+                  trackEvent("ai_demo_switch", { demo_type: key });
+                }
+              }}
               aria-pressed={activeDemo === key}
               className={`px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 border ${
                 activeDemo === key
@@ -245,6 +251,7 @@ export function AIDemoSection() {
                 size="lg" 
                 className="h-14 px-10 text-lg bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_20px_rgba(102,126,234,0.4)] transition-all duration-300 font-black group"
                 asChild
+                onClick={() => trackEvent("book_audit_click", { location: "ai_demo_cta", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
               >
                 <a 
                   href={finalBookingUrl}

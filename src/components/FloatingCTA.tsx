@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "../lib/analytics";
 
 export function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -54,6 +55,7 @@ export function FloatingCTA() {
             size="lg" 
             className="w-full lg:w-auto shadow-[0_10px_30px_rgba(102,126,234,0.4)] rounded-full px-8 py-6 text-base font-black bg-[linear-gradient(135deg,#667eea,#764ba2)] border-none text-white transition-all hover:scale-105 active:scale-95"
             asChild
+            onClick={() => trackEvent("book_audit_click", { location: "floating_cta", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
           >
             <a 
               href={finalBookingUrl}

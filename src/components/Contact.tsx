@@ -13,6 +13,7 @@ import {
 import { Phone, Mail, MapPin, Send, CheckCircle2, Calendar, MessageSquare } from "lucide-react";
 import { useState } from "react";
 import { FadeIn } from "./ui/FadeIn";
+import { trackEvent } from "../lib/analytics";
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -86,6 +87,15 @@ export function Contact() {
     e.preventDefault();
     setFormStatus('submitting');
 
+    trackEvent("contact_form_submit_attempt", {
+      industry: formData.industry,
+      package_interest: formData.packageInterest,
+      urgency: formData.urgency,
+      preferred_contact_method: formData.preferredContactMethod,
+      budget_range: formData.budgetRange,
+      lead_score: calculateLeadScore(formData)
+    });
+
     const leadScore = calculateLeadScore(formData);
     const payload = {
       ...formData,
@@ -112,6 +122,13 @@ export function Contact() {
 
         if (response.ok) {
           setFormStatus('success');
+          trackEvent("contact_form_submit_success", {
+            endpoint_used: "webhook",
+            lead_score,
+            industry: formData.industry,
+            package_interest: formData.packageInterest,
+            urgency: formData.urgency
+          });
           return;
         }
         // If webhook fails, attempt Formspree fallback
@@ -130,6 +147,13 @@ export function Contact() {
 
         if (response.ok) {
           setFormStatus('success');
+          trackEvent("contact_form_submit_success", {
+            endpoint_used: "formspree",
+            lead_score,
+            industry: formData.industry,
+            package_interest: formData.packageInterest,
+            urgency: formData.urgency
+          });
           return;
         }
       }
@@ -138,6 +162,10 @@ export function Contact() {
     } catch (error) {
       console.error('Submission error:', error);
       setFormStatus('error');
+      trackEvent("contact_form_submit_error", {
+        webhook_configured: Boolean(webhookUrl),
+        formspree_configured: Boolean(formspreeUrl)
+      });
     }
   };
 
@@ -200,6 +228,7 @@ export function Contact() {
                   size="lg" 
                   className="h-14 px-8 text-lg bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_20px_rgba(102,126,234,0.4)] transition-all duration-300"
                   asChild
+                  onClick={() => trackEvent("book_audit_click", { location: "contact_booking_block", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
                 >
                   <a 
                     href={finalBookingUrl} 
@@ -215,6 +244,7 @@ export function Contact() {
                   size="lg"
                   className="h-14 px-8 text-lg border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all"
                   asChild
+                  onClick={() => trackEvent("phone_click", { location: "contact_booking_block", phone: "8589979251" })}
                 >
                   <a href="tel:8589979251">
                     <MessageSquare className="mr-2 w-5 h-5" />
@@ -240,7 +270,19 @@ export function Contact() {
                       <p className="text-xs font-bold text-white/40 uppercase tracking-widest">{item.label}</p>
                       <p className="text-white font-semibold mt-0.5">
                         {item.href ? (
-                          <a href={item.href} className="hover:text-[#a5b4fc] transition-colors">{item.value}</a>
+                          <a 
+                            href={item.href} 
+                            className="hover:text-[#a5b4fc] transition-colors"
+                            onClick={() => {
+                              if (item.label === "Call or Text") {
+                                trackEvent("phone_click", { location: "contact_card", phone: "8589979251" });
+                              } else if (item.label === "Email") {
+                                trackEvent("email_click", { location: "contact_card", email_domain: "kratosintelligence.com" });
+                              }
+                            }}
+                          >
+                            {item.value}
+                          </a>
                         ) : (
                           item.value
                         )}

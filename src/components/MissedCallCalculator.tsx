@@ -6,6 +6,8 @@ import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 import { FadeIn } from "./ui/FadeIn";
 import { Calculator, TrendingUp, DollarSign, Calendar, ArrowRight } from "lucide-react";
+import { trackEvent } from "../lib/analytics";
+import { useEffect, useRef } from "react";
 
 export function MissedCallCalculator() {
   const [missedCallsPerWeek, setMissedCallsPerWeek] = useState(8);
@@ -29,6 +31,40 @@ export function MissedCallCalculator() {
       monthlyRecovered: Math.round(estimatedRecoveredMonthly),
       annualRecovered: Math.round(estimatedRecoveredAnnual)
     };
+  }, [missedCallsPerWeek, averageJobValue, closeRate, recoveryRate]);
+
+  // Debounced tracking for calculator interactions
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const lastTrackedValues = useRef({ missedCallsPerWeek, averageJobValue, closeRate, recoveryRate });
+
+  useEffect(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    timerRef.current = setTimeout(() => {
+      const changed = 
+        lastTrackedValues.current.missedCallsPerWeek !== missedCallsPerWeek ||
+        lastTrackedValues.current.averageJobValue !== averageJobValue ||
+        lastTrackedValues.current.closeRate !== closeRate ||
+        lastTrackedValues.current.recoveryRate !== recoveryRate;
+
+      if (changed) {
+        if (lastTrackedValues.current.missedCallsPerWeek !== missedCallsPerWeek) {
+          trackEvent("roi_calculator_interaction", { field: "missed_calls_per_week", value: missedCallsPerWeek });
+        }
+        if (lastTrackedValues.current.averageJobValue !== averageJobValue) {
+          trackEvent("roi_calculator_interaction", { field: "average_job_value", value: averageJobValue });
+        }
+        if (lastTrackedValues.current.closeRate !== closeRate) {
+          trackEvent("roi_calculator_interaction", { field: "close_rate", value: closeRate });
+        }
+        if (lastTrackedValues.current.recoveryRate !== recoveryRate) {
+          trackEvent("roi_calculator_interaction", { field: "recovery_rate", value: recoveryRate });
+        }
+        lastTrackedValues.current = { missedCallsPerWeek, averageJobValue, closeRate, recoveryRate };
+      }
+    }, 1000);
+
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [missedCallsPerWeek, averageJobValue, closeRate, recoveryRate]);
 
   const formatCurrency = (value: number) => {
@@ -187,6 +223,7 @@ export function MissedCallCalculator() {
                   size="lg" 
                   className="w-full h-16 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_0_20px_rgba(102,126,234,0.4)] transition-all duration-300 font-black group"
                   asChild
+                  onClick={() => trackEvent("roi_recover_leads_click", { location: "roi_calculator" })}
                 >
                   <a href="#contact">
                     Recover Missed Leads
@@ -198,6 +235,7 @@ export function MissedCallCalculator() {
                   size="lg"
                   className="w-full h-14 text-lg border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all font-bold"
                   asChild
+                  onClick={() => trackEvent("book_audit_click", { location: "roi_calculator_cta", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
                 >
                   <a 
                     href={finalBookingUrl}
