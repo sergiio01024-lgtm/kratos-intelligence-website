@@ -10,7 +10,9 @@ export function ServiceArea() {
   ];
 
   const industries = [
-    "HVAC", "Electrical", "Plumbing", "Roofing", "Landscaping", "General Contractors"
+    "HVAC", "Electrical", "Plumbing", "Roofing", "Garage Door",
+    "Pest Control", "Pool Service", "Junk Removal", "Restoration",
+    "Cleaning Companies", "Landscaping", "General Contractors"
   ];
 
   const bookingUrl = import.meta.env.VITE_BOOKING_URL;

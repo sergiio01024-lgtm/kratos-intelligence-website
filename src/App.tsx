@@ -12,6 +12,9 @@ import { Contact } from "./components/Contact";
 import { FAQ } from "./components/FAQ";
 import { FloatingCTA } from "./components/FloatingCTA";
 import { Footer } from "./components/Footer";
+import { IndustryLandingPage } from "./components/IndustryLandingPage";
+import { IndustryLandingPages } from "./components/IndustryLandingPages";
+import { industries } from "./data/industries";
 
 import PhoneServicesCarousel from "./components/PhoneServicesCarousel";
 import FounderSection from './components/FounderSection';
@@ -19,6 +22,28 @@ import { MissedCallCalculator } from "./components/MissedCallCalculator";
 import { AIDemoSection } from "./components/AIDemoSection";
 
 export default function App() {
+  const pathname = window.location.pathname.replace(/\/$/, "");
+  const industrySlug = pathname.startsWith("/industries/")
+    ? pathname.replace("/industries/", "")
+    : null;
+
+  const industry = industries.find((item) => item.slug === industrySlug);
+
+  if (industry) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="pt-16">
+          <IndustryLandingPage industry={industry} />
+          <Contact />
+          <FAQ />
+        </main>
+        <Footer />
+        <FloatingCTA />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -35,6 +60,7 @@ export default function App() {
         <Process />
         <CaseStudies />
         <ServiceArea />
+        <IndustryLandingPages />
         <Testimonials />
         <Contact />
         <FAQ />
