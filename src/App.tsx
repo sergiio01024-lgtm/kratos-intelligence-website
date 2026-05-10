@@ -15,6 +15,7 @@ import { Footer } from "./components/Footer";
 import PhoneServicesCarousel from "./components/PhoneServicesCarousel";
 import FounderSection from './components/FounderSection';
 import { MissedCallCalculator } from "./components/MissedCallCalculator";
+import { AIDemoSection } from "./components/AIDemoSection";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <MissedCallCalculator />
         <TrustBar />
         <PhoneServicesCarousel />
+        <AIDemoSection />
         <Packages />
         <FounderSection />
         <About />
