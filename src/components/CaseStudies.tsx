@@ -6,16 +6,10 @@ import {
   Globe, 
   TrendingUp, 
   CheckCircle, 
-  Phone, 
   Zap, 
-  Database, 
   ArrowRight, 
-  Layout, 
   Search,
-  CheckCircle2,
   Calendar,
-  MousePointer2,
-  Bell,
   Cpu,
   LucideIcon
 } from "lucide-react";

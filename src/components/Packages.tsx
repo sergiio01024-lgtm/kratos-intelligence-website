@@ -5,12 +5,10 @@ import {
   CheckCircle,
   ArrowRight,
   Star,
-  Zap,
   Clock,
   Target,
   Users,
-  ShieldCheck,
-  LucideIcon
+  ShieldCheck
 } from "lucide-react";
 
 import { FadeIn } from "./ui/FadeIn";

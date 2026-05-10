@@ -13,7 +13,9 @@ export function saveHomepageScrollPosition(source?: string): void {
       sessionStorage.setItem(SCROLL_SOURCE_KEY, source);
     }
   } catch (e) {
-    console.warn("sessionStorage not available for scroll memory", e);
+    if (import.meta.env.DEV) {
+      console.warn("sessionStorage not available for scroll memory", e);
+    }
   }
 }
 
@@ -57,6 +59,8 @@ export function restoreHomepageScrollPosition(fallbackHash?: string): void {
       }, 100);
     }
   } catch (e) {
-    console.warn("Failed to restore scroll position", e);
+    if (import.meta.env.DEV) {
+      console.warn("Failed to restore scroll position", e);
+    }
   }
 }

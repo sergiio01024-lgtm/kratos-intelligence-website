@@ -48,6 +48,7 @@ export function Header() {
     trackEvent("header_logo_click", {
       current_path: pathname
     });
+    setIsMenuOpen(false);
   };
 
   const headerBgClass = isScrolled 
@@ -62,6 +63,7 @@ export function Header() {
             href={isHomePage ? "#top" : "/"} 
             className="flex items-center space-x-3 group transition-transform active:scale-95"
             onClick={handleLogoClick}
+            aria-label="Go to homepage"
           >
             <div className="w-9 h-9 bg-[#667eea] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(102,126,234,0.3)] group-hover:shadow-[0_0_20px_rgba(102,126,234,0.5)] transition-all">
               <span className="text-white font-black text-sm italic tracking-tighter">KI</span>
@@ -87,6 +89,7 @@ export function Header() {
             <a 
               href="tel:8589979251" 
               className="text-white/90 font-bold hover:text-white transition-colors"
+              aria-label="Call Kratos Intelligence"
               onClick={() => trackEvent("phone_click", { location: "header_desktop", phone: "8589979251" })}
             >
               (858) 997-9251
@@ -101,6 +104,7 @@ export function Header() {
                 href={finalBookingUrl}
                 target={isExternalBooking ? "_blank" : undefined}
                 rel={isExternalBooking ? "noopener noreferrer" : undefined}
+                aria-label="Book a free audit"
               >
                 Free Audit
               </a>
@@ -125,6 +129,7 @@ export function Header() {
             <a
               href="tel:8589979251"
               className="text-xl font-black text-[#667eea] py-2 flex items-center gap-2"
+              aria-label="Call Kratos Intelligence"
               onClick={() => {
                 setIsMenuOpen(false);
                 trackEvent("phone_click", { location: "header_mobile", phone: "8589979251" });
@@ -155,6 +160,7 @@ export function Header() {
                   href={finalBookingUrl}
                   target={isExternalBooking ? "_blank" : undefined}
                   rel={isExternalBooking ? "noopener noreferrer" : undefined}
+                  aria-label="Book a free audit"
                 >
                   Free Audit
                 </a>

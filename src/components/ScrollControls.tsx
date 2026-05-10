@@ -12,23 +12,43 @@ export function ScrollControls() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(-1);
   const [sections, setSections] = useState<HTMLElement[]>([]);
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+
+  // 1. Gather sections once on mount, and on window resize or path change
+  const gatherSections = () => {
+    const sectionElements = Array.from(
+      document.querySelectorAll<HTMLElement>("main section[id], main div[id]")
+    ).filter(el => el.id && !["root", "top"].includes(el.id));
+    setSections(sectionElements);
+  };
 
   useEffect(() => {
+    gatherSections();
+
+    // Re-gather sections after a small delay to ensure full rendering
+    const timer = setTimeout(gatherSections, 1000);
+    
+    window.addEventListener("resize", gatherSections);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", gatherSections);
+    };
+  }, [pathname]);
+
+  // 2. Optimized scroll handler
+  useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 400);
+      const scrollY = window.scrollY;
+      setIsVisible(scrollY > 400);
 
-      // Find current section
-      const sectionElements = Array.from(
-        document.querySelectorAll<HTMLElement>("main section[id], main div[id]")
-      ).filter(el => el.id && !["root", "top"].includes(el.id));
-      
-      setSections(sectionElements);
+      if (sections.length === 0) return;
 
-      const scrollPos = window.scrollY + 120;
+      const scrollPos = scrollY + 120;
       let currentIndex = -1;
 
-      for (let i = 0; i < sectionElements.length; i++) {
-        const el = sectionElements[i];
+      // Use the pre-gathered sections for calculation
+      for (let i = 0; i < sections.length; i++) {
+        const el = sections[i];
         if (scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
           currentIndex = i;
           break;
@@ -37,10 +57,10 @@ export function ScrollControls() {
       setCurrentSectionIndex(currentIndex);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [sections]);
 
   const getScrollBehavior = () => {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
@@ -126,8 +146,8 @@ export function ScrollControls() {
         </button>
       </div>
 
-      {/* Mobile Controls */}
-      <div className="lg:hidden fixed right-4 bottom-24 flex flex-col gap-3">
+      {/* Mobile Controls - Moved to bottom-32 to avoid FloatingCTA overlap */}
+      <div className="lg:hidden fixed right-4 bottom-32 flex flex-col gap-3">
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
