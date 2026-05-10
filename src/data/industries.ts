@@ -13,6 +13,12 @@ export interface Industry {
   urgencyLabel: string;
   exampleLead: string;
   ctaText: string;
+  localSeoKeywords: string[];
+  commonQuestions: { question: string; answer: string }[];
+  relatedIndustries: string[];
+  proofAngle: string;
+  bestFirstAutomation: string;
+  highValueLeadTypes: string[];
 }
 
 export const industries: Industry[] = [
@@ -47,7 +53,37 @@ export const industries: Industry[] = [
     recommendedPackage: "AI-Powered Business System",
     urgencyLabel: "High urgency",
     exampleLead: "AC stopped working and house is hot",
-    ctaText: "Automate HVAC Leads"
+    ctaText: "Automate HVAC Leads",
+    localSeoKeywords: [
+      "AI automation for HVAC companies",
+      "HVAC chatbot San Diego",
+      "AI phone receptionist for HVAC",
+      "HVAC lead capture automation",
+      "HVAC CRM automation"
+    ],
+    commonQuestions: [
+      {
+        question: "Can AI handle emergency HVAC calls?",
+        answer: "Yes. The system can collect the customer’s issue, ZIP code, contact info, and urgency, then send high-priority alerts to the owner or team."
+      },
+      {
+        question: "Can the chatbot qualify install versus repair leads?",
+        answer: "Yes. It can ask different questions based on whether the customer needs AC repair, furnace repair, system replacement, or maintenance."
+      },
+      {
+        question: "Can this connect to my CRM?",
+        answer: "Yes. Leads can be routed into Airtable or another CRM workflow depending on your current setup."
+      }
+    ],
+    relatedIndustries: ["plumbers", "electricians", "garage-door"],
+    proofAngle: "Show the owner how many no-cooling and replacement leads would have been captured instead of missed.",
+    bestFirstAutomation: "AI phone and website intake for emergency repair and replacement leads.",
+    highValueLeadTypes: [
+      "No-cooling emergency",
+      "System replacement quote",
+      "Furnace repair",
+      "Maintenance plan inquiry"
+    ]
   },
   {
     slug: "electricians",
@@ -80,7 +116,37 @@ export const industries: Industry[] = [
     recommendedPackage: "AI-Powered Business System",
     urgencyLabel: "Medium to High",
     exampleLead: "Needs 200A panel upgrade for EV charger",
-    ctaText: "Automate Electrical Leads"
+    ctaText: "Automate Electrical Leads",
+    localSeoKeywords: [
+      "AI for electricians",
+      "Electrician chatbot San Diego",
+      "EV charger install automation",
+      "Electrical panel upgrade leads",
+      "AI phone receptionist electricians"
+    ],
+    commonQuestions: [
+      {
+        question: "Can it qualify EV charger leads?",
+        answer: "Yes. It asks for panel capacity, charger type, and photo of the install location."
+      },
+      {
+        question: "Does it handle emergency power outages?",
+        answer: "Yes. It captures the situation and alerts you immediately if it's a safety hazard or total outage."
+      },
+      {
+        question: "Can it book estimates?",
+        answer: "Yes, it can integrate with your calendar to book panel upgrade or rewire estimates."
+      }
+    ],
+    relatedIndustries: ["hvac", "plumbers", "garage-door"],
+    proofAngle: "Show how many EV charger and panel upgrade inquiries are captured while you're on a job site.",
+    bestFirstAutomation: "AI intake for panel upgrades and EV charger installations.",
+    highValueLeadTypes: [
+      "Panel upgrade",
+      "EV charger install",
+      "Whole-home rewire",
+      "Emergency power outage"
+    ]
   },
   {
     slug: "plumbers",
@@ -113,7 +179,37 @@ export const industries: Industry[] = [
     recommendedPackage: "AI-Powered Business System",
     urgencyLabel: "Critical / High",
     exampleLead: "Active pipe burst in the kitchen",
-    ctaText: "Automate Plumbing Leads"
+    ctaText: "Automate Plumbing Leads",
+    localSeoKeywords: [
+      "AI for plumbers San Diego",
+      "Plumbing chatbot",
+      "Slab leak lead capture",
+      "Water heater quote automation",
+      "AI phone answering for plumbers"
+    ],
+    commonQuestions: [
+      {
+        question: "Can the AI handle flood emergencies?",
+        answer: "Yes. It identifies active floods, provides shut-off advice, and alerts your emergency tech immediately."
+      },
+      {
+        question: "Does it help with water heater quotes?",
+        answer: "Yes. It can collect tank size, fuel type (gas/electric), and location photos for faster quoting."
+      },
+      {
+        question: "Can it filter out price shoppers?",
+        answer: "The AI qualifies leads by urgency and budget, ensuring you prioritize high-value repair and install jobs."
+      }
+    ],
+    relatedIndustries: ["hvac", "restoration", "electricians"],
+    proofAngle: "Calculate the revenue lost from missing just one slab leak or water heater emergency per month.",
+    bestFirstAutomation: "24/7 Emergency AI phone receptionist and website intake.",
+    highValueLeadTypes: [
+      "Slab leak emergency",
+      "Water heater replacement",
+      "Main line backup",
+      "Full home repipe"
+    ]
   },
   {
     slug: "roofing",
@@ -146,7 +242,37 @@ export const industries: Industry[] = [
     recommendedPackage: "Lead Gen + Outreach Machine",
     urgencyLabel: "Medium / High",
     exampleLead: "Roof leak after recent rain, 20 year old roof",
-    ctaText: "Automate Roofing Leads"
+    ctaText: "Automate Roofing Leads",
+    localSeoKeywords: [
+      "AI for roofing companies",
+      "Roofing lead capture San Diego",
+      "Roofing quote chatbot",
+      "Insurance claim automation roofers",
+      "AI receptionist for roofing contractors"
+    ],
+    commonQuestions: [
+      {
+        question: "Can it collect roof damage photos?",
+        answer: "Yes. The AI can prompt the user to upload photos of leaks or missing shingles directly via the chatbot."
+      },
+      {
+        question: "Does it help with insurance claims?",
+        answer: "It can collect initial claim numbers and adjuster info to keep your CRM organized from the start."
+      },
+      {
+        question: "Can it distinguish repairs from replacements?",
+        answer: "Yes. By asking the age of the roof and extent of damage, it flags high-value replacement opportunities."
+      }
+    ],
+    relatedIndustries: ["restoration", "garage-door", "pest-control"],
+    proofAngle: "Show how automated follow-up increases the close rate on high-ticket roof replacement quotes.",
+    bestFirstAutomation: "AI photo-intake and automated follow-up for replacement quotes.",
+    highValueLeadTypes: [
+      "Full roof replacement",
+      "Storm damage insurance claim",
+      "Commercial roof coating",
+      "Emergency tarping request"
+    ]
   },
   {
     slug: "garage-door",
@@ -179,7 +305,37 @@ export const industries: Industry[] = [
     recommendedPackage: "AI-Powered Business System",
     urgencyLabel: "High urgency",
     exampleLead: "Broken spring, car trapped in garage",
-    ctaText: "Automate Garage Door Leads"
+    ctaText: "Automate Garage Door Leads",
+    localSeoKeywords: [
+      "AI for garage door repair",
+      "Garage door chatbot San Diego",
+      "Broken spring lead automation",
+      "AI phone answering garage door",
+      "Garage door install leads"
+    ],
+    commonQuestions: [
+      {
+        question: "How fast does the team get alerted?",
+        answer: "Instantly. As soon as the AI identifies a broken spring or trapped car, an SMS is sent to your dispatch or owner."
+      },
+      {
+        question: "Can it book install estimates?",
+        answer: "Yes. For customers looking for new doors, it can collect style preferences and book a measuring appointment."
+      },
+      {
+        question: "Does it work after hours?",
+        answer: "Yes, it provides 24/7 coverage so you never miss a weekend emergency call."
+      }
+    ],
+    relatedIndustries: ["hvac", "electricians", "roofing"],
+    proofAngle: "Focus on the 'Speed to Lead'—capturing the customer before they call the next company on Google.",
+    bestFirstAutomation: "AI emergency phone receptionist for broken spring calls.",
+    highValueLeadTypes: [
+      "Broken spring emergency",
+      "Car trapped in garage",
+      "New garage door installation",
+      "Commercial door repair"
+    ]
   },
   {
     slug: "pest-control",
@@ -212,7 +368,37 @@ export const industries: Industry[] = [
     recommendedPackage: "Trades Starter Pack",
     urgencyLabel: "Medium",
     exampleLead: "Rodent activity in the attic",
-    ctaText: "Automate Pest Leads"
+    ctaText: "Automate Pest Leads",
+    localSeoKeywords: [
+      "AI for pest control",
+      "Pest control chatbot San Diego",
+      "Termite lead automation",
+      "AI appointment booking pest control",
+      "Rodent control lead capture"
+    ],
+    commonQuestions: [
+      {
+        question: "Can it identify the type of pest?",
+        answer: "Yes. It asks the customer what they are seeing (ants, spiders, rodents, termites) to route the lead correctly."
+      },
+      {
+        question: "Can it book recurring service?",
+        answer: "It can book the initial inspection and then pass the data to your CRM to set up recurring billing."
+      },
+      {
+        question: "Does it handle termite inspections?",
+        answer: "Yes. It can qualify if the inspection is for a real estate transaction or an active infestation."
+      }
+    ],
+    relatedIndustries: ["pool-service", "cleaning-companies", "roofing"],
+    proofAngle: "Show how many 'one-time' leads are converted into recurring annual contracts through better follow-up.",
+    bestFirstAutomation: "AI intake chatbot with automated inspection booking.",
+    highValueLeadTypes: [
+      "Termite treatment",
+      "Rodent exclusion project",
+      "Bed bug emergency",
+      "New quarterly service contract"
+    ]
   },
   {
     slug: "pool-service",
@@ -245,7 +431,37 @@ export const industries: Industry[] = [
     recommendedPackage: "Trades Starter Pack",
     urgencyLabel: "Medium / High",
     exampleLead: "Pool pump is making loud noise and not priming",
-    ctaText: "Automate Pool Leads"
+    ctaText: "Automate Pool Leads",
+    localSeoKeywords: [
+      "AI for pool service companies",
+      "Pool repair chatbot San Diego",
+      "Pool equipment quote automation",
+      "AI receptionist for pool businesses",
+      "Pool cleaning lead capture"
+    ],
+    commonQuestions: [
+      {
+        question: "Can it handle equipment repair leads?",
+        answer: "Yes. It qualifies whether the customer needs a pump repair, heater install, or filter cleaning."
+      },
+      {
+        question: "Does it help with route density?",
+        answer: "By collecting ZIP codes first, the AI can flag leads that are already in your existing service areas."
+      },
+      {
+        question: "Can it sell equipment upgrades?",
+        answer: "Yes. It can educate customers on energy-efficient pumps or salt-cell conversions."
+      }
+    ],
+    relatedIndustries: ["pest-control", "cleaning-companies", "hvac"],
+    proofAngle: "Focus on capturing high-margin repair and equipment install jobs instead of just cleaning leads.",
+    bestFirstAutomation: "AI repair intake with photo-upload capability.",
+    highValueLeadTypes: [
+      "Variable speed pump install",
+      "Pool heater replacement",
+      "Salt system conversion",
+      "Green-to-clean emergency"
+    ]
   },
   {
     slug: "junk-removal",
@@ -278,7 +494,37 @@ export const industries: Industry[] = [
     recommendedPackage: "Trades Starter Pack",
     urgencyLabel: "High",
     exampleLead: "Garage cleanout needed before moving",
-    ctaText: "Automate Junk Removal"
+    ctaText: "Automate Junk Removal",
+    localSeoKeywords: [
+      "AI for junk removal",
+      "Junk removal chatbot San Diego",
+      "Instant junk removal quotes",
+      "AI phone receptionist junk removal",
+      "Estate cleanout lead automation"
+    ],
+    commonQuestions: [
+      {
+        question: "How do you give quotes without seeing it?",
+        answer: "The AI prompts the customer to upload photos of their junk so you can give an accurate estimate via text or email."
+      },
+      {
+        question: "Does it handle commercial cleanouts?",
+        answer: "Yes. It can qualify large-scale office or construction site cleanouts and flag them for a call-back."
+      },
+      {
+        question: "Can it book the appointment?",
+        answer: "Yes, it can integrate with your calendar to book a arrival window."
+      }
+    ],
+    relatedIndustries: ["cleaning-companies", "restoration", "pest-control"],
+    proofAngle: "Measure how much time is saved by having customers upload photos automatically instead of manual texting.",
+    bestFirstAutomation: "AI photo-intake and automated SMS follow-up.",
+    highValueLeadTypes: [
+      "Full estate cleanout",
+      "Construction site debris removal",
+      "Commercial office cleanout",
+      "Hoarder house cleanup"
+    ]
   },
   {
     slug: "restoration",
@@ -311,7 +557,37 @@ export const industries: Industry[] = [
     recommendedPackage: "AI-Powered Business System",
     urgencyLabel: "Critical",
     exampleLead: "Sewer backup in finished basement",
-    ctaText: "Automate Restoration Leads"
+    ctaText: "Automate Restoration Leads",
+    localSeoKeywords: [
+      "AI for restoration companies",
+      "Water damage chatbot San Diego",
+      "Restoration lead capture automation",
+      "AI phone receptionist restoration",
+      "Mold remediation lead automation"
+    ],
+    commonQuestions: [
+      {
+        question: "Can it handle insurance info?",
+        answer: "Yes. It can collect the carrier name and policy info to speed up the claim process."
+      },
+      {
+        question: "Does it help with mold leads?",
+        answer: "Yes. It qualifies whether it's an active leak or visible mold to determine the urgency."
+      },
+      {
+        question: "How does the team get alerted?",
+        answer: "High-priority flood and fire leads trigger an immediate SMS broadcast to your on-call team."
+      }
+    ],
+    relatedIndustries: ["plumbers", "roofing", "junk-removal"],
+    proofAngle: "Calculate the ROI of capturing just one additional insurance-paid water damage job per year.",
+    bestFirstAutomation: "24/7 Critical Emergency AI phone receptionist.",
+    highValueLeadTypes: [
+      "Whole-home flood restoration",
+      "Kitchen fire damage",
+      "Commercial water damage",
+      "Sewage backup emergency"
+    ]
   },
   {
     slug: "cleaning-companies",
@@ -344,6 +620,37 @@ export const industries: Industry[] = [
     recommendedPackage: "Trades Starter Pack",
     urgencyLabel: "Medium",
     exampleLead: "Deep clean needed for 4BR home before sale",
-    ctaText: "Automate Cleaning Leads"
+    ctaText: "Automate Cleaning Leads",
+    localSeoKeywords: [
+      "AI for cleaning companies",
+      "Cleaning service chatbot San Diego",
+      "House cleaning quote automation",
+      "AI appointment booking cleaning",
+      "Commercial cleaning lead capture"
+    ],
+    commonQuestions: [
+      {
+        question: "Can it provide instant quotes?",
+        answer: "Yes. By asking for SQFT and room counts, it can provide an estimated price range based on your rates."
+      },
+      {
+        question: "Does it handle move-out cleans?",
+        answer: "Yes. It specifically asks if the home will be empty to ensure the quote is accurate for move-in/out standards."
+      },
+      {
+        question: "Can it book commercial site visits?",
+        answer: "For commercial leads, it flags the high-value opportunity and books a walk-through for you."
+      }
+    ],
+    relatedIndustries: ["pest-control", "pool-service", "junk-removal"],
+    proofAngle: "Show how much administrative time is saved by automating routine pricing inquiries.",
+    bestFirstAutomation: "AI cleaning quote chatbot and booking system.",
+    highValueLeadTypes: [
+      "Recurring commercial office clean",
+      "Large move-out deep clean",
+      "Post-construction cleanup",
+      "Weekly residential service"
+    ]
   }
 ];
+

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Industry } from "../data/industries";
+import { Industry, industries } from "../data/industries";
 import { Button } from "./ui/button";
 import { FadeIn } from "./ui/FadeIn";
 import { 
@@ -9,7 +9,11 @@ import {
   Zap, 
   Cpu, 
   Calendar,
-  ChevronLeft
+  ChevronLeft,
+  MessageCircle,
+  TrendingUp,
+  Target,
+  ArrowUpRight
 } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
 
@@ -26,27 +30,94 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
     // Update SEO metadata
     document.title = industry.seoTitle;
     
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", industry.seoDescription);
+    // Helper to update or create meta tags
+    const updateMetaTag = (selector: string, attribute: string, content: string) => {
+      let element = document.querySelector(selector);
+      if (!element) {
+        if (selector.startsWith('meta')) {
+          element = document.createElement('meta');
+          const [attr, val] = selector.match(/\[(.*)="(.*)"\]/)?.slice(1) || [];
+          if (attr && val) element.setAttribute(attr, val);
+          document.head.appendChild(element);
+        } else if (selector.startsWith('link')) {
+          element = document.createElement('link');
+          element.setAttribute('rel', 'canonical');
+          document.head.appendChild(element);
+        }
+      }
+      if (element) element.setAttribute(attribute, content);
+    };
+
+    updateMetaTag('meta[name="description"]', "content", industry.seoDescription);
+    updateMetaTag('link[rel="canonical"]', "href", `https://kratosintelligence.com/industries/${industry.slug}/`);
+    
+    // Open Graph
+    updateMetaTag('meta[property="og:title"]', "content", industry.seoTitle);
+    updateMetaTag('meta[property="og:description"]', "content", industry.seoDescription);
+    updateMetaTag('meta[property="og:url"]', "content", `https://kratosintelligence.com/industries/${industry.slug}/`);
+    updateMetaTag('meta[property="og:type"]', "content", "website");
+    
+    // Twitter
+    updateMetaTag('meta[name="twitter:title"]', "content", industry.seoTitle);
+    updateMetaTag('meta[name="twitter:description"]', "content", industry.seoDescription);
+    updateMetaTag('meta[name="twitter:url"]', "content", `https://kratosintelligence.com/industries/${industry.slug}/`);
+    updateMetaTag('meta[name="twitter:card"]', "content", "summary_large_image");
+
+    // JSON-LD Injection
+    const injectJsonLd = (id: string, data: object) => {
+      let script = document.getElementById(id);
+      if (script) script.remove();
+      
+      script = document.createElement('script');
+      script.id = id;
+      script.type = 'application/ld+json';
+      script.innerHTML = JSON.stringify(data);
+      document.head.appendChild(script);
+    };
+
+    // Service Schema
+    injectJsonLd('industry-json-ld', {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": industry.seoTitle,
+      "description": industry.seoDescription,
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Kratos Intelligence",
+        "url": "https://kratosintelligence.com",
+        "telephone": "+1-858-997-9251"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "San Diego County"
+      },
+      "serviceType": `${industry.name} AI Automation`,
+      "url": `https://kratosintelligence.com/industries/${industry.slug}/`
+    });
+
+    // FAQ Schema
+    if (industry.commonQuestions && industry.commonQuestions.length > 0) {
+      injectJsonLd('industry-faq-json-ld', {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": industry.commonQuestions.map(q => ({
+          "@type": "Question",
+          "name": q.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": q.answer
+          }
+        }))
+      });
     }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute("href", `https://kratosintelligence.com/industries/${industry.slug}/`);
-    }
-
-    // Social tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", industry.seoTitle);
-
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) ogDescription.setAttribute("content", industry.seoDescription);
-
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute("content", `https://kratosintelligence.com/industries/${industry.slug}/`);
 
     window.scrollTo(0, 0);
+
+    return () => {
+      // Cleanup JSON-LD on unmount
+      document.getElementById('industry-json-ld')?.remove();
+      document.getElementById('industry-faq-json-ld')?.remove();
+    };
   }, [industry]);
 
   const handleCtaClick = (location: string) => {
@@ -62,6 +133,15 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
     trackEvent("industry_back_to_packages_click", {
       industry: industry.name,
       slug: industry.slug
+    });
+  };
+
+  const handleRelatedIndustryClick = (related: Industry) => {
+    trackEvent("related_industry_click", {
+      from_industry: industry.name,
+      from_slug: industry.slug,
+      to_industry: related.name,
+      to_slug: related.slug
     });
   };
 
@@ -117,6 +197,27 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                 </Button>
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* High-Value Leads Section */}
+      <section className="py-24 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">High-value leads this system can capture</h2>
+            <p className="text-white/60 text-lg">Stop losing these high-ticket opportunities to missed calls and slow follow-up.</p>
+          </FadeIn>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            {industry.highValueLeadTypes.map((leadType, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="dark-card px-6 py-4 rounded-2xl border border-white/10 flex items-center gap-3 hover:border-[#43e97b]/30 transition-all group">
+                  <div className="w-2 h-2 bg-[#43e97b] rounded-full shadow-[0_0_10px_#43e97b] group-hover:scale-125 transition-transform"></div>
+                  <span className="text-white font-bold">{leadType}</span>
+                </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
@@ -219,6 +320,30 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
         </div>
       </section>
 
+      {/* Industry-specific FAQs */}
+      <section className="py-24 border-t border-white/5 bg-[#050816]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Common questions for {industry.name} businesses</h2>
+            <p className="text-white/60 text-lg">Everything you need to know about automating your trade business.</p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {industry.commonQuestions.map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="dark-card p-8 rounded-[2rem] border-white/10 border h-full flex flex-col gap-4">
+                  <div className="w-10 h-10 bg-[#667eea]/10 rounded-xl flex items-center justify-center border border-[#667eea]/20">
+                    <MessageCircle className="w-5 h-5 text-[#a5b4fc]" />
+                  </div>
+                  <h3 className="text-white font-bold text-xl">{item.question}</h3>
+                  <p className="text-white/60 leading-relaxed">{item.answer}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Recommended Package */}
       <section className="py-24 border-t border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[#667eea]/5 opacity-50"></div>
@@ -238,6 +363,25 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                   <h3 className="text-4xl md:text-5xl font-black text-white tracking-tight">{industry.name} Intake Engine</h3>
                   <p className="text-white/60 text-lg">Capture, qualify, and route leads automatically.</p>
                 </div>
+
+                {/* Proof and First Build details */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left pt-4">
+                  <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Target className="w-4 h-4 text-[#a5b4fc]" />
+                      <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">First Automation</span>
+                    </div>
+                    <p className="text-white font-medium text-sm">{industry.bestFirstAutomation}</p>
+                  </div>
+                  <div className="p-5 bg-[#43e97b]/5 rounded-2xl border border-[#43e97b]/10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-4 h-4 text-[#43e97b]" />
+                      <span className="text-[10px] font-bold text-[#43e97b] uppercase tracking-widest">Conversion Angle</span>
+                    </div>
+                    <p className="text-white font-medium text-sm">{industry.proofAngle}</p>
+                  </div>
+                </div>
+
                 <div className="flex justify-center pt-4">
                   <Button 
                     size="lg" 
@@ -257,6 +401,41 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                 </div>
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Industry Links */}
+      <section className="py-24 border-t border-white/5 bg-[#050816]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Related automation pages</h2>
+            <p className="text-white/60 text-lg">Explore how AI automation helps similar trade businesses.</p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {industry.relatedIndustries.map(slug => {
+              const related = industries.find(ind => ind.slug === slug);
+              if (!related) return null;
+              return (
+                <FadeIn key={slug}>
+                  <a 
+                    href={`/industries/${slug}/`}
+                    onClick={() => handleRelatedIndustryClick(related)}
+                    className="block dark-card p-8 rounded-3xl border border-white/10 hover:border-[#667eea]/40 transition-all group"
+                  >
+                    <div className="flex justify-between items-start mb-6">
+                      <h3 className="text-2xl font-black text-white group-hover:text-[#a5b4fc] transition-colors">{related.name}</h3>
+                      <ArrowUpRight className="w-6 h-6 text-white/20 group-hover:text-[#a5b4fc] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                    </div>
+                    <p className="text-white/50 mb-6 line-clamp-2">{related.painPoints[0]}</p>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-white/40 uppercase tracking-widest">
+                      {related.recommendedPackage}
+                    </div>
+                  </a>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
