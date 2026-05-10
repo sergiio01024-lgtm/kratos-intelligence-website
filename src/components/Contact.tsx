@@ -81,6 +81,15 @@ export function Contact() {
 
   const handleSelectChange = (key: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [key]: value }));
+    
+    // Track safe select changes
+    if (['industry', 'packageInterest', 'urgency', 'budgetRange'].includes(key)) {
+      trackEvent("contact_form_select_change", {
+        field: key,
+        value,
+        location: "contact_form"
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,7 +114,12 @@ export function Contact() {
       submittedAt: new Date().toISOString(),
       pageUrl: window.location.href,
       referrer: document.referrer || "",
-      userAgent: navigator.userAgent
+      userAgent: navigator.userAgent,
+      leadSourceContext: {
+        currentPath: window.location.pathname,
+        currentHash: window.location.hash,
+        pageTitle: document.title
+      }
     };
 
     const webhookUrl = import.meta.env.VITE_LEAD_WEBHOOK_URL;
@@ -132,7 +146,9 @@ export function Contact() {
           return;
         }
         // If webhook fails, attempt Formspree fallback
-        console.warn('Webhook submission failed, falling back to Formspree');
+        if (import.meta.env.DEV) {
+          console.warn('Webhook submission failed, falling back to Formspree');
+        }
       }
 
       if (formspreeUrl) {
@@ -160,7 +176,9 @@ export function Contact() {
 
       throw new Error('All submission endpoints failed');
     } catch (error) {
-      console.error('Submission error:', error);
+      if (import.meta.env.DEV) {
+        console.error('Submission error:', error);
+      }
       setFormStatus('error');
       trackEvent("contact_form_submit_error", {
         webhook_configured: Boolean(webhookUrl),
@@ -173,17 +191,51 @@ export function Contact() {
     return (
       <section id="contact" className="py-20 dark-section-gradient border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center space-y-6 dark-card p-12 rounded-3xl border border-white/10 shadow-2xl">
+          <div className="max-w-2xl mx-auto text-center space-y-8 dark-card p-12 rounded-3xl border border-white/10 shadow-2xl">
             <div className="w-20 h-20 bg-[#43e97b]/10 rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-10 h-10 text-[#43e97b]" />
             </div>
-            <h2 className="text-3xl font-bold text-white">Message Sent!</h2>
-            <p className="text-white/60 text-lg">
-              Thanks for reaching out. I’ll review your details and follow up within 24 hours. If your request is urgent, call or text me directly at (858) 997-9251.
-            </p>
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10" onClick={() => setFormStatus('idle')}>
-              Send Another Message
-            </Button>
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold text-white">Message Sent!</h2>
+              <p className="text-white/60 text-lg">
+                Thanks for reaching out. I’ll review your details and follow up within 24 hours.
+              </p>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Button 
+                className="h-16 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg font-black" 
+                asChild
+                onClick={() => trackEvent("book_audit_click", { location: "contact_success_state", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
+              >
+                <a 
+                  href={finalBookingUrl}
+                  target={isExternalBooking ? "_blank" : undefined}
+                  rel={isExternalBooking ? "noopener noreferrer" : undefined}
+                >
+                  <Calendar className="mr-2 w-5 h-5" />
+                  Book a Time Now
+                </a>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="h-16 border-white/20 text-white hover:bg-white/10 font-black"
+                asChild
+                onClick={() => trackEvent("phone_click", { location: "contact_success_state", phone: "8589979251" })}
+              >
+                <a href="tel:8589979251">
+                  <MessageSquare className="mr-2 w-5 h-5" />
+                  Call or Text Sergio
+                </a>
+              </Button>
+            </div>
+
+            <button 
+              className="text-white/40 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest" 
+              onClick={() => setFormStatus('idle')}
+            >
+              Back to Form
+            </button>
           </div>
         </div>
       </section>
@@ -200,27 +252,31 @@ export function Contact() {
           <div className="space-y-10">
             <div className="space-y-6">
               <div className="space-y-4">
-                <h2 className="text-3xl lg:text-5xl font-bold text-white tracking-tight">Book Your Free 20-Minute Audit</h2>
+                <h2 className="text-3xl lg:text-5xl font-bold text-white tracking-tight leading-tight">Request Your Free 20-Minute Audit</h2>
                 <p className="text-white/60 text-lg leading-relaxed">
-                  Pick a time that works for you. We’ll review your current lead capture, missed-call problem, and what AI system would make the most sense.
+                  The more context you give me, the better I can recommend the right first automation.
                 </p>
               </div>
 
-              <div className="space-y-3">
-                {[
-                  "Find where leads are being lost",
-                  "Review your website, calls, and follow-up process",
-                  "Identify the fastest automation win",
-                  "Estimate build cost and timeline",
-                  "Decide if AI automation is actually worth it for your business"
-                ].map((point, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="mt-1 bg-[#667eea]/20 p-1 rounded-full">
-                      <CheckCircle2 className="w-4 h-4 text-[#a5b4fc]" />
+              <div className="space-y-4 p-6 bg-white/5 border border-white/10 rounded-2xl">
+                <h4 className="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#667eea]" />
+                  What happens next
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    "I review your website and lead flow",
+                    "I identify the biggest lead leak",
+                    "You get a clear first-build recommendation"
+                  ].map((step, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full bg-[#667eea]/20 flex items-center justify-center text-[10px] font-bold text-[#a5b4fc]">
+                        {i + 1}
+                      </div>
+                      <p className="text-white/80 font-medium text-sm">{step}</p>
                     </div>
-                    <p className="text-white/80 font-medium">{point}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -297,9 +353,12 @@ export function Contact() {
           <FadeIn>
             <div id="contact-form">
               <Card className="p-8 dark-card border-white/10 shadow-2xl">
-                <div className="mb-8">
+                <div className="mb-8 space-y-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#667eea]/10 border border-[#667eea]/20">
+                    <span className="text-[10px] font-black text-[#a5b4fc] uppercase tracking-widest italic">Takes about 60 seconds</span>
+                  </div>
                   <h3 className="text-2xl font-bold text-white">Tell Me About Your Business</h3>
-                  <p className="text-white/60 mt-2">The more context you give me, the better I can recommend the right first automation.</p>
+                  <p className="text-white/60 text-sm">Your answers help me recommend the right first automation.</p>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -377,6 +436,12 @@ export function Contact() {
                           <SelectItem value="Electrical">Electrical</SelectItem>
                           <SelectItem value="Plumbing">Plumbing</SelectItem>
                           <SelectItem value="Roofing">Roofing</SelectItem>
+                          <SelectItem value="Garage Door">Garage Door</SelectItem>
+                          <SelectItem value="Pest Control">Pest Control</SelectItem>
+                          <SelectItem value="Pool Service">Pool Service</SelectItem>
+                          <SelectItem value="Junk Removal">Junk Removal</SelectItem>
+                          <SelectItem value="Restoration / Water Damage">Restoration / Water Damage</SelectItem>
+                          <SelectItem value="Cleaning Companies">Cleaning Companies</SelectItem>
                           <SelectItem value="Landscaping">Landscaping</SelectItem>
                           <SelectItem value="General Contractor">General Contractor</SelectItem>
                           <SelectItem value="Other">Other</SelectItem>
@@ -433,7 +498,7 @@ export function Contact() {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="budget-range" className="text-white/70 text-xs font-bold uppercase tracking-wider">Budget Range</Label>
+                      <Label htmlFor="budget-range" className="text-white/70 text-xs font-bold uppercase tracking-wider">Budget Range (Optional)</Label>
                       <Select value={formData.budgetRange} onValueChange={(val) => handleSelectChange('budgetRange', val)}>
                         <SelectTrigger className={selectTriggerClasses}>
                           <SelectValue placeholder="Select Budget" />
@@ -469,14 +534,18 @@ export function Contact() {
                       disabled={formStatus === 'submitting'}
                     >
                       {formStatus === 'submitting' ? (
-                        "Sending..."
+                        "Sending Request..."
                       ) : (
                         <>
-                          Send Message
-                          <Send className="ml-2 w-5 h-5" />
+                          Request Free Audit
+                          <Calendar className="ml-2 w-5 h-5" />
                         </>
                       )}
                     </Button>
+                    
+                    <p className="text-[10px] text-white/40 text-center font-bold uppercase tracking-[0.2em]">
+                      Your info is only used to follow up about your automation audit.
+                    </p>
 
                     {formStatus === 'error' && (
                       <p className="text-[#d4183d] text-sm text-center font-bold">

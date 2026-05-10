@@ -18,6 +18,7 @@ import { IndustryLandingPages } from "./components/IndustryLandingPages";
 import { industries } from "./data/industries";
 import { restoreHomepageScrollPosition } from "./lib/scrollMemory";
 import { ScrollControls } from "./components/ScrollControls";
+import { QuickAuditCTA } from "./components/QuickAuditCTA";
 
 import PhoneServicesCarousel from "./components/PhoneServicesCarousel";
 import FounderSection from './components/FounderSection';
@@ -61,6 +62,7 @@ export default function App() {
       <Header />
       <main className="pt-16">
         <Hero />
+        <QuickAuditCTA />
         <MissedCalls />
         <MissedCallCalculator />
         <TrustBar />

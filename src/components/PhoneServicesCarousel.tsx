@@ -259,7 +259,7 @@ const PhoneServicesCarousel: React.FC = () => {
                 <div className="psc-bottom-cta">
                     <p>Not sure which service fits?</p>
                     <button className="psc-bottom-cta-button" onClick={scrollToContact}>
-                        Book a Free 20-Min Audit Call
+                        Book Free Audit
                     </button>
                 </div>
             </div>

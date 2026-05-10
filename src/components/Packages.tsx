@@ -258,7 +258,7 @@ export function Packages() {
           </div>
         </FadeIn>
 
-        {/* Audit CTA Block */}
+        {/* Audit CTA Block - Now refined as the Package Reassurance Strip */}
         <FadeIn>
           <div className="bg-[#050816] text-white rounded-[2rem] p-10 md:p-16 text-center border border-white/5 relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-[#667eea]/10 rounded-full blur-[100px]"></div>
@@ -269,18 +269,31 @@ export function Packages() {
                   <ShieldCheck className="w-10 h-10 text-[#667eea] shadow-[0_0_15px_rgba(102,126,234,0.4)]" />
                 </div>
               </div>
-              <div className="space-y-4">
-                <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-none text-white">Still not sure which package fits?</h3>
+              <div className="space-y-6">
+                <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-none text-white">Not sure which one fits?</h3>
                 <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-                  Book a free audit and I’ll tell you which system I would build first, what it should cost, and whether it is worth doing right now.
+                  Start with the audit. I’ll tell you which system I’d build first, what can wait, and whether automation is worth doing right now.
                 </p>
+                
+                <div className="flex flex-wrap justify-center gap-4 pt-2">
+                  {[
+                    "No bloated build",
+                    "Clear first step",
+                    "Built around your current workflow"
+                  ].map((badge, i) => (
+                    <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-white/40 uppercase tracking-widest italic">
+                      <CheckCircle className="w-3 h-3 text-[#43e97b]" />
+                      {badge}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="flex justify-center pt-4">
                 <Button 
                   size="lg" 
                   className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all" 
                   asChild
-                  onClick={() => trackEvent("book_audit_click", { location: "packages_custom_cta", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
+                  onClick={() => trackEvent("book_audit_click", { location: "packages_reassurance_strip", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
                 >
                   <a 
                     href={finalBookingUrl}
