@@ -129,10 +129,19 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
     });
   };
 
-  const handleBackToPackages = () => {
-    trackEvent("industry_back_to_packages_click", {
+  const handleReturnToPreviousSection = () => {
+    trackEvent("return_to_previous_section_click", {
       industry: industry.name,
-      slug: industry.slug
+      slug: industry.slug,
+      destination: "homepage_restore"
+    });
+  };
+
+  const handleViewAllIndustries = () => {
+    trackEvent("view_all_industries_click", {
+      industry: industry.name,
+      slug: industry.slug,
+      location: "industry_page_hero"
     });
   };
 
@@ -148,7 +157,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
   return (
     <div className="min-h-screen bg-[#050816]">
       {/* Hero Section */}
-      <section className="relative pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
+      <section id="industry-hero" className="relative pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#667eea]/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#764ba2]/10 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2"></div>
@@ -167,10 +176,10 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               <p className="text-xl lg:text-2xl text-white/60 leading-relaxed max-w-2xl mb-12">
                 {industry.subheadline}
               </p>
-              <div className="flex flex-col sm:flex-row gap-6">
+              <div className="flex flex-col sm:flex-row gap-6 items-center">
                 <Button 
                   size="lg" 
-                  className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all group"
+                  className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all group w-full sm:w-auto"
                   asChild
                   onClick={() => handleCtaClick("industry_page_hero")}
                 >
@@ -183,18 +192,27 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                     Book Free Audit
                   </a>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="h-16 px-8 text-lg border-white/20 text-white hover:bg-white/5 transition-all"
-                  asChild
-                  onClick={handleBackToPackages}
-                >
-                  <a href="/#packages">
-                    <ChevronLeft className="mr-2 w-5 h-5" />
-                    Back to Packages
+                <div className="flex flex-col sm:flex-row gap-4 items-center">
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="h-16 px-8 text-lg border-white/20 text-white hover:bg-white/5 transition-all w-full sm:w-auto"
+                    asChild
+                    onClick={handleReturnToPreviousSection}
+                  >
+                    <a href="/#restore-scroll">
+                      <ChevronLeft className="mr-2 w-5 h-5" />
+                      Back to Previous Section
+                    </a>
+                  </Button>
+                  <a 
+                    href="/#industries" 
+                    className="text-white/40 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest"
+                    onClick={handleViewAllIndustries}
+                  >
+                    View All Industries
                   </a>
-                </Button>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -202,7 +220,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* High-Value Leads Section */}
-      <section className="py-24 border-t border-white/5">
+      <section id="industry-leads" className="py-24 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">High-value leads this system can capture</h2>
@@ -223,7 +241,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Pain Points */}
-      <section className="py-24 border-t border-white/5">
+      <section id="industry-leaks" className="py-24 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Where leads are leaking</h2>
@@ -246,7 +264,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Automation Use Cases */}
-      <section className="py-24 dark-section-gradient border-t border-white/5">
+      <section id="industry-automation" className="py-24 dark-section-gradient border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
@@ -293,7 +311,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Workflow */}
-      <section className="py-24 border-t border-white/5">
+      <section id="industry-workflow" className="py-24 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Example workflow</h2>
@@ -321,7 +339,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Industry-specific FAQs */}
-      <section className="py-24 border-t border-white/5 bg-[#050816]">
+      <section id="industry-faq" className="py-24 border-t border-white/5 bg-[#050816]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Common questions for {industry.name} businesses</h2>
@@ -345,7 +363,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Recommended Package */}
-      <section className="py-24 border-t border-white/5 relative overflow-hidden">
+      <section id="industry-recommendation" className="py-24 border-t border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-[#667eea]/5 opacity-50"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <FadeIn className="text-center mb-16">
@@ -406,7 +424,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Related Industry Links */}
-      <section className="py-24 border-t border-white/5 bg-[#050816]">
+      <section id="related-industries" className="py-24 border-t border-white/5 bg-[#050816]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Related automation pages</h2>
@@ -441,7 +459,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 border-t border-white/5 bg-[#050816]">
+      <section id="industry-final-cta" className="py-24 border-t border-white/5 bg-[#050816]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="dark-card border-white/10 rounded-[3rem] p-12 md:p-20 text-center space-y-10 relative overflow-hidden shadow-2xl">

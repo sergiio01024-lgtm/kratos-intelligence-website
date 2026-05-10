@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { MissedCalls } from "./components/MissedCalls";
@@ -15,6 +16,8 @@ import { Footer } from "./components/Footer";
 import { IndustryLandingPage } from "./components/IndustryLandingPage";
 import { IndustryLandingPages } from "./components/IndustryLandingPages";
 import { industries } from "./data/industries";
+import { restoreHomepageScrollPosition } from "./lib/scrollMemory";
+import { ScrollControls } from "./components/ScrollControls";
 
 import PhoneServicesCarousel from "./components/PhoneServicesCarousel";
 import FounderSection from './components/FounderSection';
@@ -29,9 +32,17 @@ export default function App() {
 
   const industry = industries.find((item) => item.slug === industrySlug);
 
+  useEffect(() => {
+    if (!industry && window.location.hash === "#restore-scroll") {
+      restoreHomepageScrollPosition("#industries");
+      // Clean the hash without triggering another scroll or reload
+      history.replaceState(null, "", "/");
+    }
+  }, [industry]);
+
   if (industry) {
     return (
-      <div className="min-h-screen bg-background">
+      <div id="top" className="min-h-screen bg-background">
         <Header />
         <main className="pt-16">
           <IndustryLandingPage industry={industry} />
@@ -40,12 +51,13 @@ export default function App() {
         </main>
         <Footer />
         <FloatingCTA />
+        <ScrollControls />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background">
       <Header />
       <main className="pt-16">
         <Hero />
@@ -67,6 +79,7 @@ export default function App() {
       </main>
       <Footer />
       <FloatingCTA />
+      <ScrollControls />
     </div>
   );
 }

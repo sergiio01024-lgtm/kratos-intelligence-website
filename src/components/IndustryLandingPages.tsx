@@ -2,9 +2,11 @@ import { industries } from "../data/industries";
 import { FadeIn } from "./ui/FadeIn";
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
+import { saveHomepageScrollPosition } from "../lib/scrollMemory";
 
 export function IndustryLandingPages() {
   const handleIndustryClick = (industry: typeof industries[0]) => {
+    saveHomepageScrollPosition("industry_card_click");
     trackEvent("industry_card_click", {
       industry: industry.name,
       slug: industry.slug,

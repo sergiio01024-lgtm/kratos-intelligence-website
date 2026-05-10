@@ -4,7 +4,7 @@ import HeroWaveAnimation from './HeroWaveAnimation';
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] lg:min-h-[800px] flex items-center justify-center overflow-hidden py-20 lg:py-32">
+    <section id="hero" className="relative min-h-[90vh] lg:min-h-[800px] flex items-center justify-center overflow-hidden py-20 lg:py-32">
       <HeroWaveAnimation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
