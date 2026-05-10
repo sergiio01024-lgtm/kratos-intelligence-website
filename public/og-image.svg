@@ -1,0 +1,50 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050816;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0e27;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#bg-grad)" />
+  
+  <!-- Subtle Wave Pattern -->
+  <path d="M0 400 C 300 350, 600 450, 1200 350 L 1200 630 L 0 630 Z" fill="#667eea" opacity="0.05" />
+  <path d="M0 450 C 400 400, 800 500, 1200 400 L 1200 630 L 0 630 Z" fill="#764ba2" opacity="0.03" />
+  
+  <!-- Glow effect in corner -->
+  <circle cx="1100" cy="100" r="200" fill="#667eea" opacity="0.1" filter="url(#glow)" />
+  
+  <!-- Main Content -->
+  <g transform="translate(100, 220)">
+    <!-- Logo Indicator -->
+    <rect x="0" y="0" width="80" height="80" rx="20" fill="url(#accent-grad)" />
+    <text x="40" y="55" font-family="Arial, sans-serif" font-weight="900" font-style="italic" font-size="40" fill="white" text-anchor="middle">KI</text>
+    
+    <!-- Title -->
+    <text x="110" y="60" font-family="Arial, sans-serif" font-weight="900" font-size="72" fill="white" letter-spacing="-2">Kratos Intelligence</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="140" font-family="Arial, sans-serif" font-weight="700" font-size="42" fill="#a5b4fc">AI Automation for Trade Businesses</text>
+    
+    <!-- Supporting Line -->
+    <text x="0" y="210" font-family="Arial, sans-serif" font-weight="400" font-size="28" fill="rgba(255,255,255,0.6)">
+      Chatbots <tspan fill="#43e97b">•</tspan> Phone Agents <tspan fill="#43e97b">•</tspan> CRM Automation <tspan fill="#43e97b">•</tspan> Lead Capture
+    </text>
+  </g>
+  
+  <!-- Footer -->
+  <line x1="100" y1="530" x2="1100" y2="530" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  <text x="600" y="575" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="1">
+    BUILT IN SAN DIEGO FOR HVAC, ELECTRICAL &amp; PLUMBING BUSINESSES
+  </text>
+</svg>
