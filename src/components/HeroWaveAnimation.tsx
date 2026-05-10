@@ -1,7 +1,7 @@
 import React from 'react';
 import './HeroWaveAnimation.css';
 
-const HeroWaveAnimation = () => {
+const HeroWaveAnimation: React.FC = () => {
     return (
         <div className="hwa-wrapper" aria-hidden="true">
             <div className="hwa-bg"></div>

@@ -1,9 +1,15 @@
 import React from 'react';
-import { MapPin, Briefcase, TrendingUp, Calendar } from 'lucide-react';
+import { MapPin, Briefcase, TrendingUp, Calendar, LucideIcon } from 'lucide-react';
 import './FounderSection.css';
 
-const FounderSection = () => {
-    const stats = [
+interface Stat {
+    Icon: LucideIcon;
+    value: string;
+    label: string;
+}
+
+const FounderSection: React.FC = () => {
+    const stats: Stat[] = [
         { Icon: Calendar, value: '1+ Year', label: 'Building Trade Automation' },
         { Icon: Briefcase, value: '2 Live Systems', label: 'Currently Running 24/7' },
         { Icon: TrendingUp, value: '47+ Leads', label: 'Captured in 90 Days for LTE' },

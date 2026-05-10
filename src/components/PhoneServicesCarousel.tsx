@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Settings, Target, Globe, Video, Star, Check } from 'lucide-react';
+import { Phone, MessageCircle, Settings, Target, Globe, Video, Star, Check, LucideIcon } from 'lucide-react';
 import './PhoneServicesCarousel.css';
 
-const PhoneServicesCarousel = () => {
+interface Service {
+    id: number;
+    Icon: LucideIcon;
+    pain: string;
+    name: string;
+    description: string;
+    proof: string;
+    benefit: string;
+    price: string;
+    cta: string;
+    color: string;
+}
+
+const PhoneServicesCarousel: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [autoPlay, setAutoPlay] = useState(true);
     const [isHovered, setIsHovered] = useState(false);
-    const [touchStart, setTouchStart] = useState(null);
-    const [touchEnd, setTouchEnd] = useState(null);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-    const services = [
+    const services: Service[] = [
         {
             id: 1,
             Icon: Phone,
@@ -93,7 +106,7 @@ const PhoneServicesCarousel = () => {
     }, [autoPlay, isHovered, services.length]);
 
     useEffect(() => {
-        const handleKey = (e) => {
+        const handleKey = (e: KeyboardEvent) => {
             if (e.key === 'ArrowLeft') handlePrev();
             if (e.key === 'ArrowRight') handleNext();
         };
@@ -111,17 +124,17 @@ const PhoneServicesCarousel = () => {
         setAutoPlay(false);
     };
 
-    const handleTouchStart = (e) => {
+    const handleTouchStart = (e: React.TouchEvent) => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
     };
 
-    const handleTouchMove = (e) => {
+    const handleTouchMove = (e: React.TouchEvent) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
 
     const handleTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
+        if (touchStart === null || touchEnd === null) return;
         const distance = touchStart - touchEnd;
         if (distance > 50) handleNext();
         if (distance < -50) handlePrev();
@@ -184,7 +197,7 @@ const PhoneServicesCarousel = () => {
                                             key={service.id}
                                             className={`psc-service-slide ${index === currentIndex ? 'psc-active' : ''} ${index < currentIndex ? 'psc-prev' : 'psc-next'
                                                 }`}
-                                            style={{ '--service-color': service.color }}
+                                            style={{ '--service-color': service.color } as React.CSSProperties}
                                         >
                                             <div className="psc-slide-content">
                                                 <div className="psc-pain-badge">
