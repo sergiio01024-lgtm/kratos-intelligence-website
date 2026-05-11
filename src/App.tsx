@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Services } from "./components/Services";
+import { SystemShowcase } from "./components/SystemShowcase";
+import { SystemStack } from "./components/SystemStack";
+import { Deliverables } from "./components/Deliverables";
+import { BuyerClarity } from "./components/BuyerClarity";
 import { Outcome } from "./components/Outcome";
 import { TechStack } from "./components/TechStack";
 import { FinalCTA } from "./components/FinalCTA";
@@ -67,14 +71,18 @@ export default function App() {
         <Hero />
         <QuickAuditCTA />
         <Services />
+        <SystemStack />
         <PhoneServicesCarousel />
         <Outcome />
+        <SystemShowcase />
         <MissedCallCalculator />
         <Process />
         <AIDemoSection />
         <IndustryLandingPages />
         <Packages />
+        <Deliverables />
         <TechStack />
+        <BuyerClarity />
         <CaseStudies />
         <FounderSection />
         <About />
@@ -91,4 +99,5 @@ export default function App() {
     </div>
   );
 }
+
 
