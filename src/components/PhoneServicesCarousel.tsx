@@ -146,7 +146,7 @@ const PhoneServicesCarousel: React.FC = () => {
     };
 
     return (
-        <div id="services" className="psc-container">
+        <div className="psc-container">
             <div className="psc-content">
                 <div className="psc-trust-badge">
                     <Star size={14} fill="#fbbf24" color="#fbbf24" />

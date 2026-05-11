@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { MissedCalls } from "./components/MissedCalls";
+import { Services } from "./components/Services";
+import { Outcome } from "./components/Outcome";
+import { TechStack } from "./components/TechStack";
+import { FinalCTA } from "./components/FinalCTA";
 import { TrustBar } from "./components/TrustBar";
 import { Packages } from "./components/Packages";
 import { About } from "./components/About";
@@ -63,19 +66,22 @@ export default function App() {
       <main className="pt-16">
         <Hero />
         <QuickAuditCTA />
-        <MissedCalls />
-        <MissedCallCalculator />
-        <TrustBar />
+        <Services />
         <PhoneServicesCarousel />
+        <Outcome />
+        <MissedCallCalculator />
+        <Process />
         <AIDemoSection />
+        <IndustryLandingPages />
         <Packages />
+        <TechStack />
+        <CaseStudies />
         <FounderSection />
         <About />
-        <Process />
-        <CaseStudies />
+        <TrustBar />
         <ServiceArea />
-        <IndustryLandingPages />
         <Testimonials />
+        <FinalCTA />
         <Contact />
         <FAQ />
       </main>
@@ -85,3 +91,4 @@ export default function App() {
     </div>
   );
 }
+

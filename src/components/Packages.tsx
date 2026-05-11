@@ -134,20 +134,70 @@ export function Packages() {
           </p>
         </FadeIn>
 
-        {/* Helper Row */}
-        <FadeIn delay={0.1} className="mb-16">
-          <div className="max-w-4xl mx-auto p-6 rounded-2xl bg-[#667eea]/5 border border-[#667eea]/20 backdrop-blur-sm flex flex-col md:flex-row items-center gap-6">
-            <div className="w-12 h-12 rounded-xl bg-[#667eea]/10 flex items-center justify-center flex-shrink-0 border border-[#667eea]/20">
-              <Search className="w-6 h-6 text-[#a5b4fc]" />
-            </div>
-            <div className="space-y-1 text-center md:text-left">
-              <h4 className="text-white font-bold text-lg">Not sure where to start?</h4>
-              <p className="text-white/60 text-sm leading-relaxed">
-                Most trade businesses should start with the <span className="text-[#a5b4fc] font-bold">Trades Starter Pack</span> unless they are already missing high-value calls every week. If calls are the main leak, start with the <span className="text-[#a5b4fc] font-bold">AI-Powered Business System</span>.
-              </p>
+        {/* 7-Day AI Sprint Block */}
+        <FadeIn delay={0.1} className="mb-20">
+          <div className="max-w-5xl mx-auto p-1 md:p-1.5 rounded-[2.5rem] bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#667eea] shadow-[0_0_50px_rgba(102,126,234,0.3)]">
+            <div className="bg-[#05070a] rounded-[2rem] p-8 md:p-16 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10">
+                <Clock className="w-64 h-64 text-white" />
+              </div>
+              
+              <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10 text-left">
+                <div className="space-y-8">
+                  <div className="space-y-4">
+                    <Badge className="bg-[#667eea] text-white border-none px-4 py-1.5 text-xs font-bold uppercase tracking-widest rounded-full">
+                      Entry Offer
+                    </Badge>
+                    <h3 className="text-4xl lg:text-6xl font-bold text-white tracking-tight">
+                      Start With a <br/><span className="text-[#667eea]">7-Day AI Sprint</span>
+                    </h3>
+                  </div>
+                  
+                  <p className="text-white/60 text-xl font-light leading-relaxed">
+                    We build one working AI system connected to your business workflow so you can see real value before committing to a larger build.
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {[
+                      "One working AI system",
+                      "Built in 7 days",
+                      "Connected to real tools",
+                      "Clear ROI proof"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 text-white/80 font-medium">
+                        <CheckCircle className="w-5 h-5 text-[#43e97b]" />
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-white/[0.03] border border-white/10 p-8 md:p-10 rounded-[2rem] space-y-8">
+                  <div className="space-y-2">
+                    <div className="text-white/40 text-sm font-bold uppercase tracking-widest">Fixed Build Fee</div>
+                    <div className="text-6xl font-bold text-white">$900</div>
+                    <div className="text-[#43e97b] font-bold text-sm">One-time payment</div>
+                  </div>
+
+                  <div className="space-y-4 pt-4 border-t border-white/5">
+                    <p className="text-white/60 text-sm italic">
+                      "Perfect for testing a phone agent, chatbot, or lead follow-up system without a massive upfront investment."
+                    </p>
+                    <Button 
+                      className="w-full h-14 bg-white text-black hover:bg-white/90 rounded-full font-bold text-lg"
+                      asChild
+                    >
+                      <a href={finalBookingUrl}>
+                        Start the 7-Day Sprint
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </FadeIn>
+
 
         {/* Package Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
