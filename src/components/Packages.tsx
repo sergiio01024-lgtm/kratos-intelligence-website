@@ -1,381 +1,305 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { 
-  CheckCircle,
-  ArrowRight,
-  Star,
+  CheckCircle2, 
+  ArrowRight, 
+  Zap, 
+  ShieldCheck,
   Clock,
-  Target,
-  Users,
-  ShieldCheck
+  Layout,
+  Cpu,
+  Database
 } from "lucide-react";
-
 import { FadeIn } from "./ui/FadeIn";
 import { trackEvent } from "../lib/analytics";
 
-interface Package {
-  name: string;
-  startingPrice: string;
-  monthlyPrice: string;
-  description: string;
-  bestFor: string;
-  primaryOutcome: string;
-  timeline: string;
-  monthlySupport: string;
-  features: string[];
-  popular: boolean;
-  badge: string;
-  ctaLabel: string;
-}
-
 export function Packages() {
-  const packages: Package[] = [
-    {
-      name: "Trades Starter Pack",
-      startingPrice: "Starting at $1,500",
-      monthlyPrice: "$200–400/mo",
-      description: "Website, chatbot, lead capture, and automated follow-up for trade businesses that need a clean online foundation.",
-      bestFor: "Businesses with no automation yet",
-      primaryOutcome: "Capture website leads and follow up automatically",
-      timeline: "3–7 days",
-      monthlySupport: "Hosting support, chatbot edits, CRM upkeep, and small workflow fixes",
-      features: [
-        "5–7 page business website",
-        "Embedded AI chatbot",
-        "Lead follow-up SMS automation",
-        "Airtable lead database",
-        "30 days of launch support"
-      ],
-      popular: true,
-      badge: "Best First Build",
-      ctaLabel: "Start Here"
-    },
-    {
-      name: "AI-Powered Business System",
-      startingPrice: "Starting at $3,000",
-      monthlyPrice: "$500–900/mo",
-      description: "The full AI intake stack for businesses that want website leads, calls, booking, reviews, and reporting handled in one system.",
-      bestFor: "Businesses losing calls or managing leads manually",
-      primaryOutcome: "Capture, qualify, route, and track leads 24/7",
-      timeline: "5–14 days",
-      monthlySupport: "Phone-agent tuning, reporting, CRM maintenance, workflow monitoring, and support",
-      features: [
-        "Everything in Starter Pack",
-        "AI phone receptionist",
-        "Automated booking flow",
-        "Review generation system",
-        "Monthly performance report"
-      ],
-      popular: false,
-      badge: "Full System",
-      ctaLabel: "Build Full System"
-    },
-    {
-      name: "Lead Gen + Outreach Machine",
-      startingPrice: "Starting at $1,000",
-      monthlyPrice: "$600–1,200/mo",
-      description: "Lead list building and managed outreach for businesses that want more prospects instead of waiting on inbound demand.",
-      bestFor: "Businesses ready for outbound growth",
-      primaryOutcome: "Build a predictable monthly prospect pipeline",
-      timeline: "5–10 days",
-      monthlySupport: "Lead sourcing, list cleaning, campaign updates, reporting, and pipeline tracking",
-      features: [
-        "Google Maps lead sourcing",
-        "Verified contact data",
-        "Personalized email sequences",
-        "Monthly results report",
-        "Airtable lead tracking"
-      ],
-      popular: false,
-      badge: "Outbound Growth",
-      ctaLabel: "Launch Outreach"
-    },
-    {
-      name: "Content + Website Bundle",
-      startingPrice: "Starting at $2,000",
-      monthlyPrice: "$500–800/mo",
-      description: "A premium website plus ongoing AI-assisted content so the business looks active, credible, and easier to trust.",
-      bestFor: "Businesses that need better brand presence",
-      primaryOutcome: "Improve credibility and stay visible online",
-      timeline: "7–14 days",
-      monthlySupport: "Monthly content delivery, site updates, creative edits, and brand asset support",
-      features: [
-        "High-end Figma-designed website",
-        "8–16 content pieces/month",
-        "Short video ads for social",
-        "Branded graphics",
-        "Monthly creative delivery"
-      ],
-      popular: false,
-      badge: "Brand Growth",
-      ctaLabel: "Upgrade Brand"
-    }
-  ];
-
   const bookingUrl = import.meta.env.VITE_BOOKING_URL;
   const finalBookingUrl = bookingUrl || "#contact";
   const isExternalBooking = Boolean(bookingUrl);
 
-  const comparisonItems = [
-    { label: "Fastest Launch", value: "Trades Starter Pack" },
-    { label: "Most Complete", value: "AI-Powered Business System" },
-    { label: "Best for Growth", value: "Lead Gen + Outreach Machine" },
-    { label: "Best for Brand", value: "Content + Website Bundle" }
+  const packages = [
+    {
+      id: "sprint",
+      name: "7-Day AI Sprint",
+      price: "$900",
+      subtext: "Fixed build fee",
+      positioning: "Best first step for one urgent workflow bottleneck.",
+      goodFor: [
+        "Missed calls",
+        "Website lead capture",
+        "Quote follow-up",
+        "Intake automation",
+        "CRM routing",
+        "Appointment handoff"
+      ],
+      includes: [
+        "One working AI system",
+        "Workflow map",
+        "Intake logic",
+        "CRM/contact routing",
+        "Testing checklist",
+        "Handoff walkthrough"
+      ],
+      cta: "Start the 7-Day Sprint",
+      ctaHref: "#contact-form",
+      highlight: true
+    },
+    {
+      id: "launch",
+      name: "Launch System",
+      price: "$1,500",
+      subtext: "Setup + $300/mo",
+      positioning: "Best for a clean AI-powered lead capture foundation.",
+      goodFor: [
+        "AI website/landing page",
+        "Chatbot intake",
+        "Contact form routing",
+        "CRM/Airtable setup",
+        "Basic follow-up"
+      ],
+      includes: [
+        "Website/landing page system",
+        "Lead capture flow",
+        "CRM/contact routing",
+        "Basic automation",
+        "Monthly support scope"
+      ],
+      cta: "Book Free Audit",
+      ctaHref: finalBookingUrl
+    },
+    {
+      id: "growth",
+      name: "Growth System",
+      price: "$3,000",
+      subtext: "Setup + $900/mo",
+      positioning: "Best for a complete front-office automation stack.",
+      goodFor: [
+        "AI phone agent",
+        "Chatbot + Outreach",
+        "CRM automation",
+        "Appointment booking",
+        "Follow-up sequences",
+        "Reporting dashboard"
+      ],
+      includes: [
+        "Multi-system workflow",
+        "AI intake logic",
+        "Phone/chat/contact routing",
+        "Outreach sequences",
+        "CRM pipeline setup",
+        "KPI visibility"
+      ],
+      cta: "Book Free Audit",
+      ctaHref: finalBookingUrl,
+      featured: true
+    },
+    {
+      id: "custom",
+      name: "Custom AI Infrastructure",
+      price: "Custom",
+      subtext: "Quote based on scope",
+      positioning: "Best for complex workflows or multi-location businesses.",
+      goodFor: [
+        "Multi-location routing",
+        "Advanced CRM workflows",
+        "Internal dashboards",
+        "API-connected systems",
+        "Custom AI assistants",
+        "Operational builds"
+      ],
+      includes: [
+        "Custom workflow architecture",
+        "System design",
+        "Integration planning",
+        "Deployment roadmap",
+        "Custom implementation"
+      ],
+      cta: "Request Free Audit",
+      ctaHref: "#contact-form"
+    }
   ];
 
   return (
     <section id="packages" className="py-24 dark-section-gradient border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn className="text-center mb-12">
-          <h2 className="text-3xl lg:text-5xl mb-4 text-white font-black tracking-tight">Packages Built for Trade Businesses</h2>
-          <p className="text-white/60 text-lg max-w-3xl mx-auto leading-relaxed">
-            Choose the system that fits your current bottleneck — website trust, missed calls, outbound growth, or content.
+        <FadeIn className="text-center mb-16 space-y-4">
+          <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight">Choose the System That <br/>Matches Your Bottleneck</h2>
+          <p className="text-white/60 text-lg max-w-3xl mx-auto font-light leading-relaxed">
+            Start with a focused 7-Day AI Sprint, then expand into a full AI growth system when the workflow is proven.
           </p>
         </FadeIn>
 
-        {/* 7-Day AI Sprint Block */}
-        <FadeIn delay={0.1} className="mb-20">
-          <div className="max-w-5xl mx-auto p-1 md:p-1.5 rounded-[2.5rem] bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#667eea] shadow-[0_0_50px_rgba(102,126,234,0.3)]">
-            <div className="bg-[#05070a] rounded-[2rem] p-8 md:p-16 relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                <Clock className="w-64 h-64 text-white" />
-              </div>
-              
-              <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10 text-left">
+        {/* 7-Day AI Sprint - Featured Entry Point */}
+        <FadeIn delay={0.1} className="mb-12">
+          <div className="max-w-5xl mx-auto relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#667eea] via-[#764ba2] to-[#667eea] rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <Card className="relative bg-[#05070a] border-white/10 rounded-[2rem] p-8 md:p-12 overflow-hidden">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
                   <div className="space-y-4">
-                    <Badge className="bg-[#667eea] text-white border-none px-4 py-1.5 text-xs font-bold uppercase tracking-widest rounded-full">
-                      Entry Offer
+                    <Badge className="bg-[#667eea] text-white border-none px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full italic">
+                      Recommended First Step
                     </Badge>
-                    <h3 className="text-4xl lg:text-6xl font-bold text-white tracking-tight">
-                      Start With a <br/><span className="text-[#667eea]">7-Day AI Sprint</span>
+                    <h3 className="text-4xl lg:text-5xl font-black text-white tracking-tight leading-none">
+                      The 7-Day <br/><span className="text-[#a5b4fc]">AI Sprint</span>
                     </h3>
                   </div>
                   
-                  <p className="text-white/60 text-xl font-light leading-relaxed">
+                  <p className="text-white/60 text-lg font-light leading-relaxed">
                     We build one working AI system connected to your business workflow so you can see real value before committing to a larger build.
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {[
-                      "One working AI system",
-                      "Built in 7 days",
-                      "Connected to real tools",
-                      "Clear ROI proof"
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 text-white/80 font-medium">
-                        <CheckCircle className="w-5 h-5 text-[#43e97b]" />
+                  <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
+                    {packages[0].goodFor.slice(0, 4).map((item, i) => (
+                      <div key={i} className="flex items-center gap-3 text-white/80 font-bold text-sm">
+                        <CheckCircle2 className="w-5 h-5 text-[#43e97b]" />
                         {item}
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="bg-white/[0.03] border border-white/10 p-8 md:p-10 rounded-[2rem] space-y-8">
-                  <div className="space-y-2">
-                    <div className="text-white/40 text-sm font-bold uppercase tracking-widest">Fixed Build Fee</div>
-                    <div className="text-6xl font-bold text-white">$900</div>
-                    <div className="text-[#43e97b] font-bold text-sm">One-time payment</div>
+                <div className="bg-white/[0.03] border border-white/10 p-8 md:p-10 rounded-[2rem] space-y-6">
+                  <div className="space-y-1">
+                    <div className="text-white/40 text-[10px] font-black uppercase tracking-[0.3em]">Fixed Build Fee</div>
+                    <div className="text-6xl font-black text-white">$900</div>
+                    <div className="text-[#43e97b] font-bold text-sm uppercase tracking-widest italic">One-time payment</div>
                   </div>
 
                   <div className="space-y-4 pt-4 border-t border-white/5">
-                    <p className="text-white/60 text-sm italic">
-                      "Perfect for testing a phone agent, chatbot, or lead follow-up system without a massive upfront investment."
-                    </p>
                     <Button 
-                      className="w-full h-14 bg-white text-black hover:bg-white/90 rounded-full font-bold text-lg"
+                      className="w-full h-16 bg-white text-black hover:bg-white/90 rounded-full font-black text-xl shadow-2xl transition-all"
                       asChild
+                      onClick={() => trackEvent("sprint_cta_click", { location: "packages_featured_sprint" })}
                     >
-                      <a href={finalBookingUrl}>
+                      <a href="#contact-form">
                         Start the 7-Day Sprint
                       </a>
                     </Button>
+                    <p className="text-white/30 text-[10px] text-center font-bold uppercase tracking-widest">
+                      *Focused build on one urgent bottleneck
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
         </FadeIn>
 
-
-        {/* Package Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-          {packages.map((pkg, index) => (
-            <FadeIn key={index} delay={index * 0.1}>
-              <Card className={`group relative h-full flex flex-col overflow-hidden transition-all duration-500 dark-card border-white/10 ${pkg.popular ? 'ring-2 ring-[#667eea]/40 shadow-[0_0_40px_rgba(102,126,234,0.1)]' : ''}`}>
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#667eea]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                
-                <CardHeader className="p-8 pb-4 space-y-6">
-                  <div className="flex justify-between items-start">
-                    <div className="space-y-1">
-                      <Badge className="bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none text-[10px] uppercase tracking-widest font-bold px-3 py-1">
-                        {pkg.badge}
-                      </Badge>
-                      <CardTitle className="text-3xl font-black text-white pt-2 leading-none">{pkg.name}</CardTitle>
-                    </div>
-                    {pkg.popular && <Star className="w-6 h-6 text-[#a5b4fc] fill-[#a5b4fc]/20" />}
+        {/* Growth/Full Stack emphasize */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          {packages.slice(1).map((pkg, i) => (
+            <FadeIn key={pkg.id} delay={i * 0.1}>
+              <Card className={`dark-card border-white/10 p-8 h-full flex flex-col bg-white/[0.02] relative group ${pkg.featured ? 'ring-2 ring-[#667eea]/40 shadow-2xl' : ''}`}>
+                {pkg.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-[#667eea] text-white border-none px-4 py-1 text-[10px] font-black uppercase tracking-widest">Most Popular</Badge>
                   </div>
-                  
-                  <p className="text-white/60 text-sm leading-relaxed min-h-[40px]">{pkg.description}</p>
-                </CardHeader>
-
-                <CardContent className="p-8 pt-0 space-y-8 flex-1 flex flex-col">
-                  {/* Pricing Area */}
-                  <div className="space-y-1 py-6 border-y border-white/5">
-                    <div className="text-3xl font-black text-white">{pkg.startingPrice}</div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Monthly Support</span>
-                      <span className="text-[#a5b4fc] font-bold text-sm">{pkg.monthlyPrice}</span>
-                    </div>
+                )}
+                <div className="space-y-6 flex-1">
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-black text-white leading-tight">{pkg.name}</h3>
+                    <p className="text-white/40 text-[10px] uppercase font-bold tracking-[0.2em]">{pkg.positioning}</p>
                   </div>
 
-                  {/* Decision Clarity Fields */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-white/30 uppercase tracking-widest">
-                        <Users className="w-3 h-3" />
-                        Best For
-                      </div>
-                      <p className="text-xs font-bold text-white/80 leading-tight">{pkg.bestFor}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-white/30 uppercase tracking-widest">
-                        <Target className="w-3 h-3" />
-                        Main Outcome
-                      </div>
-                      <p className="text-xs font-bold text-[#43e97b] leading-tight">{pkg.primaryOutcome}</p>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-white/30 uppercase tracking-widest">
-                        <Clock className="w-3 h-3" />
-                        Timeline
-                      </div>
-                      <p className="text-xs font-bold text-white/80 leading-tight">{pkg.timeline}</p>
-                    </div>
+                  <div className="py-6 border-y border-white/5 space-y-1">
+                    <div className="text-3xl font-black text-white">{pkg.price}</div>
+                    <div className="text-[#a5b4fc] text-[10px] font-bold uppercase tracking-widest">{pkg.subtext}</div>
                   </div>
 
-                  {/* Feature List */}
-                  <div className="space-y-4 flex-1">
-                    <h4 className="font-bold text-[10px] uppercase tracking-[0.2em] text-white/40">What's Included</h4>
-                    <ul className="grid gap-3">
-                      {pkg.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-sm text-white/70">
-                          <CheckCircle className="w-4 h-4 text-[#43e97b] mt-0.5 flex-shrink-0" />
-                          <span>{feature}</span>
+                  <div className="space-y-4">
+                    <div className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Includes</div>
+                    <ul className="space-y-3">
+                      {pkg.includes.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 text-xs text-white/70">
+                          <CheckCircle2 className="w-3 h-3 text-[#43e97b] mt-0.5 flex-shrink-0" />
+                          <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
+                </div>
 
-                  <div className="pt-6 mt-auto">
-                    <Button 
-                      className="w-full h-14 bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-lg hover:shadow-[0_10px_20px_rgba(102,126,234,0.3)] transition-all duration-300 font-black text-lg group" 
-                      size="lg" 
-                      asChild
-                      onClick={() => trackEvent("package_cta_click", { 
-                        package_name: pkg.name, 
-                        package_badge: pkg.badge,
-                        location: "packages_section",
-                        destination: isExternalBooking ? "booking_url" : "contact_fallback"
-                      })}
+                <div className="pt-8">
+                  <Button 
+                    variant={pkg.featured ? "default" : "outline"}
+                    className={`w-full h-14 font-black text-lg rounded-full transition-all ${
+                      pkg.featured 
+                        ? 'bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-xl hover:shadow-[0_0_20px_rgba(102,126,234,0.4)]' 
+                        : 'border-white/10 text-white hover:bg-white/5'
+                    }`}
+                    asChild
+                    onClick={() => trackEvent("package_cta_click", { package_id: pkg.id, location: "packages_grid" })}
+                  >
+                    <a 
+                      href={pkg.ctaHref}
+                      target={pkg.ctaHref.startsWith('http') ? "_blank" : undefined}
+                      rel={pkg.ctaHref.startsWith('http') ? "noopener noreferrer" : undefined}
                     >
-                      <a 
-                        href={finalBookingUrl}
-                        target={isExternalBooking ? "_blank" : undefined}
-                        rel={isExternalBooking ? "noopener noreferrer" : undefined}
-                      >
-                        {pkg.ctaLabel}
-                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </a>
-                    </Button>
-                  </div>
-                </CardContent>
+                      {pkg.cta}
+                    </a>
+                  </Button>
+                </div>
               </Card>
             </FadeIn>
           ))}
         </div>
 
-        {/* Comparison Strip */}
+        {/* Sprint Clarity Section */}
         <FadeIn className="mb-20">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-white/5">
-            {comparisonItems.map((item, i) => (
-              <div key={i} className="text-center md:text-left space-y-1">
-                <div className="text-[10px] font-bold text-white/30 uppercase tracking-widest">{item.label}</div>
-                <div className="text-xs font-bold text-white/70">{item.value}</div>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto p-12 bg-white/[0.01] border border-white/5 rounded-[3rem] text-center space-y-8">
+            <div className="w-16 h-16 bg-[#667eea]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <ShieldCheck className="w-8 h-8 text-[#a5b4fc]" />
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-2xl md:text-4xl font-bold text-white tracking-tight leading-tight">A Controlled First Build Before a Bigger System</h3>
+              <p className="text-white/60 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+                The 7-Day AI Sprint is designed to build one focused workflow first. That lets you see how Kratos maps your intake, automates routing, and connects the system before expanding into a larger Launch or Growth build.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 pt-4 text-center">
+              {[
+                "Fixed-scope",
+                "One workflow",
+                "Lower commitment",
+                "Clear handoff",
+                "Expansion path"
+              ].map((item, i) => (
+                <div key={i} className="text-[10px] font-black text-white/30 uppercase tracking-widest">{item}</div>
+              ))}
+            </div>
           </div>
         </FadeIn>
 
-        {/* Audit CTA Block - Now refined as the Package Reassurance Strip */}
+        {/* Final Reassurance Block */}
         <FadeIn>
-          <div className="bg-[#050816] text-white rounded-[2rem] p-10 md:p-16 text-center border border-white/5 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-[#667eea]/10 rounded-full blur-[100px]"></div>
-            
-            <div className="max-w-3xl mx-auto relative z-10 space-y-8">
-              <div className="flex justify-center">
-                <div className="w-20 h-20 bg-white/5 backdrop-blur-sm rounded-[1.5rem] flex items-center justify-center border border-white/10">
-                  <ShieldCheck className="w-10 h-10 text-[#667eea] shadow-[0_0_15px_rgba(102,126,234,0.4)]" />
-                </div>
-              </div>
-              <div className="space-y-6">
-                <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-none text-white">Not sure which one fits?</h3>
-                <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-                  Start with the audit. I’ll tell you which system I’d build first, what can wait, and whether automation is worth doing right now.
-                </p>
-                
-                <div className="flex flex-wrap justify-center gap-4 pt-2">
-                  {[
-                    "No bloated build",
-                    "Clear first step",
-                    "Built around your current workflow"
-                  ].map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black text-white/40 uppercase tracking-widest italic">
-                      <CheckCircle className="w-3 h-3 text-[#43e97b]" />
-                      {badge}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="flex justify-center pt-4">
-                <Button 
-                  size="lg" 
-                  className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all" 
-                  asChild
-                  onClick={() => trackEvent("book_audit_click", { location: "packages_reassurance_strip", destination: isExternalBooking ? "booking_url" : "contact_fallback" })}
-                >
-                  <a 
-                    href={finalBookingUrl}
-                    target={isExternalBooking ? "_blank" : undefined}
-                    rel={isExternalBooking ? "noopener noreferrer" : undefined}
-                  >
-                    Book Free Audit
-                  </a>
-                </Button>
-              </div>
+          <div className="max-w-3xl mx-auto text-center space-y-10">
+            <div className="space-y-4">
+              <h3 className="text-3xl font-black text-white tracking-tight">Not sure which one fits?</h3>
+              <p className="text-white/60 text-lg font-light">
+                Start with the audit. I’ll tell you which system I’d build first, what can wait, and whether automation is worth doing right now.
+              </p>
             </div>
+            <Button 
+              size="lg" 
+              className="h-16 px-12 text-xl bg-white text-black hover:bg-white/90 rounded-full font-black shadow-2xl transition-all group"
+              asChild
+              onClick={() => trackEvent("book_audit_click", { location: "packages_bottom_reassurance" })}
+            >
+              <a 
+                href={finalBookingUrl}
+                target={isExternalBooking ? "_blank" : undefined}
+                rel={isExternalBooking ? "noopener noreferrer" : undefined}
+              >
+                Book Free Audit
+                <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
           </div>
         </FadeIn>
       </div>
     </section>
   );
 }
-
-// Additional icons for the new layout
-const Search = ({ className }: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
-  </svg>
-)

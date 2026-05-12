@@ -26,6 +26,9 @@ import { industries } from "./data/industries";
 import { restoreHomepageScrollPosition } from "./lib/scrollMemory";
 import { ScrollControls } from "./components/ScrollControls";
 import { QuickAuditCTA } from "./components/QuickAuditCTA";
+import { OfferDecisionGuide } from "./components/OfferDecisionGuide";
+import { BuyingFlow } from "./components/BuyingFlow";
+import { TrustLayer } from "./components/TrustLayer";
 
 import PhoneServicesCarousel from "./components/PhoneServicesCarousel";
 import FounderSection from './components/FounderSection';
@@ -80,6 +83,9 @@ export default function App() {
         <Process />
         <IndustryLandingPages />
         <Packages />
+        <OfferDecisionGuide />
+        <BuyingFlow />
+        <TrustLayer />
         <Deliverables />
         <TechStack />
         <BuyerClarity />

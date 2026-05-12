@@ -411,6 +411,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
 
       {/* Sprint Recommendation Section */}
       <section id="industry-recommendation" className="py-24 border-t border-white/5 bg-background relative overflow-hidden">
+        <div id="industry-sprint" className="absolute top-0 left-0 w-0 h-0 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-[3rem] p-12 md:p-20 text-center space-y-10 shadow-[0_0_80px_rgba(102,126,234,0.2)]">
             <div className="space-y-6">
@@ -429,11 +430,11 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button 
                 size="lg" 
-                className="h-16 px-12 text-xl bg-white text-black hover:bg-white/90 rounded-full font-bold shadow-2xl transition-all"
+                className="h-16 px-12 text-xl bg-white text-black hover:bg-white/90 rounded-full font-black shadow-2xl transition-all"
                 asChild
                 onClick={() => handleCtaClick("industry_sprint_recommendation")}
               >
-                <a href="/#packages">Start the 7-Day Sprint</a>
+                <a href="/#contact-form">Start the 7-Day Sprint</a>
               </Button>
               <Button 
                 variant="outline" 
@@ -446,7 +447,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               </Button>
             </div>
 
-            <p className="text-white/40 text-sm font-bold uppercase tracking-[0.2em]">One System. 7 Days. Fixed Build Fee.</p>
+            <p className="text-white/40 text-sm font-black uppercase tracking-[0.3em]">$900 Fixed Build fee • One Workflow • 7 Days</p>
           </div>
         </div>
       </section>

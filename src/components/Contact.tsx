@@ -459,11 +459,10 @@ export function Contact() {
                         </SelectTrigger>
                         <SelectContent className="bg-[#0a0e27] border-white/10 text-white">
                           <SelectItem value="Not sure yet">Not sure yet</SelectItem>
-                          <SelectItem value="Trades Starter Pack">Trades Starter Pack</SelectItem>
-                          <SelectItem value="AI-Powered Business System">AI-Powered Business System</SelectItem>
-                          <SelectItem value="Lead Gen + Outreach Machine">Lead Gen + Outreach Machine</SelectItem>
-                          <SelectItem value="Content + Website Bundle">Content + Website Bundle</SelectItem>
-                          <SelectItem value="Custom Solution">Custom Solution</SelectItem>
+                          <SelectItem value="7-Day AI Sprint">7-Day AI Sprint</SelectItem>
+                          <SelectItem value="Launch System">Launch System</SelectItem>
+                          <SelectItem value="Growth System">Growth System</SelectItem>
+                          <SelectItem value="Custom AI Infrastructure">Custom AI Infrastructure</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
