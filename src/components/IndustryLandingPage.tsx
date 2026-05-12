@@ -13,9 +13,13 @@ import {
   MessageCircle,
   TrendingUp,
   Target,
-  ArrowUpRight
+  ArrowUpRight,
+  ShieldCheck,
+  ListTodo,
+  Rocket
 } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
+import { IndustryDemo } from "./IndustryDemo";
 
 interface IndustryLandingPageProps {
   industry: Industry;
@@ -155,8 +159,8 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#050816]">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-background">
+      {/* Industry Hero Section */}
       <section id="industry-hero" className="relative pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
           <div className="absolute top-0 left-0 w-96 h-96 bg-[#667eea]/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
@@ -173,13 +177,13 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               <h1 className="text-4xl lg:text-7xl font-black text-white tracking-tight leading-none mb-8">
                 {industry.headline}
               </h1>
-              <p className="text-xl lg:text-2xl text-white/60 leading-relaxed max-w-2xl mb-12">
+              <p className="text-xl lg:text-2xl text-white/60 leading-relaxed max-w-2xl mb-12 font-light">
                 {industry.subheadline}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 items-center">
                 <Button 
                   size="lg" 
-                  className="h-16 px-10 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all group w-full sm:w-auto"
+                  className="h-16 px-10 text-xl bg-white text-black hover:bg-white/90 border-none shadow-[0_10px_30px_rgba(255,255,255,0.1)] font-bold rounded-full transition-all group w-full sm:w-auto"
                   asChild
                   onClick={() => handleCtaClick("industry_page_hero")}
                 >
@@ -196,7 +200,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                   <Button 
                     variant="outline" 
                     size="lg"
-                    className="h-16 px-8 text-lg border-white/20 text-white hover:bg-white/5 transition-all w-full sm:w-auto"
+                    className="h-16 px-8 text-lg border-white/10 text-white hover:bg-white/5 rounded-full transition-all w-full sm:w-auto font-bold"
                     asChild
                     onClick={handleReturnToPreviousSection}
                   >
@@ -222,17 +226,17 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
       {/* High-Value Leads Section */}
       <section id="industry-leads" className="py-24 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">High-value leads this system can capture</h2>
-            <p className="text-white/60 text-lg">Stop losing these high-ticket opportunities to missed calls and slow follow-up.</p>
+          <FadeIn className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl lg:text-5xl font-bold text-white tracking-tight">High-Value {industry.name} Leads</h2>
+            <p className="text-white/60 text-lg font-light italic">"Stop losing these high-ticket opportunities to missed calls and slow follow-up."</p>
           </FadeIn>
 
           <div className="flex flex-wrap justify-center gap-4">
             {industry.highValueLeadTypes.map((leadType, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="dark-card px-6 py-4 rounded-2xl border border-white/10 flex items-center gap-3 hover:border-[#43e97b]/30 transition-all group">
-                  <div className="w-2 h-2 bg-[#43e97b] rounded-full shadow-[0_0_10px_#43e97b] group-hover:scale-125 transition-transform"></div>
-                  <span className="text-white font-bold">{leadType}</span>
+                <div className="bg-white/[0.02] px-8 py-5 rounded-2xl border border-white/10 flex items-center gap-4 hover:border-[#43e97b]/30 transition-all group">
+                  <div className="w-2.5 h-2.5 bg-[#43e97b] rounded-full shadow-[0_0_15px_#43e97b] group-hover:scale-125 transition-transform"></div>
+                  <span className="text-white text-lg font-bold tracking-tight">{leadType}</span>
                 </div>
               </FadeIn>
             ))}
@@ -240,68 +244,64 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
         </div>
       </section>
 
-      {/* Pain Points */}
+      {/* Revenue Leak Section */}
       <section id="industry-leaks" className="py-24 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Where leads are leaking</h2>
-            <p className="text-white/60 text-lg">Traditional workflows can't keep up with modern customer expectations.</p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {industry.painPoints.map((point, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div className="dark-card p-8 rounded-3xl border-white/10 h-full border hover:border-white/20 transition-all group">
-                  <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center mb-6 border border-red-500/20 group-hover:bg-red-500/20 transition-colors">
-                    <AlertCircle className="w-6 h-6 text-red-400" />
-                  </div>
-                  <p className="text-white/80 font-medium leading-relaxed">{point}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Automation Use Cases */}
-      <section id="industry-automation" className="py-24 dark-section-gradient border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn>
-              <h2 className="text-3xl lg:text-5xl font-black text-white mb-8">
-                What Kratos can automate for {industry.name} businesses
+              <h2 className="text-3xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
+                Where {industry.name} Leads Are Leaking
               </h2>
-              <div className="space-y-6">
-                {industry.automationUseCases.map((useCase, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-6 h-6 bg-[#43e97b]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1 border border-[#43e97b]/20">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#43e97b]" />
+              <p className="text-white/60 text-xl font-light leading-relaxed mb-10">
+                Traditional workflows can't keep up with modern customer expectations. Every minute of delay is a lost job to your competitor.
+              </p>
+              
+              <div className="grid sm:grid-cols-1 gap-6">
+                {industry.revenueLeaks.map((point, i) => (
+                  <div key={i} className="flex items-start gap-4 p-6 bg-red-500/[0.03] border border-red-500/10 rounded-2xl group hover:bg-red-500/[0.05] transition-all">
+                    <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <AlertCircle className="w-5 h-5 text-red-400" />
                     </div>
-                    <p className="text-white/80 text-lg leading-tight">{useCase}</p>
+                    <p className="text-white/80 font-medium leading-relaxed">{point}</p>
                   </div>
                 ))}
               </div>
             </FadeIn>
+
             <FadeIn delay={0.2} className="relative">
-              <div className="absolute -inset-4 bg-[#667eea]/5 blur-3xl rounded-[3rem]"></div>
-              <div className="relative dark-card border-white/10 p-10 rounded-[2.5rem] shadow-2xl">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-[#667eea]/10 rounded-2xl flex items-center justify-center border border-[#667eea]/20">
-                    <Cpu className="w-6 h-6 text-[#a5b4fc]" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-xl">The {industry.name} System</h3>
-                    <p className="text-white/40 text-xs uppercase tracking-widest font-black">Intelligent Logic</p>
-                  </div>
+              <div className="dark-card border-white/5 p-10 rounded-[3rem] bg-white/[0.02] relative overflow-hidden shadow-2xl">
+                <div className="absolute top-0 right-0 p-12 opacity-5">
+                  <TrendingUp className="w-64 h-64 text-white" />
                 </div>
-                <div className="space-y-6">
-                  <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                    <div className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Example Lead</div>
-                    <div className="text-white font-medium italic">"{industry.exampleLead}"</div>
+                <div className="relative z-10 space-y-8">
+                  <div className="space-y-2">
+                    <div className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em]">The Opportunity Cost</div>
+                    <h3 className="text-4xl font-bold text-white">Missing 1 Job Per Week</h3>
                   </div>
-                  <div className="p-4 bg-[#43e97b]/5 rounded-2xl border border-[#43e97b]/10">
-                    <div className="text-[10px] font-bold text-[#43e97b] uppercase tracking-widest mb-1">AI Action</div>
-                    <div className="text-white font-medium">Scoring: <span className="text-[#43e97b]">{industry.urgencyLabel}</span></div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="text-white/60">Lead Source</span>
+                      <span className="text-white font-bold">Inbound Call</span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="text-white/60">Status</span>
+                      <span className="text-red-400 font-bold flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4" />
+                        Missed / Voicemail
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center py-4 border-b border-white/5">
+                      <span className="text-white/60">Avg. Revenue Loss</span>
+                      <span className="text-white font-black text-xl">$500 – $2,500+</span>
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                    <Button 
+                      className="w-full h-14 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 rounded-full font-bold"
+                      asChild
+                    >
+                      <a href={finalBookingUrl}>Plug the Leak Now</a>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -310,51 +310,165 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
         </div>
       </section>
 
-      {/* Workflow */}
-      <section id="industry-workflow" className="py-24 border-t border-white/5">
+      {/* Recommended Systems Section */}
+      <section id="industry-automation" className="py-24 bg-[#05070a] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Example workflow</h2>
-            <p className="text-white/60 text-lg">From initial contact to organized lead data in seconds.</p>
+          <FadeIn className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight">AI Systems for {industry.name}</h2>
+            <p className="text-white/60 text-xl font-light">We build the infrastructure that captures, qualifies, and routes your demand.</p>
           </FadeIn>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-white/5 hidden md:block"></div>
-              <div className="space-y-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {industry.recommendedSystems.map((system, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div className="dark-card p-8 rounded-[2rem] border-white/10 h-full border bg-white/[0.02] hover:bg-white/[0.04] transition-all group">
+                  <div className="w-12 h-12 bg-[#667eea]/10 rounded-2xl flex items-center justify-center mb-6 border border-[#667eea]/20 group-hover:scale-110 transition-transform">
+                    <Cpu className="w-6 h-6 text-[#a5b4fc]" />
+                  </div>
+                  <h3 className="text-white font-bold text-xl mb-2">{system}</h3>
+                  <div className="flex items-center gap-2 text-[#43e97b] text-xs font-bold uppercase tracking-widest">
+                    <Zap className="w-3 h-3" />
+                    Ready to Deploy
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Workflow Section */}
+      <section id="industry-workflow" className="py-24 border-t border-white/5 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn className="space-y-8">
+              <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
+                The {industry.name} AI Operating System
+              </h2>
+              <p className="text-white/60 text-xl font-light leading-relaxed">
+                We don't just add a "bot." We rebuild the entire path from first contact to a confirmed job in your CRM.
+              </p>
+              
+              <div className="space-y-4">
                 {industry.workflowSteps.map((step, i) => (
-                  <FadeIn key={i} delay={i * 0.1} className="flex gap-8 items-center relative z-10">
-                    <div className="w-12 h-12 bg-[#050816] border border-white/10 rounded-full flex items-center justify-center flex-shrink-0 font-black text-[#a5b4fc] text-xl shadow-xl">
+                  <div key={i} className="flex items-center gap-4 group">
+                    <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-black text-white group-hover:bg-[#667eea] group-hover:border-[#667eea] transition-all">
                       {i + 1}
                     </div>
-                    <div className="p-6 dark-card border-white/10 rounded-2xl flex-1 border">
-                      <p className="text-white text-lg font-medium">{step}</p>
-                    </div>
-                  </FadeIn>
+                    <p className="text-white/80 font-medium">{step}</p>
+                  </div>
                 ))}
               </div>
+
+              <div className="pt-4">
+                <Button 
+                  className="h-14 px-10 bg-white text-black hover:bg-white/90 rounded-full font-bold transition-all shadow-xl"
+                  asChild
+                >
+                  <a href={finalBookingUrl}>Book Free Audit</a>
+                </Button>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2} className="relative hidden lg:block">
+              <div className="aspect-square bg-gradient-to-br from-[#667eea]/10 to-[#764ba2]/10 rounded-[4rem] border border-white/5 p-12 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                <div className="relative z-10 text-center space-y-6">
+                  <ShieldCheck className="w-24 h-24 text-[#667eea] mx-auto opacity-50" />
+                  <div className="text-white font-bold text-2xl tracking-tight italic uppercase opacity-30">Production Grade</div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Demo Preview Section */}
+      <IndustryDemo industry={industry} />
+
+      {/* Intake Questions Section */}
+      <section className="py-24 border-t border-white/5 bg-[#05070a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight">Intake Questions We Automate</h2>
+            <p className="text-white/60 text-xl font-light">Stop asking the same repetitive questions. Let AI do the data entry.</p>
+          </FadeIn>
+
+          <div className="max-w-3xl mx-auto">
+            <div className="grid gap-4">
+              {industry.intakeQuestions.map((question, i) => (
+                <FadeIn key={i} delay={i * 0.05}>
+                  <div className="flex items-center justify-between p-6 bg-white/[0.02] border border-white/5 rounded-2xl group hover:bg-white/[0.04] transition-all">
+                    <span className="text-white/80 font-medium">{question}</span>
+                    <CheckCircle2 className="w-5 h-5 text-[#43e97b] opacity-50" />
+                  </div>
+                </FadeIn>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Industry-specific FAQs */}
-      <section id="industry-faq" className="py-24 border-t border-white/5 bg-[#050816]">
+      {/* Sprint Recommendation Section */}
+      <section id="industry-recommendation" className="py-24 border-t border-white/5 bg-background relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-[3rem] p-12 md:p-20 text-center space-y-10 shadow-[0_0_80px_rgba(102,126,234,0.2)]">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 border border-white/20">
+                <Rocket className="w-5 h-5 text-white" />
+                <span className="text-sm font-bold text-white uppercase tracking-widest">Recommended First Step</span>
+              </div>
+              <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-none">
+                Start With the <br/>7-Day AI Sprint
+              </h2>
+              <p className="text-white/90 text-xl md:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
+                {industry.sprintRecommendation}
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button 
+                size="lg" 
+                className="h-16 px-12 text-xl bg-white text-black hover:bg-white/90 rounded-full font-bold shadow-2xl transition-all"
+                asChild
+                onClick={() => handleCtaClick("industry_sprint_recommendation")}
+              >
+                <a href="/#packages">Start the 7-Day Sprint</a>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="h-16 px-12 text-xl border-white/20 text-white hover:bg-white/10 rounded-full font-bold transition-all"
+                asChild
+                onClick={() => handleCtaClick("industry_audit_recommendation")}
+              >
+                <a href={finalBookingUrl}>Book Free Audit</a>
+              </Button>
+            </div>
+
+            <p className="text-white/40 text-sm font-bold uppercase tracking-[0.2em]">One System. 7 Days. Fixed Build Fee.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry FAQ Section */}
+      <section id="industry-faq" className="py-24 border-t border-white/5 bg-[#05070a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Common questions for {industry.name} businesses</h2>
-            <p className="text-white/60 text-lg">Everything you need to know about automating your trade business.</p>
+          <FadeIn className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
+              Common Questions for <br/>{industry.name} Businesses
+            </h2>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {industry.commonQuestions.map((item, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="dark-card p-8 rounded-[2rem] border-white/10 border h-full flex flex-col gap-4">
-                  <div className="w-10 h-10 bg-[#667eea]/10 rounded-xl flex items-center justify-center border border-[#667eea]/20">
-                    <MessageCircle className="w-5 h-5 text-[#a5b4fc]" />
+                <div className="dark-card p-10 rounded-[2.5rem] border-white/5 border h-full flex flex-col gap-6 bg-white/[0.01] hover:bg-white/[0.03] transition-all">
+                  <div className="w-12 h-12 bg-[#667eea]/10 rounded-2xl flex items-center justify-center border border-[#667eea]/20">
+                    <MessageCircle className="w-6 h-6 text-[#a5b4fc]" />
                   </div>
-                  <h3 className="text-white font-bold text-xl">{item.question}</h3>
-                  <p className="text-white/60 leading-relaxed">{item.answer}</p>
+                  <h3 className="text-white font-bold text-2xl tracking-tight">{item.question}</h3>
+                  <p className="text-white/60 leading-relaxed text-lg font-light">{item.answer}</p>
                 </div>
               </FadeIn>
             ))}
@@ -362,76 +476,15 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
         </div>
       </section>
 
-      {/* Recommended Package */}
-      <section id="industry-recommendation" className="py-24 border-t border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#667eea]/5 opacity-50"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Recommended first build</h2>
-            <p className="text-white/60 text-lg">The most effective starting point for {industry.name} automation.</p>
-          </FadeIn>
-
-          <div className="max-w-2xl mx-auto">
-            <FadeIn>
-              <div className="dark-card border-[#667eea]/30 p-8 md:p-12 rounded-[2.5rem] border-2 shadow-[0_0_50px_rgba(102,126,234,0.1)] text-center space-y-8">
-                <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#667eea]/10 border border-[#667eea]/20">
-                  <span className="text-sm font-bold text-[#a5b4fc] uppercase tracking-widest">{industry.recommendedPackage}</span>
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-4xl md:text-5xl font-black text-white tracking-tight">{industry.name} Intake Engine</h3>
-                  <p className="text-white/60 text-lg">Capture, qualify, and route leads automatically.</p>
-                </div>
-
-                {/* Proof and First Build details */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left pt-4">
-                  <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Target className="w-4 h-4 text-[#a5b4fc]" />
-                      <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">First Automation</span>
-                    </div>
-                    <p className="text-white font-medium text-sm">{industry.bestFirstAutomation}</p>
-                  </div>
-                  <div className="p-5 bg-[#43e97b]/5 rounded-2xl border border-[#43e97b]/10">
-                    <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp className="w-4 h-4 text-[#43e97b]" />
-                      <span className="text-[10px] font-bold text-[#43e97b] uppercase tracking-widest">Conversion Angle</span>
-                    </div>
-                    <p className="text-white font-medium text-sm">{industry.proofAngle}</p>
-                  </div>
-                </div>
-
-                <div className="flex justify-center pt-4">
-                  <Button 
-                    size="lg" 
-                    className="h-16 px-12 text-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_30px_rgba(102,126,234,0.4)] hover:shadow-[0_15px_40px_rgba(102,126,234,0.6)] font-black transition-all group w-full sm:w-auto"
-                    asChild
-                    onClick={() => handleCtaClick("industry_page_package")}
-                  >
-                    <a 
-                      href={finalBookingUrl}
-                      target={isExternalBooking ? "_blank" : undefined}
-                      rel={isExternalBooking ? "noopener noreferrer" : undefined}
-                    >
-                      Book Free Audit
-                      <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Industry Links */}
-      <section id="related-industries" className="py-24 border-t border-white/5 bg-[#050816]">
+      {/* Related Industries Section */}
+      <section id="related-industries" className="py-24 border-t border-white/5 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">Related automation pages</h2>
-            <p className="text-white/60 text-lg">Explore how AI automation helps similar trade businesses.</p>
+          <FadeIn className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight">Related Industries</h2>
+            <p className="text-white/60 text-xl font-light">Explore AI automation for similar service sectors.</p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {industry.relatedIndustries.map(slug => {
               const related = industries.find(ind => ind.slug === slug);
               if (!related) return null;
@@ -440,16 +493,13 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                   <a 
                     href={`/industries/${slug}/`}
                     onClick={() => handleRelatedIndustryClick(related)}
-                    className="block dark-card p-8 rounded-3xl border border-white/10 hover:border-[#667eea]/40 transition-all group"
+                    className="block dark-card p-8 rounded-[2rem] border border-white/5 hover:border-[#667eea]/40 transition-all group bg-white/[0.01]"
                   >
                     <div className="flex justify-between items-start mb-6">
-                      <h3 className="text-2xl font-black text-white group-hover:text-[#a5b4fc] transition-colors">{related.name}</h3>
-                      <ArrowUpRight className="w-6 h-6 text-white/20 group-hover:text-[#a5b4fc] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                      <h3 className="text-2xl font-bold text-white group-hover:text-[#667eea] transition-colors">{related.name}</h3>
+                      <ArrowUpRight className="w-6 h-6 text-white/10 group-hover:text-[#667eea] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                     </div>
-                    <p className="text-white/50 mb-6 line-clamp-2">{related.painPoints[0]}</p>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                      {related.recommendedPackage}
-                    </div>
+                    <p className="text-white/40 text-sm line-clamp-2 font-light">{related.subheadline}</p>
                   </a>
                 </FadeIn>
               );
@@ -458,24 +508,23 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section id="industry-final-cta" className="py-24 border-t border-white/5 bg-[#050816]">
+      {/* Industry Final CTA Section */}
+      <section id="industry-final-cta" className="py-24 border-t border-white/5 bg-[#05070a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <div className="dark-card border-white/10 rounded-[3rem] p-12 md:p-20 text-center space-y-10 relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#667eea]/5 blur-[100px] -mr-32 -mt-32"></div>
+            <div className="dark-card border-white/10 rounded-[3rem] p-12 md:p-24 text-center space-y-12 bg-white/[0.01] relative overflow-hidden shadow-2xl">
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-none">
-                  Want this built for your {industry.name} business?
+                <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-none">
+                  Ready to Automate <br/>Your {industry.name} Flow?
                 </h2>
-                <p className="text-white/60 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-                  Book a free audit and I’ll map the first automation I would build for your business.
+                <p className="text-white/60 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
+                  Book a free 20-minute audit and I’ll show you exactly which AI system will drive the fastest ROI for your business.
                 </p>
               </div>
               <div className="flex justify-center">
                 <Button 
                   size="lg" 
-                  className="h-18 px-12 text-2xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white border-none shadow-[0_10px_40px_rgba(102,126,234,0.5)] hover:shadow-[0_15px_50px_rgba(102,126,234,0.7)] font-black transition-all group py-8"
+                  className="h-20 px-16 text-2xl bg-white text-black hover:bg-white/90 rounded-full font-bold shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all group"
                   asChild
                   onClick={() => handleCtaClick("industry_page_bottom")}
                 >
@@ -493,6 +542,10 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
           </FadeIn>
         </div>
       </section>
+      
+      {/* Contact anchor for accessibility */}
+      <div id="contact" className="h-0 w-0 pointer-events-none" aria-hidden="true"></div>
     </div>
   );
 }
+

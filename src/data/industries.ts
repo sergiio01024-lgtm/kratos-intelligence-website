@@ -6,9 +6,12 @@ export interface Industry {
   eyebrow: string;
   headline: string;
   subheadline: string;
-  painPoints: string[];
-  automationUseCases: string[];
+  primaryPain: string;
+  revenueLeaks: string[];
+  recommendedSystems: string[];
   workflowSteps: string[];
+  intakeQuestions: string[];
+  sprintRecommendation: string;
   recommendedPackage: string;
   urgencyLabel: string;
   exampleLead: string;
@@ -19,638 +22,673 @@ export interface Industry {
   proofAngle: string;
   bestFirstAutomation: string;
   highValueLeadTypes: string[];
+  painPoints: string[]; // Keep for compatibility if needed, but we will use revenueLeaks
+  automationUseCases: string[]; // Keep for compatibility
 }
 
 export const industries: Industry[] = [
   {
     slug: "hvac",
     name: "HVAC",
-    seoTitle: "AI Automation for HVAC Companies in San Diego | Kratos Intelligence",
-    seoDescription: "AI chatbots, phone agents, and lead-capture automations for HVAC companies that need to capture emergency AC repair calls, quotes, and follow-ups.",
-    eyebrow: "AI Automation for HVAC Companies",
-    headline: "Capture AC repair leads before they call your competitor.",
-    subheadline: "Kratos Intelligence builds AI chatbots, phone agents, and CRM workflows for HVAC businesses that need faster response, cleaner intake, and better follow-up.",
+    seoTitle: "AI Intake Systems for HVAC Companies | Kratos Intelligence",
+    seoDescription: "Capture every HVAC repair lead, emergency call, and maintenance inquiry 24/7 with Kratos AI systems built for service companies.",
+    eyebrow: "AI Automation for HVAC",
+    headline: "AI Intake Systems for HVAC Companies",
+    subheadline: "Stop losing emergency calls to voicemail. Our AI qualifies leads and routes them while you're in the field.",
+    primaryPain: "Emergency repair calls missed after hours",
+    revenueLeaks: [
+      "Calls missed after hours",
+      "Leads not followed up within minutes",
+      "No structured intake questions",
+      "No urgency scoring"
+    ],
+    recommendedSystems: [
+      "AI Phone Agent",
+      "AI Chatbot System",
+      "CRM / Automation Backend",
+      "AI Outreach Engine"
+    ],
+    workflowSteps: [
+      "Visitor reports AC/heating issue",
+      "AI qualifies urgency, location, and unit type",
+      "CRM record created instantly",
+      "Booking or callback routed to dispatch",
+      "Follow-up sequence starts automatically"
+    ],
+    intakeQuestions: [
+      "What issue are you having?",
+      "Is this heating, cooling, maintenance, or install?",
+      "Is the system currently working?",
+      "What city or ZIP code are you in?",
+      "Is this urgent today?",
+      "What time works best for a callback?"
+    ],
+    sprintRecommendation: "Start with an AI Phone Agent to capture missed emergency calls during your busiest hours.",
+    recommendedPackage: "AI-Powered Business System",
+    urgencyLabel: "High Urgency",
+    exampleLead: "AC stopped working in 90 degree weather",
+    ctaText: "Automate HVAC Leads",
+    localSeoKeywords: ["HVAC AI", "San Diego HVAC automation", "AI phone agent for HVAC"],
+    commonQuestions: [
+      {
+        question: "Can the AI qualify emergency service requests?",
+        answer: "Yes. It can identify 'no cooling' or 'no heat' calls and alert your team immediately."
+      },
+      {
+        question: "Can it route leads into my CRM?",
+        answer: "Yes. We connect leads directly to Airtable, GoHighLevel, or your preferred trade CRM."
+      }
+    ],
+    relatedIndustries: ["plumbers", "electricians", "roofing", "restoration"],
+    proofAngle: "Capture every emergency AC job even when your phones are off.",
+    bestFirstAutomation: "AI Phone Agent & Emergency Intake",
+    highValueLeadTypes: ["AC Replacement", "Emergency Repair", "Maintenance Plans"],
     painPoints: [
       "Emergency AC calls get missed after hours",
-      "Quote requests are scattered across calls, forms, and texts",
-      "Customers ask the same service-area and pricing questions",
-      "Follow-up depends on the owner remembering every lead"
+      "Quote requests are scattered and slow to respond",
+      "No system to score leads by urgency"
     ],
     automationUseCases: [
-      "24/7 AI website chatbot for AC repair and install inquiries",
-      "AI phone receptionist for missed or after-hours calls",
-      "Urgency scoring for no-cooling and emergency jobs",
-      "Airtable CRM pipeline for every service request",
-      "SMS alerts for high-priority leads"
-    ],
-    workflowSteps: [
-      "Customer calls or messages",
-      "AI collects service type, ZIP code, urgency, and contact info",
-      "Lead is scored as emergency, quote, or follow-up",
-      "Owner receives SMS notification",
-      "Lead is stored in CRM for tracking"
-    ],
-    recommendedPackage: "AI-Powered Business System",
-    urgencyLabel: "High urgency",
-    exampleLead: "AC stopped working and house is hot",
-    ctaText: "Automate HVAC Leads",
-    localSeoKeywords: [
-      "AI automation for HVAC companies",
-      "HVAC chatbot San Diego",
-      "AI phone receptionist for HVAC",
-      "HVAC lead capture automation",
-      "HVAC CRM automation"
-    ],
-    commonQuestions: [
-      {
-        question: "Can AI handle emergency HVAC calls?",
-        answer: "Yes. The system can collect the customer’s issue, ZIP code, contact info, and urgency, then send high-priority alerts to the owner or team."
-      },
-      {
-        question: "Can the chatbot qualify install versus repair leads?",
-        answer: "Yes. It can ask different questions based on whether the customer needs AC repair, furnace repair, system replacement, or maintenance."
-      },
-      {
-        question: "Can this connect to my CRM?",
-        answer: "Yes. Leads can be routed into Airtable or another CRM workflow depending on your current setup."
-      }
-    ],
-    relatedIndustries: ["plumbers", "electricians", "garage-door"],
-    proofAngle: "Show the owner how many no-cooling and replacement leads would have been captured instead of missed.",
-    bestFirstAutomation: "AI phone and website intake for emergency repair and replacement leads.",
-    highValueLeadTypes: [
-      "No-cooling emergency",
-      "System replacement quote",
-      "Furnace repair",
-      "Maintenance plan inquiry"
-    ]
-  },
-  {
-    slug: "electricians",
-    name: "Electricians",
-    seoTitle: "AI Automation for Electricians in San Diego | Kratos Intelligence",
-    seoDescription: "AI lead-capture and CRM automation for electrical contractors. Automate panel upgrade quotes, emergency repair calls, and client follow-ups.",
-    eyebrow: "AI Automation for Electricians",
-    headline: "Stop losing electrical leads to slow response times.",
-    subheadline: "We build AI systems that qualify your electrical leads instantly, score them by urgency, and route them to your team while you're on the job.",
-    painPoints: [
-      "Phone rings while you're in an attic or panel",
-      "Emergency power outages missed during evenings",
-      "Leads don't provide address or job type details",
-      "Quote follow-ups take too long and leads go cold"
-    ],
-    automationUseCases: [
-      "AI intake for panel upgrades and EV charger installs",
-      "Automated appointment booking for estimates",
-      "Emergency lead scoring for power outages",
-      "Instant review requests after job completion",
-      "Airtable CRM to track every job from lead to paid"
-    ],
-    workflowSteps: [
-      "Customer submits EV charger inquiry",
-      "AI confirms service area and panel capacity",
-      "AI requests photos of the panel",
-      "Estimate appointment is booked automatically",
-      "Owner is notified of the new quote opportunity"
-    ],
-    recommendedPackage: "AI-Powered Business System",
-    urgencyLabel: "Medium to High",
-    exampleLead: "Needs 200A panel upgrade for EV charger",
-    ctaText: "Automate Electrical Leads",
-    localSeoKeywords: [
-      "AI for electricians",
-      "Electrician chatbot San Diego",
-      "EV charger install automation",
-      "Electrical panel upgrade leads",
-      "AI phone receptionist electricians"
-    ],
-    commonQuestions: [
-      {
-        question: "Can it qualify EV charger leads?",
-        answer: "Yes. It asks for panel capacity, charger type, and photo of the install location."
-      },
-      {
-        question: "Does it handle emergency power outages?",
-        answer: "Yes. It captures the situation and alerts you immediately if it's a safety hazard or total outage."
-      },
-      {
-        question: "Can it book estimates?",
-        answer: "Yes, it can integrate with your calendar to book panel upgrade or rewire estimates."
-      }
-    ],
-    relatedIndustries: ["hvac", "plumbers", "garage-door"],
-    proofAngle: "Show how many EV charger and panel upgrade inquiries are captured while you're on a job site.",
-    bestFirstAutomation: "AI intake for panel upgrades and EV charger installations.",
-    highValueLeadTypes: [
-      "Panel upgrade",
-      "EV charger install",
-      "Whole-home rewire",
-      "Emergency power outage"
+      "AI Phone Agent for missed calls",
+      "Website Chatbot for instant qualification",
+      "CRM Lead Routing"
     ]
   },
   {
     slug: "plumbers",
-    name: "Plumbers",
-    seoTitle: "AI Automation for Plumbing Companies in San Diego | Kratos Intelligence",
-    seoDescription: "AI chatbots and phone agents for plumbers. Capture slab leak emergencies, water heater quotes, and drain cleaning leads 24/7.",
+    name: "Plumbing",
+    seoTitle: "AI Intake Systems for Plumbing Companies | Kratos Intelligence",
+    seoDescription: "Capture every leak emergency and water heater quote 24/7 with Kratos AI systems built for plumbing businesses.",
     eyebrow: "AI Automation for Plumbers",
-    headline: "Capture every slab leak lead, even at 3 AM.",
-    subheadline: "Give your plumbing business a 24/7 AI receptionist that qualifies emergencies, captures job details, and organizes your lead pipeline.",
-    painPoints: [
-      "Water damage emergencies missed overnight",
-      "Answering service is expensive and makes mistakes",
-      "Manual intake takes time away from active jobs",
-      "Hard to distinguish between price shoppers and urgent jobs"
+    headline: "AI Intake Systems for Plumbing Companies",
+    subheadline: "Every slab leak call is a race. Win more jobs with an AI system that answers, qualifies, and alerts you in seconds.",
+    primaryPain: "Leak emergencies missed overnight",
+    revenueLeaks: [
+      "Water damage calls missed after hours",
+      "No urgency scoring for active floods",
+      "Price shoppers wasting tech time",
+      "No automated quote follow-up"
     ],
-    automationUseCases: [
-      "AI phone agent to intake slab leak and flood calls",
-      "Emergency lead scoring based on water damage risk",
-      "AI chatbot for water heater and repipe quotes",
-      "Automated follow-up for unbooked plumbing leads",
-      "Review generation system to build local trust"
+    recommendedSystems: [
+      "AI Phone Agent",
+      "AI Chatbot System",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Homeowner calls about active leak",
-      "AI confirms the leak is active and requests address",
-      "AI provides shut-off instructions",
-      "Owner receives immediate 'Emergency' SMS alert",
-      "Lead is dispatched to the tech on call"
+      "Customer reports leak or water heater issue",
+      "AI scores urgency and captures location",
+      "Data routes to CRM and lead pipeline",
+      "Emergency callback triggered for active leaks",
+      "Maintenance follow-up sent for quote requests"
     ],
+    intakeQuestions: [
+      "What plumbing issue are you having?",
+      "Is there active leaking or flooding?",
+      "What fixture or area is affected?",
+      "Is this residential or commercial?",
+      "What city or ZIP code are you in?",
+      "Do you have photos of the issue?"
+    ],
+    sprintRecommendation: "Build an AI Chatbot first to qualify water heater and repipe quotes while you're on site.",
     recommendedPackage: "AI-Powered Business System",
-    urgencyLabel: "Critical / High",
-    exampleLead: "Active pipe burst in the kitchen",
+    urgencyLabel: "Critical",
+    exampleLead: "Kitchen flooded from burst pipe",
     ctaText: "Automate Plumbing Leads",
-    localSeoKeywords: [
-      "AI for plumbers San Diego",
-      "Plumbing chatbot",
-      "Slab leak lead capture",
-      "Water heater quote automation",
-      "AI phone answering for plumbers"
-    ],
+    localSeoKeywords: ["Plumbing AI", "San Diego plumbing automation", "AI phone agent for plumbers"],
     commonQuestions: [
       {
-        question: "Can the AI handle flood emergencies?",
-        answer: "Yes. It identifies active floods, provides shut-off advice, and alerts your emergency tech immediately."
+        question: "Can the AI qualify emergency leaks?",
+        answer: "Yes. It identifies active water damage and ensures those leads get prioritized over routine maintenance."
       },
       {
-        question: "Does it help with water heater quotes?",
-        answer: "Yes. It can collect tank size, fuel type (gas/electric), and location photos for faster quoting."
-      },
-      {
-        question: "Can it filter out price shoppers?",
-        answer: "The AI qualifies leads by urgency and budget, ensuring you prioritize high-value repair and install jobs."
+        question: "Can it collect photos before a quote?",
+        answer: "Yes. The AI Chatbot can prompt users to upload photos of the issue for faster estimation."
       }
     ],
-    relatedIndustries: ["hvac", "restoration", "electricians"],
-    proofAngle: "Calculate the revenue lost from missing just one slab leak or water heater emergency per month.",
-    bestFirstAutomation: "24/7 Emergency AI phone receptionist and website intake.",
-    highValueLeadTypes: [
-      "Slab leak emergency",
-      "Water heater replacement",
-      "Main line backup",
-      "Full home repipe"
+    relatedIndustries: ["hvac", "restoration", "electricians", "roofing"],
+    proofAngle: "Prioritize high-ticket leak and replacement jobs over routine drain cleaning.",
+    bestFirstAutomation: "AI Emergency Intake & Lead Scoring",
+    highValueLeadTypes: ["Slab Leaks", "Water Heater Replacement", "Main Line Repipe"],
+    painPoints: [
+      "Active floods missed after hours",
+      "Hard to distinguish emergency from routine",
+      "Manual intake slows down dispatching"
+    ],
+    automationUseCases: [
+      "AI Phone Agent for slab leaks",
+      "Chatbot for water heater quotes",
+      "Emergency SMS broadcasting"
+    ]
+  },
+  {
+    slug: "electricians",
+    name: "Electrical",
+    seoTitle: "AI Intake Systems for Electrical Contractors | Kratos Intelligence",
+    seoDescription: "Automate electrical panel quotes, EV charger inquiries, and emergency calls with Kratos AI systems.",
+    eyebrow: "AI Automation for Electricians",
+    headline: "AI Intake Systems for Electrical Contractors",
+    subheadline: "Qualify panel upgrades and EV charger installs automatically. Let AI handle the intake so you can focus on the work.",
+    primaryPain: "Quotes for panel upgrades take too long to process",
+    revenueLeaks: [
+      "High-value panel quotes go cold",
+      "Emergency power outages missed after hours",
+      "No safety triage for electrical issues",
+      "Leads not providing property type or power details"
+    ],
+    recommendedSystems: [
+      "AI Website System",
+      "AI Chatbot System",
+      "CRM / Automation Backend",
+      "AI Outreach Engine"
+    ],
+    workflowSteps: [
+      "Customer requests electrical project help",
+      "AI identifies job type, property, and safety risk",
+      "CRM updated with load and panel details",
+      "Quote or site visit workflow updated",
+      "Safety instructions sent for hazard calls"
+    ],
+    intakeQuestions: [
+      "What electrical issue or project do you need help with?",
+      "Is this an emergency or safety concern?",
+      "Is power out in part or all of the property?",
+      "Are you requesting repair, install, upgrade, or inspection?",
+      "Is this residential or commercial?",
+      "When would you like service?"
+    ],
+    sprintRecommendation: "Deploy an AI Website System to capture detailed panel upgrade and EV charger install leads.",
+    recommendedPackage: "AI-Powered Business System",
+    urgencyLabel: "Safety Warning",
+    exampleLead: "Needs 200A panel upgrade for new EV charger",
+    ctaText: "Automate Electrical Leads",
+    localSeoKeywords: ["Electrical AI", "San Diego electrician automation", "AI for panel upgrades"],
+    commonQuestions: [
+      {
+        question: "Can it qualify EV charger leads?",
+        answer: "Yes. It can ask about panel capacity, charger type, and location to ensure the lead is qualified."
+      },
+      {
+        question: "Can it handle after-hours safety calls?",
+        answer: "Yes. It can identify hazards and route them to your emergency on-call team."
+      }
+    ],
+    relatedIndustries: ["hvac", "plumbers", "garage-door", "roofing"],
+    proofAngle: "Qualify high-ticket panel and rewiring projects while you're on a job site.",
+    bestFirstAutomation: "AI Website & Project Intake",
+    highValueLeadTypes: ["Panel Upgrades", "EV Charger Installs", "Commercial Lighting"],
+    painPoints: [
+      "Missed calls while in attics or panels",
+      "Hard to qualify job scope over the phone",
+      "No automated safety screening"
+    ],
+    automationUseCases: [
+      "Project Intake Chatbot",
+      "Safety triage phone agent",
+      "Automated follow-up for quotes"
     ]
   },
   {
     slug: "roofing",
     name: "Roofing",
-    seoTitle: "AI Automation for Roofing Contractors in San Diego | Kratos Intelligence",
-    seoDescription: "AI lead-capture and follow-up for roofing companies. Automate roof replacement quotes, repair inquiries, and insurance claim tracking.",
+    seoTitle: "AI Lead Systems for Roofing Companies | Kratos Intelligence",
+    seoDescription: "Capture storm damage leads and roof replacement quotes 24/7 with Kratos AI systems built for roofers.",
     eyebrow: "AI Automation for Roofers",
-    headline: "Qualify your roofing leads before the first visit.",
-    subheadline: "Automate your roofing sales pipeline. Let AI collect roof age, material type, and damage details so you show up ready to close.",
-    painPoints: [
-      "Walking roofs all day leaves no time for sales calls",
-      "Price shoppers waste time on the phone",
-      "Insurance claim leads require heavy documentation",
-      "Leads go cold between the estimate and the contract"
+    headline: "AI Lead Systems for Roofing Companies",
+    subheadline: "Capture every storm damage inquiry. Let AI collect the details and photos so you can show up ready to close the replacement.",
+    primaryPain: "Storm damage leads missed during peak volume",
+    revenueLeaks: [
+      "Leads missed after storms",
+      "No photo capture before the site visit",
+      "No automated follow-up for estimates",
+      "Insurance claim details not tracked"
     ],
-    automationUseCases: [
-      "AI chatbot to collect roof age and damage photos",
-      "Automated drone inspection booking flow",
-      "Lead scoring for roof replacement vs small repairs",
-      "Multi-step SMS follow-up for sent quotes",
-      "CRM automation to track insurance claim status"
+    recommendedSystems: [
+      "AI Website System",
+      "AI Chatbot System",
+      "AI Outreach Engine",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Lead visits site after storm",
-      "AI collects address and roof material type",
-      "AI requests photos of internal ceiling damage",
-      "Lead is categorized as 'Full Replacement Opportunity'",
-      "Sales rep is notified to schedule an inspection"
+      "Homeowner reports roof issue or storm damage",
+      "AI captures damage type, roof material, and photos",
+      "Insurance context and location captured",
+      "Inspection lead routed to sales team",
+      "Follow-up sequence starts for no-shows"
     ],
+    intakeQuestions: [
+      "What roofing issue are you dealing with?",
+      "Is this storm damage, leak, or replacement?",
+      "Do you have photos of the damage?",
+      "Is insurance involved in this claim?",
+      "What type of roof material do you have?",
+      "What city or ZIP code are you in?"
+    ],
+    sprintRecommendation: "Use an AI Chatbot to capture damage photos and insurance info immediately after a storm.",
     recommendedPackage: "Lead Gen + Outreach Machine",
-    urgencyLabel: "Medium / High",
-    exampleLead: "Roof leak after recent rain, 20 year old roof",
+    urgencyLabel: "Storm Priority",
+    exampleLead: "Roof leak after heavy rain, need inspection",
     ctaText: "Automate Roofing Leads",
-    localSeoKeywords: [
-      "AI for roofing companies",
-      "Roofing lead capture San Diego",
-      "Roofing quote chatbot",
-      "Insurance claim automation roofers",
-      "AI receptionist for roofing contractors"
-    ],
+    localSeoKeywords: ["Roofing AI", "San Diego roofing automation", "AI for roofing leads"],
     commonQuestions: [
       {
-        question: "Can it collect roof damage photos?",
-        answer: "Yes. The AI can prompt the user to upload photos of leaks or missing shingles directly via the chatbot."
+        question: "Can it collect photos before a quote?",
+        answer: "Yes. The AI Chatbot allows users to upload photos of their roof or interior leaks directly."
       },
       {
         question: "Does it help with insurance claims?",
-        answer: "It can collect initial claim numbers and adjuster info to keep your CRM organized from the start."
-      },
-      {
-        question: "Can it distinguish repairs from replacements?",
-        answer: "Yes. By asking the age of the roof and extent of damage, it flags high-value replacement opportunities."
+        answer: "Yes. It can ask if a claim has been filed and collect initial adjuster information."
       }
     ],
-    relatedIndustries: ["restoration", "garage-door", "pest-control"],
-    proofAngle: "Show how automated follow-up increases the close rate on high-ticket roof replacement quotes.",
-    bestFirstAutomation: "AI photo-intake and automated follow-up for replacement quotes.",
-    highValueLeadTypes: [
-      "Full roof replacement",
-      "Storm damage insurance claim",
-      "Commercial roof coating",
-      "Emergency tarping request"
+    relatedIndustries: ["restoration", "garage-door", "cleaning-companies", "junk-removal"],
+    proofAngle: "Respond instantly to storm damage leads before your competition can answer their phone.",
+    bestFirstAutomation: "AI Storm Intake & Photo Capture",
+    highValueLeadTypes: ["Full Roof Replacement", "Commercial Flat Roof", "Insurance Claims"],
+    painPoints: [
+      "Peak storm volume is impossible to handle manually",
+      "Hard to qualify replacement vs repair over the phone",
+      "Estimates go cold without follow-up"
+    ],
+    automationUseCases: [
+      "Storm intake engine",
+      "Photo upload chatbot",
+      "Quote follow-up automation"
     ]
   },
   {
     slug: "garage-door",
-    name: "Garage Door Companies",
-    seoTitle: "AI Automation for Garage Door Repair Companies | Kratos Intelligence",
-    seoDescription: "AI chatbots and phone intake for garage door repair businesses. Capture broken spring and opener repair leads 24/7.",
-    eyebrow: "AI Automation for Garage Door Businesses",
-    headline: "Don't let a broken spring lead go to voicemail.",
-    subheadline: "Garage door repair is a speed game. Our AI intake ensures your customers get an instant response the moment their door won't open.",
-    painPoints: [
-      "Customers call the first person who answers",
-      "Broken springs happen at night and on weekends",
-      "Scattered lead info makes dispatching difficult",
-      "High competition makes lead response speed critical"
+    name: "Garage Door",
+    seoTitle: "AI Intake Systems for Garage Door Companies | Kratos Intelligence",
+    seoDescription: "Capture every broken spring and opener repair call 24/7 with Kratos AI systems.",
+    eyebrow: "AI Automation for Garage Door",
+    headline: "AI Intake Systems for Garage Door Companies",
+    subheadline: "Garage door repair is a speed game. Answer, qualify, and book broken spring calls in seconds with AI.",
+    primaryPain: "Broken spring calls missed during evenings and weekends",
+    revenueLeaks: [
+      "Emergency calls missed after hours",
+      "No urgency scoring for trapped cars",
+      "No automated same-day routing",
+      "No system to capture door style preferences for installs"
     ],
-    automationUseCases: [
-      "AI intake for broken spring and cable emergencies",
-      "Automated booking for garage door maintenance",
-      "AI chatbot to qualify new door installation leads",
-      "Review requests sent 1 hour after job completion",
-      "Instant SMS alerts for service requests"
+    recommendedSystems: [
+      "AI Phone Agent",
+      "AI Chatbot System",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Customer calls: 'Car is stuck in the garage'",
-      "AI identifies 'Broken Spring' as the issue",
-      "AI collects address and confirms service area",
-      "Lead is routed to the nearest tech",
-      "Customer receives 'Tech is on the way' SMS"
+      "Customer reports garage door issue",
+      "AI identifies spring, opener, or track problem",
+      "Urgency and location captured instantly",
+      "Booking or callback routed to technician",
+      "Status updates sent to customer"
     ],
+    intakeQuestions: [
+      "What garage door issue are you having?",
+      "Is the door stuck open or closed?",
+      "Do you think it is a spring, opener, or track issue?",
+      "Is this repair or a new installation?",
+      "What city or ZIP code are you in?",
+      "Is same-day service needed?"
+    ],
+    sprintRecommendation: "Deploy an AI Phone Agent to handle 'car trapped' emergencies when your staff is unavailable.",
     recommendedPackage: "AI-Powered Business System",
-    urgencyLabel: "High urgency",
-    exampleLead: "Broken spring, car trapped in garage",
+    urgencyLabel: "Car Trapped",
+    exampleLead: "Garage door spring broke, car is inside",
     ctaText: "Automate Garage Door Leads",
-    localSeoKeywords: [
-      "AI for garage door repair",
-      "Garage door chatbot San Diego",
-      "Broken spring lead automation",
-      "AI phone answering garage door",
-      "Garage door install leads"
-    ],
+    localSeoKeywords: ["Garage Door AI", "San Diego garage door automation", "AI for broken springs"],
     commonQuestions: [
       {
-        question: "How fast does the team get alerted?",
-        answer: "Instantly. As soon as the AI identifies a broken spring or trapped car, an SMS is sent to your dispatch or owner."
+        question: "Can it handle after-hours missed calls?",
+        answer: "Yes. It answers 24/7, qualifies the emergency, and can alert you to 'car trapped' situations immediately."
       },
       {
         question: "Can it book install estimates?",
-        answer: "Yes. For customers looking for new doors, it can collect style preferences and book a measuring appointment."
-      },
-      {
-        question: "Does it work after hours?",
-        answer: "Yes, it provides 24/7 coverage so you never miss a weekend emergency call."
+        answer: "Yes. It can capture door size and style preferences and book a measurement appointment."
       }
     ],
-    relatedIndustries: ["hvac", "electricians", "roofing"],
-    proofAngle: "Focus on the 'Speed to Lead'—capturing the customer before they call the next company on Google.",
-    bestFirstAutomation: "AI emergency phone receptionist for broken spring calls.",
-    highValueLeadTypes: [
-      "Broken spring emergency",
-      "Car trapped in garage",
-      "New garage door installation",
-      "Commercial door repair"
+    relatedIndustries: ["hvac", "electricians", "roofing", "plumbers"],
+    proofAngle: "Capture the customer the moment their door breaks, before they call the next company.",
+    bestFirstAutomation: "AI Emergency Repair Intake",
+    highValueLeadTypes: ["Broken Spring", "New Door Installation", "Commercial Repair"],
+    painPoints: [
+      "Speed is the only thing that matters for springs",
+      "Hard to qualify residential vs commercial on the fly",
+      "Missing weekend calls is missing easy revenue"
+    ],
+    automationUseCases: [
+      "AI Receptionist for springs",
+      "Install inquiry chatbot",
+      "Review generation automation"
     ]
   },
   {
     slug: "pest-control",
     name: "Pest Control",
-    seoTitle: "AI Automation for Pest Control Companies | Kratos Intelligence",
-    seoDescription: "AI lead-capture and appointment booking for pest control. Automate termite, rodent, and general pest service inquiries.",
+    seoTitle: "AI Lead Systems for Pest Control Companies | Kratos Intelligence",
+    seoDescription: "Automate pest control inspections and recurring service inquiries with Kratos AI systems.",
     eyebrow: "AI Automation for Pest Control",
-    headline: "Respond to pest emergencies while you're in the field.",
-    subheadline: "Automate your pest control intake. Let AI handle the common questions about pricing and service areas while you focus on treatments.",
-    painPoints: [
-      "Missed calls mean missed recurring revenue",
-      "Hard to qualify termite vs general pest leads on the fly",
-      "Customers want pricing before you see the property",
-      "Following up on quarterly service reminders is manual"
+    headline: "AI Lead Systems for Pest Control Companies",
+    subheadline: "Stop answering pricing questions manually. Let AI qualify the pest type and book the inspection while you're in the yard.",
+    primaryPain: "Pricing and service area inquiries wasting time",
+    revenueLeaks: [
+      "Leads missed during service hours",
+      "No automated booking for inspections",
+      "No recurring service follow-up",
+      "Hard to qualify termite vs general pest on the fly"
     ],
-    automationUseCases: [
-      "AI chatbot to identify pest type and service area",
-      "Automated booking for initial inspections",
-      "AI follow-up for quarterly service renewals",
-      "SMS alerts for active termite or rodent sightings",
-      "CRM integration to track customer service history"
+    recommendedSystems: [
+      "AI Chatbot System",
+      "AI Outreach Engine",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Lead finds you on Google Maps",
-      "AI asks: 'Are you seeing ants, rodents, or termites?'",
-      "AI explains your initial inspection process",
-      "Inspection is booked in your calendar",
-      "Lead info is pushed to your pest software or CRM"
+      "Customer reports pest issue on website",
+      "AI identifies pest type and property details",
+      "Severity and recurring need captured",
+      "Inspection or treatment lead routed to CRM",
+      "Appointment reminder sent to customer"
     ],
+    intakeQuestions: [
+      "What pest issue are you dealing with?",
+      "Where are you seeing the problem?",
+      "Is this residential or commercial?",
+      "How long has it been happening?",
+      "Are you looking for one-time or recurring service?",
+      "When would you like an inspection?"
+    ],
+    sprintRecommendation: "Build an AI Chatbot for your website to handle recurring service inquiries and inspection bookings.",
     recommendedPackage: "Trades Starter Pack",
-    urgencyLabel: "Medium",
-    exampleLead: "Rodent activity in the attic",
+    urgencyLabel: "Active Infestation",
+    exampleLead: "Seeing rodents in the kitchen at night",
     ctaText: "Automate Pest Leads",
-    localSeoKeywords: [
-      "AI for pest control",
-      "Pest control chatbot San Diego",
-      "Termite lead automation",
-      "AI appointment booking pest control",
-      "Rodent control lead capture"
-    ],
+    localSeoKeywords: ["Pest Control AI", "San Diego pest automation", "AI for termite leads"],
     commonQuestions: [
       {
-        question: "Can it identify the type of pest?",
-        answer: "Yes. It asks the customer what they are seeing (ants, spiders, rodents, termites) to route the lead correctly."
+        question: "Can it collect photos before a quote?",
+        answer: "Yes. The AI can prompt the customer to upload a photo of the pest or damage for identification."
       },
       {
-        question: "Can it book recurring service?",
-        answer: "It can book the initial inspection and then pass the data to your CRM to set up recurring billing."
-      },
-      {
-        question: "Does it handle termite inspections?",
-        answer: "Yes. It can qualify if the inspection is for a real estate transaction or an active infestation."
+        question: "Can it route leads into my CRM?",
+        answer: "Yes. All leads are organized and pushed into your CRM or Airtable for easy management."
       }
     ],
-    relatedIndustries: ["pool-service", "cleaning-companies", "roofing"],
-    proofAngle: "Show how many 'one-time' leads are converted into recurring annual contracts through better follow-up.",
-    bestFirstAutomation: "AI intake chatbot with automated inspection booking.",
-    highValueLeadTypes: [
-      "Termite treatment",
-      "Rodent exclusion project",
-      "Bed bug emergency",
-      "New quarterly service contract"
+    relatedIndustries: ["pool-service", "cleaning-companies", "roofing", "junk-removal"],
+    proofAngle: "Turn every website visitor into a booked inspection without picking up the phone.",
+    bestFirstAutomation: "AI Inspection Booking Chatbot",
+    highValueLeadTypes: ["Termite Treatment", "Rodent Exclusion", "Annual Service Plans"],
+    painPoints: [
+      "Customers want instant answers on pest types",
+      "Missed calls mean they call the next bug guy",
+      "Following up on quarterly renewals is manual"
+    ],
+    automationUseCases: [
+      "Pest ID & Booking Chatbot",
+      "Renewal reminder engine",
+      "Review capture automation"
     ]
   },
   {
     slug: "pool-service",
-    name: "Pool Service / Pool Repair",
-    seoTitle: "AI Automation for Pool Service & Repair Companies | Kratos Intelligence",
-    seoDescription: "AI lead-capture and CRM automation for pool service businesses. Automate repair quotes, equipment installs, and service inquiries.",
-    eyebrow: "AI Automation for Pool Businesses",
-    headline: "Automate your pool repair and service intake.",
-    subheadline: "Stop spending your evenings on the phone. Our AI handles lead capture and qualifies repairs so you can stay in the backyard.",
-    painPoints: [
-      "Pump failures happen when you're already booked",
-      "Price shoppers call for 'just a quick question'",
-      "Managing service routes and repair quotes is manual",
-      "Hard to track which leads actually converted to recurring"
+    name: "Pool Service",
+    seoTitle: "AI Intake Systems for Pool Service Companies | Kratos Intelligence",
+    seoDescription: "Automate pool repair quotes and recurring service intake with Kratos AI systems.",
+    eyebrow: "AI Automation for Pool Service",
+    headline: "AI Intake Systems for Pool Service Companies",
+    subheadline: "Qualify pool repairs and service routes automatically. Let AI handle the intake so you can focus on the water.",
+    primaryPain: "Repair inquiries and equipment quotes are manual and slow",
+    revenueLeaks: [
+      "Equipment repair calls missed after hours",
+      "No photo capture for green pools",
+      "No automated follow-up for heater/pump quotes",
+      "No system to qualify service route density"
     ],
-    automationUseCases: [
-      "AI chatbot for pump, heater, and filter repair leads",
-      "Automated intake for new recurring service routes",
-      "AI follow-up for equipment upgrade quotes",
-      "Review generation system for local credibility",
-      "Lead scoring for high-value heater and salt-cell jobs"
+    recommendedSystems: [
+      "AI Chatbot System",
+      "AI Outreach Engine",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Customer messages about a green pool",
-      "AI identifies the issue and requests pool type (Salt/Chlorine)",
-      "AI explains your repair or cleaning process",
-      "Owner receives a 'Repair Request' alert",
-      "Lead is saved to Airtable for route planning"
+      "Customer requests pool help or repair",
+      "AI identifies cleaning, repair, or equipment need",
+      "Pool type and urgency captured",
+      "Lead and photos routed to service team",
+      "Quote follow-up starts for high-ticket repairs"
     ],
+    intakeQuestions: [
+      "What pool service do you need?",
+      "Is this cleaning, repair, maintenance, or equipment?",
+      "Is the pool green or unusable?",
+      "What type of pool do you have?",
+      "Are you looking for one-time or recurring service?",
+      "What city or ZIP code are you in?"
+    ],
+    sprintRecommendation: "Use an AI Chatbot to capture equipment photos for faster pump and heater repair quotes.",
     recommendedPackage: "Trades Starter Pack",
-    urgencyLabel: "Medium / High",
-    exampleLead: "Pool pump is making loud noise and not priming",
+    urgencyLabel: "Green Pool",
+    exampleLead: "Pool pump making noise, water is turning green",
     ctaText: "Automate Pool Leads",
-    localSeoKeywords: [
-      "AI for pool service companies",
-      "Pool repair chatbot San Diego",
-      "Pool equipment quote automation",
-      "AI receptionist for pool businesses",
-      "Pool cleaning lead capture"
-    ],
+    localSeoKeywords: ["Pool Service AI", "San Diego pool automation", "AI for pool repairs"],
     commonQuestions: [
       {
-        question: "Can it handle equipment repair leads?",
-        answer: "Yes. It qualifies whether the customer needs a pump repair, heater install, or filter cleaning."
+        question: "Can it qualify emergency repair calls?",
+        answer: "Yes. It can identify pump failures or heater issues and prioritize them over cleaning requests."
       },
       {
-        question: "Does it help with route density?",
-        answer: "By collecting ZIP codes first, the AI can flag leads that are already in your existing service areas."
-      },
-      {
-        question: "Can it sell equipment upgrades?",
-        answer: "Yes. It can educate customers on energy-efficient pumps or salt-cell conversions."
+        question: "Can it route leads into my CRM?",
+        answer: "Yes. We connect leads to your CRM and can even check for route density based on ZIP code."
       }
     ],
-    relatedIndustries: ["pest-control", "cleaning-companies", "hvac"],
-    proofAngle: "Focus on capturing high-margin repair and equipment install jobs instead of just cleaning leads.",
-    bestFirstAutomation: "AI repair intake with photo-upload capability.",
-    highValueLeadTypes: [
-      "Variable speed pump install",
-      "Pool heater replacement",
-      "Salt system conversion",
-      "Green-to-clean emergency"
+    relatedIndustries: ["pest-control", "cleaning-companies", "hvac", "restoration"],
+    proofAngle: "Stop manually texting for photos of green pools and broken pumps.",
+    bestFirstAutomation: "AI Repair & Quote Intake",
+    highValueLeadTypes: ["Heater Replacement", "Variable Speed Pumps", "Recurring Service"],
+    painPoints: [
+      "Repair quotes take too much phone time",
+      "Hard to qualify route density on the fly",
+      "Green pool emergencies need fast response"
+    ],
+    automationUseCases: [
+      "Equipment Quote Chatbot",
+      "Route qualification engine",
+      "Recurring service reminders"
     ]
   },
   {
     slug: "junk-removal",
     name: "Junk Removal",
-    seoTitle: "AI Automation for Junk Removal Businesses | Kratos Intelligence",
-    seoDescription: "AI lead-capture and quote automation for junk removal. Automate photo-based quotes, booking, and schedule follow-up.",
+    seoTitle: "AI Lead Systems for Junk Removal Companies | Kratos Intelligence",
+    seoDescription: "Automate junk removal quotes and volume estimates with Kratos AI systems.",
     eyebrow: "AI Automation for Junk Removal",
-    headline: "Give instant junk removal quotes with AI.",
-    subheadline: "Junk removal is a volume game. Use AI to collect photos, estimate loads, and book your truck before the customer calls the next guy.",
-    painPoints: [
-      "Pricing requests require seeing the 'junk' first",
-      "Manually texting for photos takes all day",
-      "Leads ghost after getting a price estimate",
-      "Dispatching trucks efficiently is hard with scattered data"
+    headline: "AI Lead Systems for Junk Removal Companies",
+    subheadline: "Get load details and photos automatically. Use AI to provide instant estimates and book your trucks.",
+    primaryPain: "Manual texting for photos to provide estimates",
+    revenueLeaks: [
+      "Quotes delayed while waiting for photos",
+      "No automated same-day booking",
+      "No follow-up for abandoned estimates",
+      "No urgency scoring for estate cleanouts"
     ],
-    automationUseCases: [
-      "AI chatbot that requests load photos and job location",
-      "Automated follow-up for leads who didn't book",
-      "AI phone agent for bulk pickup and estate cleanouts",
-      "Instant SMS notifications for multi-truck jobs",
-      "Review requests sent automatically after haul-away"
+    recommendedSystems: [
+      "AI Chatbot System",
+      "AI Website System",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Lead visits site for a couch removal",
-      "AI asks for a photo of the items",
-      "AI provides your base pricing range",
-      "Pickup time is scheduled via AI",
-      "Lead is sent to the driver's phone"
+      "Customer requests junk removal on website",
+      "AI captures item type, volume, and photos",
+      "Location and access details (stairs/curbside) captured",
+      "Job estimate or booking routed to dispatch",
+      "Review request sent after haul-away"
     ],
+    intakeQuestions: [
+      "What items need to be removed?",
+      "Roughly how much junk is there?",
+      "Do you have photos of the items?",
+      "Is the junk inside, outside, or curbside?",
+      "What city or ZIP code are you in?",
+      "Do you need same-day pickup?"
+    ],
+    sprintRecommendation: "Build an AI Photo Chatbot to automate your estimation process and get jobs on the schedule faster.",
     recommendedPackage: "Trades Starter Pack",
-    urgencyLabel: "High",
-    exampleLead: "Garage cleanout needed before moving",
+    urgencyLabel: "Same-Day Request",
+    exampleLead: "Need garage cleaned out by tomorrow morning",
     ctaText: "Automate Junk Removal",
-    localSeoKeywords: [
-      "AI for junk removal",
-      "Junk removal chatbot San Diego",
-      "Instant junk removal quotes",
-      "AI phone receptionist junk removal",
-      "Estate cleanout lead automation"
-    ],
+    localSeoKeywords: ["Junk Removal AI", "San Diego junk automation", "AI for junk removal quotes"],
     commonQuestions: [
       {
-        question: "How do you give quotes without seeing it?",
-        answer: "The AI prompts the customer to upload photos of their junk so you can give an accurate estimate via text or email."
+        question: "Can it collect photos before a quote?",
+        answer: "Yes. The AI specifically asks for photos so you can see the volume before sending a truck."
       },
       {
-        question: "Does it handle commercial cleanouts?",
-        answer: "Yes. It can qualify large-scale office or construction site cleanouts and flag them for a call-back."
-      },
-      {
-        question: "Can it book the appointment?",
-        answer: "Yes, it can integrate with your calendar to book a arrival window."
+        question: "Can the AI handle appointment booking?",
+        answer: "Yes. It can check your availability and book a arrival window for the customer."
       }
     ],
-    relatedIndustries: ["cleaning-companies", "restoration", "pest-control"],
-    proofAngle: "Measure how much time is saved by having customers upload photos automatically instead of manual texting.",
-    bestFirstAutomation: "AI photo-intake and automated SMS follow-up.",
-    highValueLeadTypes: [
-      "Full estate cleanout",
-      "Construction site debris removal",
-      "Commercial office cleanout",
-      "Hoarder house cleanup"
+    relatedIndustries: ["cleaning-companies", "restoration", "pest-control", "roofing"],
+    proofAngle: "Book more trucks by providing instant estimates based on AI-captured photos.",
+    bestFirstAutomation: "AI Photo-Quote & Booking Engine",
+    highValueLeadTypes: ["Full Estate Cleanout", "Commercial Site Debris", "Hoarder Cleanup"],
+    painPoints: [
+      "Estimating volume over the phone is a nightmare",
+      "Customers ghost after the first price mention",
+      "Same-day jobs are missed without instant response"
+    ],
+    automationUseCases: [
+      "Photo-based quote chatbot",
+      "Same-day booking engine",
+      "Unbooked lead follow-up"
     ]
   },
   {
     slug: "restoration",
-    name: "Restoration / Water Damage",
-    seoTitle: "AI Automation for Restoration & Water Damage Companies | Kratos Intelligence",
-    seoDescription: "AI emergency intake for restoration companies. Capture water, fire, and mold damage leads 24/7 with instant owner alerts.",
+    name: "Restoration",
+    seoTitle: "AI Intake Systems for Restoration Companies | Kratos Intelligence",
+    seoDescription: "Capture every water damage emergency and insurance job 24/7 with Kratos AI systems.",
     eyebrow: "AI Automation for Restoration",
-    headline: "Every minute counts in water damage restoration.",
-    subheadline: "When a house is flooding, speed is everything. Our AI intake ensures emergency leads are qualified and routed to you in seconds.",
-    painPoints: [
-      "Missing an insurance job can cost $10k+",
-      "Answering services are too slow for active floods",
-      "Qualifying water vs mold vs fire on the fly is hard",
-      "Communication between the field and the office is messy"
+    headline: "AI Intake Systems for Restoration Companies",
+    subheadline: "When a house is flooding, every second counts. Our AI intake ensures emergency jobs are qualified and dispatched in seconds.",
+    primaryPain: "Missing high-value insurance jobs after hours",
+    revenueLeaks: [
+      "Water damage calls missed overnight",
+      "No urgency scoring for active flooding",
+      "Insurance context not captured initially",
+      "Slow response times losing jobs to competitors"
     ],
-    automationUseCases: [
-      "AI phone agent for 24/7 water and fire emergencies",
-      "Urgency scoring for active leaks and standing water",
-      "AI chatbot to collect insurance info and damage details",
-      "Airtable CRM for tracking multi-week restoration jobs",
-      "Instant SMS alerts to the entire emergency team"
+    recommendedSystems: [
+      "AI Phone Agent",
+      "AI Chatbot System",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Customer calls at 2 AM about a flooded basement",
-      "AI identifies the high-value emergency",
-      "AI instructs customer on safety and shut-offs",
-      "Owner and team receive 'CRITICAL' SMS alert",
-      "Lead is tracked in the CRM for insurance paperwork"
+      "Customer reports damage (water, fire, mold)",
+      "AI captures severity, insurance, and photos",
+      "Urgency scored and emergency alerts sent",
+      "Response workflow routed to on-call team",
+      "Documentation flow started for insurance"
     ],
+    intakeQuestions: [
+      "What type of damage occurred?",
+      "Is this water, fire, smoke, or mold?",
+      "Is the damage active or contained?",
+      "Is insurance involved in this claim?",
+      "Do you have photos of the damage?",
+      "Is emergency service needed now?"
+    ],
+    sprintRecommendation: "Deploy an AI Phone Agent to capture 24/7 water damage emergencies with instant SMS broadcasting to your team.",
     recommendedPackage: "AI-Powered Business System",
-    urgencyLabel: "Critical",
-    exampleLead: "Sewer backup in finished basement",
+    urgencyLabel: "Active Flood",
+    exampleLead: "Burst pipe in attic, water coming through ceiling",
     ctaText: "Automate Restoration Leads",
-    localSeoKeywords: [
-      "AI for restoration companies",
-      "Water damage chatbot San Diego",
-      "Restoration lead capture automation",
-      "AI phone receptionist restoration",
-      "Mold remediation lead automation"
-    ],
+    localSeoKeywords: ["Restoration AI", "San Diego restoration automation", "AI for water damage"],
     commonQuestions: [
       {
-        question: "Can it handle insurance info?",
-        answer: "Yes. It can collect the carrier name and policy info to speed up the claim process."
+        question: "Can the AI handle emergency triage?",
+        answer: "Yes. It can identify active flooding and give the customer immediate shut-off instructions while alerting you."
       },
       {
-        question: "Does it help with mold leads?",
-        answer: "Yes. It qualifies whether it's an active leak or visible mold to determine the urgency."
-      },
-      {
-        question: "How does the team get alerted?",
-        answer: "High-priority flood and fire leads trigger an immediate SMS broadcast to your on-call team."
+        question: "Can it collect insurance info?",
+        answer: "Yes. It can capture carrier details and policy numbers to speed up the intake process."
       }
     ],
-    relatedIndustries: ["plumbers", "roofing", "junk-removal"],
-    proofAngle: "Calculate the ROI of capturing just one additional insurance-paid water damage job per year.",
-    bestFirstAutomation: "24/7 Critical Emergency AI phone receptionist.",
-    highValueLeadTypes: [
-      "Whole-home flood restoration",
-      "Kitchen fire damage",
-      "Commercial water damage",
-      "Sewage backup emergency"
+    relatedIndustries: ["plumbers", "roofing", "hvac", "junk-removal"],
+    proofAngle: "Capture $10k+ insurance jobs instead of letting them go to voicemail.",
+    bestFirstAutomation: "24/7 Critical Emergency Intake",
+    highValueLeadTypes: ["Whole-Home Flood", "Kitchen Fire", "Commercial Water Damage"],
+    painPoints: [
+      "Emergency response is the only way to win insurance jobs",
+      "Manual intake slows down mitigation efforts",
+      "Hard to qualify water vs mold on a voicemail"
+    ],
+    automationUseCases: [
+      "Emergency Phone Dispatcher",
+      "Insurance intake chatbot",
+      "Critical lead SMS broadcast"
     ]
   },
   {
     slug: "cleaning-companies",
     name: "Cleaning Companies",
-    seoTitle: "AI Automation for Cleaning Companies in San Diego | Kratos Intelligence",
-    seoDescription: "AI lead-capture and quote automation for cleaning services. Automate house cleaning, move-in/out, and commercial cleaning inquiries.",
-    eyebrow: "AI Automation for Cleaning Businesses",
-    headline: "Automate your cleaning quotes and booking.",
-    subheadline: "Stop answering 'How much for 3 bedrooms?' Let our AI qualify your cleaning leads, provide estimates, and manage your schedule.",
-    painPoints: [
-      "Constant pricing questions for different home sizes",
-      "Hard to qualify residential vs commercial on the phone",
-      "Managing recurring schedules manually is a nightmare",
-      "Reviewing move-in/out requirements is repetitive"
+    seoTitle: "AI Booking Systems for Cleaning Companies | Kratos Intelligence",
+    seoDescription: "Automate cleaning quotes, move-out inquiries, and recurring service booking with Kratos AI systems.",
+    eyebrow: "AI Automation for Cleaning",
+    headline: "AI Booking Systems for Cleaning Companies",
+    subheadline: "Stop answering pricing questions manually. Let AI qualify property size and book cleans while you focus on the details.",
+    primaryPain: "Constant repetitive pricing inquiries for different home sizes",
+    revenueLeaks: [
+      "Quotes missed during cleaning hours",
+      "No automated same-day booking",
+      "No system for recurring service follow-up",
+      "Manual qualification of move-in/out requirements"
     ],
-    automationUseCases: [
-      "AI chatbot for house cleaning and move-out quotes",
-      "Automated booking for first-time deep cleans",
-      "AI follow-up for recurring service reminders",
-      "Review generation to boost your local ranking",
-      "Lead scoring for high-value commercial contracts"
+    recommendedSystems: [
+      "AI Website System",
+      "AI Chatbot System",
+      "AI Outreach Engine",
+      "CRM / Automation Backend"
     ],
     workflowSteps: [
-      "Lead asks for a 'move-out' clean quote",
-      "AI collects SQFT, bedroom count, and status",
-      "AI provides a preliminary price estimate",
-      "Lead chooses a date and time",
-      "Lead info is saved to your CRM for the cleaners"
+      "Customer requests cleaning quote",
+      "AI captures property type, size, and frequency",
+      "Estimate or booking choosing choice provided",
+      "Lead routes to CRM and scheduling workflow",
+      "Recurring service reminders start automatically"
     ],
+    intakeQuestions: [
+      "What type of cleaning do you need?",
+      "Is this residential or commercial?",
+      "Is this standard, deep, or move-out cleaning?",
+      "How many rooms or approximate square footage?",
+      "What city or ZIP code are you in?",
+      "How often do you need service?"
+    ],
+    sprintRecommendation: "Build a Pricing & Booking Chatbot to handle your most common 'How much for 3 bedrooms?' questions.",
     recommendedPackage: "Trades Starter Pack",
-    urgencyLabel: "Medium",
-    exampleLead: "Deep clean needed for 4BR home before sale",
+    urgencyLabel: "Move-Out Deadline",
+    exampleLead: "Need 2000 sq ft home cleaned for sale by Friday",
     ctaText: "Automate Cleaning Leads",
-    localSeoKeywords: [
-      "AI for cleaning companies",
-      "Cleaning service chatbot San Diego",
-      "House cleaning quote automation",
-      "AI appointment booking cleaning",
-      "Commercial cleaning lead capture"
-    ],
+    localSeoKeywords: ["Cleaning AI", "San Diego cleaning automation", "AI for cleaning quotes"],
     commonQuestions: [
       {
         question: "Can it provide instant quotes?",
-        answer: "Yes. By asking for SQFT and room counts, it can provide an estimated price range based on your rates."
+        answer: "Yes. By collecting room counts and square footage, it can provide an estimated price range instantly."
       },
       {
-        question: "Does it handle move-out cleans?",
-        answer: "Yes. It specifically asks if the home will be empty to ensure the quote is accurate for move-in/out standards."
-      },
-      {
-        question: "Can it book commercial site visits?",
-        answer: "For commercial leads, it flags the high-value opportunity and books a walk-through for you."
+        question: "Can it support appointment booking?",
+        answer: "Yes. It can integrate with your calendar to show available slots for deep cleans or move-outs."
       }
     ],
-    relatedIndustries: ["pest-control", "pool-service", "junk-removal"],
-    proofAngle: "Show how much administrative time is saved by automating routine pricing inquiries.",
-    bestFirstAutomation: "AI cleaning quote chatbot and booking system.",
-    highValueLeadTypes: [
-      "Recurring commercial office clean",
-      "Large move-out deep clean",
-      "Post-construction cleanup",
-      "Weekly residential service"
+    relatedIndustries: ["pest-control", "pool-service", "junk-removal", "hvac"],
+    proofAngle: "Free up your admin time by automating routine pricing and scheduling calls.",
+    bestFirstAutomation: "AI Quote & Booking Chatbot",
+    highValueLeadTypes: ["Commercial Contracts", "Move-Out Deep Cleans", "Recurring Service"],
+    painPoints: [
+      "Pricing calls take up hours of admin time",
+      "Missed inquiries mean no growth",
+      "Hard to manage recurring schedules manually"
+    ],
+    automationUseCases: [
+      "Cleaning Quote Engine",
+      "Recurring service reminders",
+      "Review generation automation"
     ]
   }
 ];
-

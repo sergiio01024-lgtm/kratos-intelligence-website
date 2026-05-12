@@ -75,9 +75,9 @@ export default function App() {
         <PhoneServicesCarousel />
         <Outcome />
         <SystemShowcase />
+        <AIDemoSection />
         <MissedCallCalculator />
         <Process />
-        <AIDemoSection />
         <IndustryLandingPages />
         <Packages />
         <Deliverables />
