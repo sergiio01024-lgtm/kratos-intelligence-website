@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { Industry, industries } from "../data/industries";
 import { Button } from "./ui/button";
 import { FadeIn } from "./ui/FadeIn";
-import { 
-  CheckCircle2, 
-  ArrowRight, 
-  AlertCircle, 
-  Zap, 
-  Cpu, 
+import {
+  CheckCircle2,
+  ArrowRight,
+  AlertCircle,
+  Zap,
+  Cpu,
   Calendar,
   ChevronLeft,
   MessageCircle,
@@ -33,7 +33,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
   useEffect(() => {
     // Update SEO metadata
     document.title = industry.seoTitle;
-    
+
     // Helper to update or create meta tags
     const updateMetaTag = (selector: string, attribute: string, content: string) => {
       let element = document.querySelector(selector);
@@ -54,13 +54,13 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
 
     updateMetaTag('meta[name="description"]', "content", industry.seoDescription);
     updateMetaTag('link[rel="canonical"]', "href", `https://kratosintelligence.com/industries/${industry.slug}/`);
-    
+
     // Open Graph
     updateMetaTag('meta[property="og:title"]', "content", industry.seoTitle);
     updateMetaTag('meta[property="og:description"]', "content", industry.seoDescription);
     updateMetaTag('meta[property="og:url"]', "content", `https://kratosintelligence.com/industries/${industry.slug}/`);
     updateMetaTag('meta[property="og:type"]', "content", "website");
-    
+
     // Twitter
     updateMetaTag('meta[name="twitter:title"]', "content", industry.seoTitle);
     updateMetaTag('meta[name="twitter:description"]', "content", industry.seoDescription);
@@ -71,7 +71,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
     const injectJsonLd = (id: string, data: object) => {
       let script = document.getElementById(id);
       if (script) script.remove();
-      
+
       script = document.createElement('script');
       script.id = id;
       script.type = 'application/ld+json';
@@ -181,13 +181,13 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                 {industry.subheadline}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 items-center">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="h-16 px-10 text-xl bg-white text-black hover:bg-white/90 border-none shadow-[0_10px_30px_rgba(255,255,255,0.1)] font-bold rounded-full transition-all group w-full sm:w-auto"
                   asChild
                   onClick={() => handleCtaClick("industry_page_hero")}
                 >
-                  <a 
+                  <a
                     href={finalBookingUrl}
                     target={isExternalBooking ? "_blank" : undefined}
                     rel={isExternalBooking ? "noopener noreferrer" : undefined}
@@ -197,8 +197,8 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                   </a>
                 </Button>
                 <div className="flex flex-col sm:flex-row gap-4 items-center">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="lg"
                     className="h-16 px-8 text-lg border-white/10 text-white hover:bg-white/5 rounded-full transition-all w-full sm:w-auto font-bold"
                     asChild
@@ -209,8 +209,8 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                       Back to Previous Section
                     </a>
                   </Button>
-                  <a 
-                    href="/#industries" 
+                  <a
+                    href="/#industries"
                     className="text-white/40 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest"
                     onClick={handleViewAllIndustries}
                   >
@@ -255,7 +255,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               <p className="text-white/60 text-xl font-light leading-relaxed mb-10">
                 Traditional workflows can't keep up with modern customer expectations. Every minute of delay is a lost job to your competitor.
               </p>
-              
+
               <div className="grid sm:grid-cols-1 gap-6">
                 {industry.revenueLeaks.map((point, i) => (
                   <div key={i} className="flex items-start gap-4 p-6 bg-red-500/[0.03] border border-red-500/10 rounded-2xl group hover:bg-red-500/[0.05] transition-all">
@@ -296,7 +296,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                     </div>
                   </div>
                   <div className="pt-4">
-                    <Button 
+                    <Button
                       className="w-full h-14 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 rounded-full font-bold"
                       asChild
                     >
@@ -348,7 +348,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               <p className="text-white/60 text-xl font-light leading-relaxed">
                 We don't just add a "bot." We rebuild the entire path from first contact to a confirmed job in your CRM.
               </p>
-              
+
               <div className="space-y-4">
                 {industry.workflowSteps.map((step, i) => (
                   <div key={i} className="flex items-center gap-4 group">
@@ -361,7 +361,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               </div>
 
               <div className="pt-4">
-                <Button 
+                <Button
                   className="h-14 px-10 bg-white text-black hover:bg-white/90 rounded-full font-bold transition-all shadow-xl"
                   asChild
                 >
@@ -420,24 +420,24 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
                 <span className="text-sm font-bold text-white uppercase tracking-widest">Recommended First Step</span>
               </div>
               <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-none">
-                Start With the <br/>7-Day AI Sprint
+                Start With the <br />7-Day AI Sprint
               </h2>
               <p className="text-white/90 text-xl md:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
                 {industry.sprintRecommendation}
               </p>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="h-16 px-12 text-xl bg-white text-black hover:bg-white/90 rounded-full font-black shadow-2xl transition-all"
                 asChild
                 onClick={() => handleCtaClick("industry_sprint_recommendation")}
               >
                 <a href="/#contact-form">Start the 7-Day Sprint</a>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 className="h-16 px-12 text-xl border-white/20 text-white hover:bg-white/10 rounded-full font-bold transition-all"
                 asChild
@@ -457,7 +457,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16 space-y-4">
             <h2 className="text-3xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
-              Common Questions for <br/>{industry.name} Businesses
+              Common Questions for <br />{industry.name} Businesses
             </h2>
           </FadeIn>
 
@@ -491,7 +491,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
               if (!related) return null;
               return (
                 <FadeIn key={slug}>
-                  <a 
+                  <a
                     href={`/industries/${slug}/`}
                     onClick={() => handleRelatedIndustryClick(related)}
                     className="block dark-card p-8 rounded-[2rem] border border-white/5 hover:border-[#667eea]/40 transition-all group bg-white/[0.01]"
@@ -516,20 +516,20 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
             <div className="dark-card border-white/10 rounded-[3rem] p-12 md:p-24 text-center space-y-12 bg-white/[0.01] relative overflow-hidden shadow-2xl">
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-none">
-                  Ready to Automate <br/>Your {industry.name} Flow?
+                  Ready to Automate <br />Your {industry.name} Flow?
                 </h2>
                 <p className="text-white/60 text-xl md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
                   Book a free 20-minute audit and I’ll show you exactly which AI system will drive the fastest ROI for your business.
                 </p>
               </div>
               <div className="flex justify-center">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="h-20 px-16 text-2xl bg-white text-black hover:bg-white/90 rounded-full font-bold shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all group"
                   asChild
                   onClick={() => handleCtaClick("industry_page_bottom")}
                 >
-                  <a 
+                  <a
                     href={finalBookingUrl}
                     target={isExternalBooking ? "_blank" : undefined}
                     rel={isExternalBooking ? "noopener noreferrer" : undefined}
@@ -543,7 +543,7 @@ export function IndustryLandingPage({ industry }: IndustryLandingPageProps) {
           </FadeIn>
         </div>
       </section>
-      
+
       {/* Contact anchor for accessibility */}
       <div id="contact" className="h-0 w-0 pointer-events-none" aria-hidden="true"></div>
     </div>

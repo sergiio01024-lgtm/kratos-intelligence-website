@@ -12,7 +12,7 @@ export function WorkflowVisualizer() {
   ];
 
   return (
-    <div className="w-full py-12">
+    <div id="workflow-preview" className="w-full py-12">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {steps.map((step, i) => (
           <FadeIn key={i} delay={i * 0.1}>

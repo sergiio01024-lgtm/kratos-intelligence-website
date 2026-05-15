@@ -133,7 +133,7 @@ export function Packages() {
 
         {/* 7-Day AI Sprint - Featured Entry Point */}
         <FadeIn delay={0.1} className="mb-12">
-          <div className="max-w-5xl mx-auto relative group">
+          <div id="sprint" className="max-w-5xl mx-auto relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-[#667eea] via-[#764ba2] to-[#667eea] rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
             <Card className="relative bg-[#05070a] border-white/10 rounded-[2rem] p-8 md:p-12 overflow-hidden">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
